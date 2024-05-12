@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Vlorenzo <vlorenzo@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:50:27 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/04/12 14:57:56 by Vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/12 17:39:23 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ char	*ft_strchr(const char *s, int c)
 	
 	if (c == '\0')
 	{
-		return(0);
+		return(NULL);
 	}
-	return (0);
+	return (NULL);
 }
 
 /* strchr() locates the first occurrence of c (converted to a char)
@@ -33,7 +33,7 @@ in the string pointed to by s. The termi-nating null character is
 considered to be part of the string; therefore if c is `\0', the
 functions locate the terminating `\0'. 
 
-	*pos = (char *)s; converts: const char *s --> char *s && equals *pos t *s
+return(char *)s; converts const char *s >> char*s & equals *pos to *s
 */
 
 #include <stdio.h>
@@ -48,7 +48,7 @@ int main(void)
 	c1 = 'a';
 	c2 = 'o';
 	c3 = 'M';
-	chr = 	ft_strchr(str, c2);
+	chr = 	ft_strchr(str, c2); //en la definicion del puntero no hace falta poner *
 	printf("test %s\n", chr); //tambien: printf("test %s\n", ft_strchr(str, c2));
 
 	return(0);
