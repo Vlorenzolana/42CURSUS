@@ -3,7 +3,7 @@
 # NAME: Define el nombre de la biblioteca que se creará (libft.a).             #
 NAME = libft.a
 # CC: Especifica el compilador a usar (gcc).                                   #
-CC = cc
+CC = gcc
 # CCFLAGS: Define las opciones del compilador (-Wall -Wextra -Werror).         #
 CCFLAGS = -Wall -Wextra -Werror
 # RM: Comando para eliminar archivos (rm -rf).                                 #
@@ -30,10 +30,10 @@ SRCS = 	ft_atoi.c\
 	ft_strnstr.c\
 	ft_strrchr.c\
 	ft_tolower.c\
-	ft_toupper.c
-#	ft_malloc.c\
+	ft_toupper.c\
+	ft_calloc.c\
 	ft_strdup.c\
-	2_ft_itoa.c\
+#	2_ft_itoa.c\
 	2_ft_lstadd_back.c\
 	2_ft_lstadd_front.c\
 	2_ft_lstclear.c\

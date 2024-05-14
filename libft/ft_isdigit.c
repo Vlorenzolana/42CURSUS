@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Vlorenzo <vlorenzo@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:55:04 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/04/11 12:52:53 by Vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:27:36 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_isdigit(int i)
 {
-	if ('0' <= i && i <= '9')
+	if (i >= 48 && i <= 57)
 		return (1);
 	return (0);
 }

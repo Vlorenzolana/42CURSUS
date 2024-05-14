@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Vlorenzo <vlorenzo@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:57:07 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/04/15 09:12:47 by Vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:04:46 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,16 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	}
 	return (NULL);
 }
+
+/* #include <stdio.h>
+int	main(void)
+{
+	void	*result;
+
+	result = ft_memchr("12345~ª/aSdF", '5', 3);
+	if (result != NULL)
+		printf ("Encontrado: %c\n", *(char *)result);
+	else
+		printf ("Carácter no encontrado\n");
+	return (0);
+} */

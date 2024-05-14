@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:47:40 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/12 17:41:38 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:25:06 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ RETURN VALUE: The strchr() and strrchr() functions return a pointer  to  the  ma
 character  or NULL if the character is not found.  The terminating null byte is
 considered part of the string, so that if  c  is  specified  as'\0', these functions
 return a pointer to the terminator. */
-
+/* 
 #include <stdio.h>
 int main(void)
 {
@@ -61,4 +61,4 @@ int main(void)
 	printf("test %s\n", chr);
 
 	return(0);
-}
+} */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Vlorenzo <vlorenzo@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:43:31 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/04/10 10:43:43 by Vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:39:48 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,3 +18,13 @@ int	ft_tolower(int i)
 		return (i + 32);
 	return (i);
 }
+
+/* #include <stdio.h>
+int main(void)
+{
+	int chr;
+
+	chr = 65;
+	printf ("test 1 %d\n", ft_tolower(chr));
+	return(0);
+} */

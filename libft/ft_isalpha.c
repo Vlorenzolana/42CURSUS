@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Vlorenzo <vlorenzo@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:52:39 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/04/11 12:53:45 by Vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:26:41 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_isalpha(int i)
 {
-	if (('a' <= i && i <= 'z') || ('A' <= i && i <= 'Z'))
+	if ((i >= 65 && i <= 90) || (i >= 97 && i<= 122))
 		return (1);
 	return (0);
 }
