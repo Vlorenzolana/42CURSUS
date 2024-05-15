@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:08:13 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/14 16:49:03 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:05:12 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ void	ft_bzero(void *s, size_t n)
 	char	*ptr;
 
 	i = 0;
-	ptr = (char *)s; // Cast void pointer to char * byte-wise operations.
-
-	while (i < n) // ft_memset(s, 0, n);
+	ptr = (char *)s;
+	while (i < n)
 	{
 		ptr[i] = 0;
 		i++;
