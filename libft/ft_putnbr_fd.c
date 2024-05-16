@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 13:48:53 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/15 14:09:32 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/16 09:07:10 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void    ft_putnbr_fd(int n, int fd)
         }
     }
 }
+
 /* #include "libft.h"
 #include <unistd.h> // For STDOUT_FILENO
 

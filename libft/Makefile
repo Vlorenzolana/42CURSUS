@@ -33,7 +33,17 @@ SRCS = 	ft_atoi.c\
 	ft_toupper.c\
 	ft_calloc.c\
 	ft_strdup.c\
-#	2_ft_itoa.c\
+	ft_putchar_fd.c\
+	ft_putendl_fd.c\
+	ft_putnbr_fd.c\
+	ft_putstr_fd.c\
+	ft_substr.c\
+	ft_split.c\
+	ft_striteri.c\
+	ft_strmapi.c\
+	ft_strjoin.c\
+	ft_strtrim.c
+#	ft_itoa.c\
 	2_ft_lstadd_back.c\
 	2_ft_lstadd_front.c\
 	2_ft_lstclear.c\
@@ -42,17 +52,7 @@ SRCS = 	ft_atoi.c\
 	2_ft_lstlast.c\
 	2_ft_lstmap.c\
 	2_ft_lstnew.c\
-	2_ft_lstsize.c\
-	2_ft_putchar_fd.c\
-	2_ft_putendl_fd.c\
-	2_ft_putnbr_fd.c\
-	2_ft_putstr_fd.c\
-	2_ft_substr.c\
-	2_ft_split.c\
-	2_ft_striteri.c\
-	2_ft_strmapi.c\
-	2_ft_strjoin.c\
-	2_ft_strtrim.c\	
+	2_ft_lstsize.c\#
 # OBJS: Variable que genera una lista de archivos objeto (.o)                  #
 #       a partir de los archivos fuente (.c).                                  #
 OBJS = $(SRCS:.c=.o)
