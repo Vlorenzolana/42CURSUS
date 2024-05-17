@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 09:38:45 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/16 12:52:19 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:10:54 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,14 @@ int	sizer(long m)
 	return (size);
 }
 
-#include <stdio.h> // For printf and free
-int	main(void)
+/* int	main(void)
 {
-    int num_to_convert = -12345;
-	char	*str = ft_itoa(num_to_convert);
+	char	*str = ft_itoa(-12345);
 
 	while (*str)
 	{
 		write(1, str, 1);
 		str++;
 	}
-
-    printf("Integer %d converted to string: %s\n", num_to_convert, str);
-
-   // free(str); // Important: Free the memory allocated by ft_itoa
-
-    return (0);
-}
+	return (0);
+} */

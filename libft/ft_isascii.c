@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:59:32 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/15 08:09:55 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:40:25 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int	ft_isascii(int c)
 		return (1);
 	return (0);
 }
-
+/* //The isascii() function tests for an ASCII character,
+//which is any character between 0 and octal 0177 inclusive.
 #include "stdio.h"
 int main (int argc, char **argv)
 {
@@ -37,10 +38,4 @@ int main (int argc, char **argv)
 	else
 		printf("Si es un caracter ASCII return (%i)", i);
 	return(0);
-}
-
-//The isascii() function tests for an ASCII character,
-//which is any character between 0 and octal 0177 inclusive.
-
-//Tambien funciona asi:
-//int	ft_isascii(int i) {return (i >= 0 && i <= 127);}
+} */
