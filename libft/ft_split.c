@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 09:25:51 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/17 13:00:43 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:42:47 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ char	**ft_split(const char *s, char c)
 	return (rest);
 }
 /* 
-#include <stdio.h>
 int main()
 {
 	int i = 0;

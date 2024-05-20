@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 09:18:29 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/17 14:24:39 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:43:59 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	result[len_s1 + i] = '\0';
 	return (result);
 }
+
 /* 
 int	main(void)
 {

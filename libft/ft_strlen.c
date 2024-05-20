@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Vlorenzo <vlorenzo@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:05:53 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/04/12 14:35:48 by Vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:44:30 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ size_t	ft_strlen(const char *str)
 }
 
 /*
-#include "stdio.h"
 int main(void)
 {
 	size_t	kk;

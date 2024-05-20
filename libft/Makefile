@@ -43,16 +43,17 @@ SRCS = 	ft_atoi.c\
 	ft_strmapi.c\
 	ft_strjoin.c\
 	ft_strtrim.c\
-	ft_itoa.c
-#	2_ft_lstadd_back.c\
-	2_ft_lstadd_front.c\
-	2_ft_lstclear.c\
-	2_ft_lstdelone.c\
-	2_ft_lstiter.c\
-	2_ft_lstlast.c\
-	2_ft_lstmap.c\
-	2_ft_lstnew.c\
-	2_ft_lstsize.c\#
+	ft_itoa.c\
+	ft_lstadd_back_bonus.c\
+	ft_lstadd_front_bonus.c\
+	ft_lstclear_bonus.c\
+	ft_lstdelone_bonus.c\
+	ft_lstiter_bonus.c\
+	ft_lstlast_bonus.c\
+	ft_lstmap_bonus.c\
+	ft_lstnew_bonus.c\
+	ft_lstsize_bonus.c\
+
 # OBJS: Variable que genera una lista de archivos objeto (.o)                  #
 #       a partir de los archivos fuente (.c).                                  #
 OBJS = $(SRCS:.c=.o)
@@ -86,6 +87,8 @@ all: $(NAME)
 #            fuente ($<) y generar el archivo objeto ($@).                     #
 %.o : %.c
 	@$(CC) $(CCFLAGS) -c -o $@ $<
+# bonus: Esta regla es para marcar o diferenciar los bonus                     #
+bonus: all
 # clean: Esta regla elimina los archivos objeto (.o)                           #
 #        generados durante la compilación.                                     #
 clean:

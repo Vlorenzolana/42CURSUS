@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:39:11 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/13 16:16:22 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:44:23 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ the NUL-terminated string src to dst, NUL-terminating the result.
 The strlcpy() functions return the total length of the string
 they tried to create. For strlcpy() that means the length of src. */
 
-/* #include <stdio.h>
-#include <stdlib.h>
-
+/*
 int	main(void)
 {
 	char	*d;

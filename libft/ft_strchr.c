@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:50:27 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/17 11:49:57 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:42:54 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ considered to be part of the string; therefore if c is `\0', the
 functions locate the terminating `\0'.
 */
 /*
-#include <stdio.h>
-
 int	main(void)
 {
 	int c1;

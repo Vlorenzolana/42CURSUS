@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Vlorenzo <vlorenzo@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:42:41 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/04/12 11:57:59 by Vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:46:11 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int	ft_toupper(int c)
 	return (c);
 }
 
-/* 
-#include <stdio.h>
+/*
 int main(void)
 {
 	int chr;

@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:40:38 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/13 16:45:00 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:44:10 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ size_t	ft_strlcat(char *dest, const char *src, size_t dstsize)
 	return (slen);
 }
 
-/* #include <stdio.h>
-#include <stdlib.h>
+/*
 int	main(void)
 {
 	char	*test_d;

@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:36:53 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/14 12:55:39 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:40:53 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	return (d);
 }
 
-/* #include <stdio.h>
+/*
 int	main(void)
 {
 	const char *origin;

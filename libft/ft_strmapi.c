@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 09:39:42 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/17 09:33:12 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:44:36 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 string (s).input string (s) and returns a new string (fstr) containing the
 transformed characters.*/
 /*
-#include <stdio.h>
-#include <stdlib.h>
 char	to_upper(unsigned int index, char c)
 {
 	(void)index;

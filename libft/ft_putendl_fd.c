@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:50:20 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/17 10:03:18 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:41:50 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ void	ft_putendl_fd(char *str, int fd)
 }
 
 /* 
-#include <unistd.h>   // For write and file descriptors
-void ft_putendl_fd(char *str, int fd);
-
 int main(int argc, char *argv[])
 {
     if (argc < 2)

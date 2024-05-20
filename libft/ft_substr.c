@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:36:58 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/17 09:25:33 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:45:56 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,6 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 }
 
 /*
-#include "libft.h"
-#include <stdio.h>
- 
 int main(void) {
     const char *str = "Hello, world!";
     unsigned int start = 7; // Start at index 7 (world)

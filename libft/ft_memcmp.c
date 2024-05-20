@@ -6,12 +6,11 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 11:01:01 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/14 13:01:34 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:40:47 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stddef.h>
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
@@ -31,7 +30,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	return (0);
 }
 
-/* #include <stdio.h>
+/*
 int	main(void)
 {
 	int	diferencia;

@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:43:31 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/13 16:39:48 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:46:03 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_tolower(int i)
 	return (i);
 }
 
-/* #include <stdio.h>
+/*
 int main(void)
 {
 	int chr;

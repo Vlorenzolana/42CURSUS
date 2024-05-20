@@ -6,12 +6,11 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:07:15 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/13 10:09:11 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:41:03 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stddef.h>
 
 void	*ft_memset(void *b, int c, size_t len)
 {
@@ -28,8 +27,7 @@ void	*ft_memset(void *b, int c, size_t len)
 
 /* The memset() function writes len bytes of value c (converted to an unsigned
 char) to the string b. The memset() function returns its first argument. */
-/* 
-#include <stdio.h>
+/*
 int main()
 {
 	char str[20];

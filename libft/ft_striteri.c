@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:52:36 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/17 09:41:16 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:43:41 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 	}
 }
 
-/* #include <stdio.h>
-#include <stdlib.h>
-
+/*
 void to_upper(unsigned int index, char *c)
 {
 	(void)index; //para usar sin usar

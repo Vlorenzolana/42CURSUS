@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:59:59 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/16 12:10:43 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:45:49 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	return (str);
 }
 
-/* int	main(void)
+/*
+int	main(void)
 {
 	char	*test_str;
 

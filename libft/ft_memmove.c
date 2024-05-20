@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:37:54 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/17 10:51:44 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:40:59 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ area dest.  The memory areas may overlap: copying takes place as though
 the  bytes in src are first copied into a temporary array that does not
 overlap src or dest, and the bytes are then copied from  the  temporary
 array to dest.*/
-
 /* int	main(void)
 {
 	char	*test_dst;

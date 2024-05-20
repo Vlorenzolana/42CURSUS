@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 13:35:05 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/17 13:08:33 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:41:34 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	ft_putchar_fd(char c, int fd)
 	write(fd, &c, 1);
 }
 /* 
-#include <unistd.h>
 int main(void) {
     char character = 'H';
     int fd = STDOUT_FILENO; // Standard output file descriptor

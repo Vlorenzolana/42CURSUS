@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 11:07:31 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/17 09:44:31 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:43:00 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ as an argument to the function	free(3).
 If insufficient memory is available, NULL is returned
 and errno is set to ENOMEM. */
 /*
- #include <stdio.h>
-
 int	main(void)
 {
 	const char *original;
