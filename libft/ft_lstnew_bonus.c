@@ -6,15 +6,15 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 08:31:20 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/20 09:45:36 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 14:16:04 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_lstnew(void *content) //cualquier tipo de varable
 {
-	t_list	*node;
+	t_list	*node; //nuestro nodo
 
 	node = malloc (sizeof(t_list));
 	if (node == NULL)

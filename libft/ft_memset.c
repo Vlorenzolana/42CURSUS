@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:07:15 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/20 08:41:03 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 12:00:41 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ void	*ft_memset(void *b, int c, size_t len)
 	return (b);
 }
 
-/* The memset() function writes len bytes of value c (converted to an unsigned
-char) to the string b. The memset() function returns its first argument. */
-/*
-int main()
+/* ft_memset establece los primeros len bytes del bloque de memoria apuntado
+por b al valor c (convertido a unsigned char).
+La función devuelve b para indicar que el llenado se ha completado. */
+/* int main()
 {
-	char str[20];
+	char str[5];
 	int c;
 	size_t len;
 	size_t i;
 
 	len = sizeof(str);
-	c = 'A';
+	c = 'B';
 	i = 0;
 
 	// Initialize str with random values

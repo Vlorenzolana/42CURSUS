@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:08:13 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/14 17:05:12 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:55:31 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,15 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-/*  The bzero() function writes n zeroed bytes to the string s. If n is zero,
-bzero() does nothing.*/
-
+/* The bzero() function writes n zeroed bytes to the string s. If n is zero,
+bzero() does nothing. */
 /* #include <stdio.h>
 int	main(void)
 {
-	char str[20] = "Hello, world!";
-	size_t n = 5;
+	char str[6] = "Hello!";
 
 	printf("Before ft_bzero: %s\n", str);
-	ft_bzero(str, n);
+	ft_bzero(str, sizeof(str));
 	printf("After ft_bzero: %s\n", str);
 
 	return (0);
