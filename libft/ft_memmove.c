@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:37:54 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/16 08:55:10 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/17 10:51:44 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t n)
 {
-	size_t	i;
+	char	*ptr_src;
+	char	*ptr_dst;
 
+	ptr_src = (char *)src;
+	ptr_dst = (char *)dst;
 	if (dst == NULL && src == NULL)
 		return (NULL);
-
-	i = 0;
-
-	while (i < n)
-	{
-		((char *)dst)[i] = ((const char *)src)[i];
-		i++;
-	}
-	return (dst);
+	if (ptr_src < ptr_dst)
+		while (n--)
+			ptr_dst[n] = ptr_src[n];
+	else
+		ft_memcpy(ptr_dst, ptr_src, n);
+	return (ptr_dst);
 }
 
 /* The  memmove()  function  copies n bytes from memory area src to memory

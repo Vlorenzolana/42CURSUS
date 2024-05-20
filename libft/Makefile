@@ -42,7 +42,7 @@ SRCS = 	ft_atoi.c\
 	ft_striteri.c\
 	ft_strmapi.c\
 	ft_strjoin.c\
-	ft_strtrim.c
+	ft_strtrim.c\
 	ft_itoa.c
 #	2_ft_lstadd_back.c\
 	2_ft_lstadd_front.c\

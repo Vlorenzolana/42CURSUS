@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 11:05:52 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/16 18:05:01 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:04:30 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,6 @@ int	ft_atoi(const char *str)
 }
 
 /*
-NOTA: este codigo funciona tambien con str[i] == *str
-
-atoi(const char *str);
-#include <xlocale.h>
 The atoi() function converts the initial 
 portion of the string pointed to by str to
 int representation. */

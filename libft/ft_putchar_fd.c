@@ -6,18 +6,15 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 13:35:05 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/15 13:40:37 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/17 13:08:33 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_putchar_fd(char c, int fd)
+void	ft_putchar_fd(char c, int fd)
 {
-    /* first parameter is the file descriptor
-     * second parameter is the address to the character
-     */
-    write(fd, &c, 1);
+	write(fd, &c, 1);
 }
 /* 
 #include <unistd.h>

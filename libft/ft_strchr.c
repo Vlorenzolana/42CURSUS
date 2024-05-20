@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:50:27 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/14 13:02:07 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/17 11:49:57 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,24 @@
 
 char	*ft_strchr(const char *s, int c)
 {
+	char	ch;
+
+	ch = (char)c;
 	while (*s != '\0')
 	{
-		if (*s == c)
+		if (*s == ch)
 			return ((char *)s);
 		s++;
 	}
-	if (c == '\0')
-	{
-		return (NULL);
-	}
+	if (ch == '\0')
+		return ((char *)s);
 	return (NULL);
 }
 
 /* strchr() locates the first occurrence of c (converted to a char)
-in the string pointed to by s. The termi-nating null character is
+in the string pointed to by s. The terminating null character is
 considered to be part of the string; therefore if c is `\0', the
 functions locate the terminating `\0'.
-
-return(char *)s; converts const char *s >> char*s & equals *pos to *s
 */
 /*
 #include <stdio.h>

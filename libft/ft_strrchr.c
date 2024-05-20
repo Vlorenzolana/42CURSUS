@@ -6,43 +6,37 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:47:40 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/13 16:25:06 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/17 11:51:14 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
 	unsigned int	i;
 	char			b;
-	char *pos;
+	char			*pos;
 
-	b = (char) c; // convierte "c" a char y lo iguala a "b".
+	b = (char) c;
 	i = 0;
 	pos = NULL;
-
 	while (s[i])
 	{
 		if (s[i] == b)
-			pos = (char *) &s[i];	
-										//OJO! con [] va &.
-										// if the current character is equal to "b",
-										// we must return *the address*. 
+			pos = (char *) &s[i];
 		i++;
 	}
-
-	if (s[i] == b)		// if we are here, means we are at /0, so if b == 0,
-		return (NULL);	// man requires to return the pointer to /0.
-		
+	if (s[i] == b)
+		pos = (char *)&s[i];
 	return (pos);
 }
 
 /* MAN: The strrchr() function returns a pointer to the last occurrence of  the
 character c in the string s.
-RETURN VALUE: The strchr() and strrchr() functions return a pointer  to  the  matched
+RETURN VALUE: The strchr() and strrchr() functions return a pointer to matched
 character  or NULL if the character is not found.  The terminating null byte is
-considered part of the string, so that if  c  is  specified  as'\0', these functions
+considered part of the string, so that if  c  is  specified  as'\0', functions
 return a pointer to the terminator. */
 /* 
 #include <stdio.h>

@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 09:39:42 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/15 13:33:19 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/17 09:33:12 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,20 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	fstr[i] = '\0';
 	return (fstr);
 }
-/*ft_strmapi applies the function (f) to each character of the input string (s) and returns a new string (fstr) containing the characters of the input string (s).
-input string (s) and returns a new string (fstr) containing the transformed characters.
+/*ft_strmapi applies the function (f) to each character of the input string
+(s) and returns a new string (fstr) containing the characters of the input
+string (s).input string (s) and returns a new string (fstr) containing the
 transformed characters.*/
-
-char to_upper(unsigned int index, char c)
+/*
+#include <stdio.h>
+#include <stdlib.h>
+char	to_upper(unsigned int index, char c)
 {
-	(void)index; //para usar sin usar
+	(void)index;
 	 if (c >= 'a' && c <= 'z')
 		c = c - 32;
 	return(c);
 }
-/* 
-#include <stdio.h>
-#include <stdlib.h>
 
 int main(void)
 {
@@ -53,12 +53,8 @@ int main(void)
 
 	original_str = "Hola!";
 	mapped = ft_strmapi(original_str, to_upper);
-	// Print the original and the mapped strings
-    printf("Original string: %s\n", original_str);
-    printf("Mapped string: %s\n", mapped);
-
-    // Free the allocated memory for the mapped string
-    free(mapped);
-
-    return 0;
+	printf("Original string: %s\n", original_str);
+	printf("Mapped string: %s\n", mapped);
+	free(mapped);
+	return 0;
 } */

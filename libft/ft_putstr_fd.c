@@ -6,29 +6,25 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 13:40:03 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/15 13:47:50 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/17 13:08:23 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_putstr_fd(char *str, int fd)
+void	ft_putstr_fd(char *str, int fd)
 {
-    int i;
-    
-    i = 0;
-    while (str[i])
-    {
-        write(fd, &str[i], 1);
-        i++;
-    }
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		write(fd, &str[i], 1);
+		i++;
+	}
 }
 /* 
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include "libft.h"
-
+#include "fcntl.h"
 int main(void)
 {
     char *str = "Hello, world!";

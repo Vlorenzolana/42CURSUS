@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:52:39 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/14 16:26:41 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/17 10:21:43 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_isalpha(int i)
 {
-	if ((i >= 65 && i <= 90) || (i >= 97 && i<= 122))
+	if ((i >= 65 && i <= 90) || (i >= 97 && i <= 122))
 		return (1);
 	return (0);
 }
@@ -34,8 +34,7 @@ int main (void)
 	printf("test 5 %d\n", ft_isalpha('9'));
 	return(0);
 }
-
-//The isalpha() function tests for any character for which isupper(3)
-//or islower(3) is true. The value of the argument must be representable
-//as an unsigned char or the value of EOF.
- */
+*/
+/* The isalpha() function tests for any character for which
+isupper(3) or islower(3) is true. The value of the argument
+must be representable as unsigned char or the value of EOF. */

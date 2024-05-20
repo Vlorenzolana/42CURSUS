@@ -6,24 +6,25 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:50:20 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/16 11:57:25 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/17 10:03:18 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_putendl_fd(char *str, int fd)
+void	ft_putendl_fd(char *str, int fd)
 {
-    int    i;
-    
-    i = 0;
-    while (str[i])
-    {
-        write(fd, &str[i], 1);
-        i++;
-    }
-    write(fd, "\n", 1);    
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		write(fd, &str[i], 1);
+		i++;
+	}
+	write(fd, "\n", 1);
 }
+
 /* 
 #include <unistd.h>   // For write and file descriptors
 void ft_putendl_fd(char *str, int fd);
