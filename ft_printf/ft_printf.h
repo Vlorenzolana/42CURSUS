@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 11:11:18 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/23 17:03:06 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:27:32 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ int	find_specifer(const char *str, int i, int count, va_list list);
 //print_fn.c
 
 int	print_char(char c, int count);
-int putstr(const char *str, int count);
+int	putstr(const char *str, int count);
 int	putnbr(int n, int count);
 int	putnbr_pos(unsigned int n, int count);
 int	puthexnbr(size_t n, int count, char x_type);
-
 
 #endif

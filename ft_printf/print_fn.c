@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 20:09:50 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/23 18:05:28 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:24:10 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,39 +17,51 @@ int	print_char(char c, int count)
 	write(1, &c, 1);
 	return (count + 1);
 }
-int putstr(const char *str, int count) {
-	if (!str) {
+
+int	putstr(const char *str, int count)
+{
+	if (!str)
+	{
 		str = "(null)";
 	}
-	while (*str) {
+	while (*str)
+	{
 		count = print_char(*str, count);
 		str++;
 	}
-	return count;
+	return (count);
 }
 
-int putnbr(int n, int count) {
-	if (n == -2147483648) {
+int	putnbr(int n, int count)
+{
+	if (n == -2147483648)
+	{
 		count = putstr("-2147483648", count);
-	} else {
-		if (n < 0) {
+	}
+	else
+	{
+		if (n < 0)
+		{
 			count = print_char('-', count);
 			n = -n;
 		}
-		if (n >= 10) {
+		if (n >= 10)
+		{
 			count = putnbr(n / 10, count);
 		}
 		count = print_char(n % 10 + '0', count);
 	}
-	return count;
+	return (count);
 }
 
-int putnbr_pos(unsigned int n, int count) {
-	if (n >= 10) {
+int	putnbr_pos(unsigned int n, int count)
+{
+	if (n >= 10)
+	{
 		count = putnbr_pos(n / 10, count);
 	}
 	count = print_char(n % 10 + '0', count);
-	return count;
+	return (count);
 }
 
 int	puthexnbr(size_t arg, int count, char x_type)
