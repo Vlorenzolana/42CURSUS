@@ -6,13 +6,13 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 14:32:23 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/24 12:55:42 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/24 13:29:25 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int checkptr(size_t ptr, int count)
+int	checkptr(size_t ptr, int count)
 {
 	if (!ptr)
 		count = putstr("(nil)", count);
