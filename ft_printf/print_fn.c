@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 20:09:50 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/23 18:24:10 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/24 13:04:29 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	putstr(const char *str, int count)
 {
 	if (!str)
 	{
-		str = "(null)";
+		count = putstr("(nil)", count);
 	}
 	while (*str)
 	{
@@ -63,14 +63,13 @@ int	putnbr_pos(unsigned int n, int count)
 	count = print_char(n % 10 + '0', count);
 	return (count);
 }
-
 int	puthexnbr(size_t arg, int count, char x_type)
 {
 	if (arg >= 16)
 	{
 		count = puthexnbr(arg / 16, count, x_type);
 	}
-	if ((x_type == 'x') || (x_type == 'p'))
+	if (x_type == 'x')
 		count = print_char("0123456789abcdef"[arg % 16], count);
 	if (x_type == 'X')
 		count = print_char("0123456789ABCDEF"[arg % 16], count);

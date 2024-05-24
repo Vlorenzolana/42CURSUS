@@ -6,12 +6,23 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 14:32:23 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/23 18:35:01 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:55:42 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+int checkptr(size_t ptr, int count)
+{
+	if (!ptr)
+		count = putstr("(nil)", count);
+	else
+	{
+		count = putstr("0x", count);
+		count = puthexnbr(ptr, count, 'x');
+	}
+	return (count);
+}
 int	find_specifer(const char *str, int i, int count, va_list list)
 {
 	if (!str)
@@ -31,10 +42,7 @@ int	find_specifer(const char *str, int i, int count, va_list list)
 	if (str[i + 1] == 'X')
 		count = puthexnbr(va_arg(list, unsigned int), count, 'X');
 	if (str[i + 1] == 'p')
-	{
-		count = putstr("0x", count);
-		count = puthexnbr(va_arg(list, size_t), count, 'p');
-	}
+		count = checkptr(va_arg(list, size_t), count);
 	return (count);
 }
 
@@ -63,15 +71,3 @@ int	ft_printf(const char *str, ...)
 	va_end(list);
 	return (count);
 }
-/* int main() {
-	ft_printf("Character: %c\n", 'A');
-	ft_printf("String: %s\n", "1Hello, world!");
-	ft_printf("Integer: %d\n", -12345);
-	ft_printf("Unsigned: %u\n", 12345);
-	ft_printf("Hex (lower): %x\n", 3735);
-	ft_printf("Hex (upper): %X\n", 3735);
-	ft_printf("Pointer: %p\n", &main);
-	ft_printf("Percent sign: %%\n");
-
-	return 0;
-} */
