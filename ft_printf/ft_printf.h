@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 11:11:18 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/24 13:49:59 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/06/12 19:27:21 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 
 int	ft_printf(const char *str, ...);
 int	find_specifer(const char *str, int i, int count, va_list list);
-int	checkptr(size_t ptr, int count);
 
 //print_fn.c
 

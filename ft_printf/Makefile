@@ -6,7 +6,7 @@
 #    By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/23 10:37:55 by vlorenzo          #+#    #+#              #
-#    Updated: 2024/05/24 13:51:33 by vlorenzo         ###   ########.fr        #
+#    Updated: 2024/06/12 17:48:38 by vlorenzo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ INCLUDE = ft_printf.h
 
 all: $(NAME)
 
-$(NAME): $(OBJS)paco -s
+$(NAME): $(OBJS)
 	$(AR) $@ $^
 
 clean:
