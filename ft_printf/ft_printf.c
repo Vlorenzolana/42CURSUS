@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 14:32:23 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/06/12 18:40:30 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/06/16 17:52:36 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,21 @@ int	find_specifer(const char *str, int i, int count, va_list list)
 {
 	void	*ptr;
 
-	if (str[i + 1] == 'c')
+	if (str[i] == 'c')
 		count = print_char(va_arg(list, int), count);
-	if (str[i + 1] == '%')
+	if (str[i] == '%')
 		count = print_char('%', count);
-	if (str[i + 1] == 's')
+	if (str[i] == 's')
 	{
 		count = putstr(va_arg(list, const char *), count);
 	}
-	if ((str[i + 1] == 'i') || (str[i + 1] == 'd'))
+	if ((str[i] == 'i') || (str[i] == 'd'))
 		count = putnbr(va_arg(list, int), count);
-	if (str[i + 1] == 'u')
+	if (str[i] == 'u')
 		count = putnbr_pos(va_arg(list, unsigned int), count);
-	if (str[i + 1] == 'x' || str[i + 1] == 'X')
-		count = puthexnbr(va_arg(list, unsigned int), count, str[i + 1]);
-	if (str[i + 1] == 'p')
+	if (str[i] == 'x' || str[i] == 'X')
+		count = puthexnbr(va_arg(list, unsigned int), count, str[i]);
+	if (str[i] == 'p')
 	{
 		ptr = va_arg(list, void *);
 		count = print_ptr(count, ptr);
@@ -59,19 +59,47 @@ int	ft_printf(const char *str, ...)
 	i = 0;
 	count = 0;
 	va_start(list, str);
-	while (str && str[i] != '\0')
+	while (str[i])
 	{
-		if (str[i] != '%')
+		if (str[i] == '%')
 		{
-			count = print_char(str[i], count);
+			i++;
+			count = find_specifer(str, i, count, list);
 		}
 		else
 		{
-			count = find_specifer(str, i, count, list);
-			i++;
+			count = print_char(str[i], count);
 		}
 		i++;
 	}
 	va_end(list);
 	return (count);
 }
+
+/* int	main(void)
+{
+	int	count;
+	char *str;
+	str = NULL;
+	int n = -42;
+	unsigned int un = -42;
+	char c = 'a';
+
+	printf("***1*** FT_PRINTF\n");
+	count = ft_printf(" %s %c %% ", str, '1');
+	printf("\ncount = %d\n", count);
+	printf("***1*** PRINTF\n");
+	count = printf(" %s %c %% ", str, '1');
+	printf("\ncount = %d\n", count);
+	printf("\n");
+
+	printf("***2*** FT_PRINTF\n");
+	count = ft_printf(" %u %d %c ", un, n, c);
+	printf("\ncount = %d\n", count);
+	printf("***2*** PRINTF\n");
+	count = printf(" %u %d %c ", un, n, c);
+	printf("\ncount = %d\n", count);
+	printf("\n");
+	
+	return (0);
+} */

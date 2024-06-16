@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 20:09:50 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/06/12 19:32:37 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/06/16 17:48:23 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,24 @@
 int	print_char(char c, int count)
 {
 	write(1, &c, 1);
-	return (count + 1);
+	count++;
+	return (count);
 }
 
 int	putstr(const char *str, int count)
 {
+	int	i;
+
+	i = 0;
 	if (!str)
-		count = write (1, "(null)", 6);
-	while (str && *str)
+		return (putstr("(null)", count));
+	else
 	{
-		count = print_char(*str, count);
-		str++;
+		while (str && str[i])
+		{
+			count = print_char(str[i], count);
+			i++;
+		}
 	}
 	return (count);
 }
@@ -43,7 +50,7 @@ int	putnbr(int n, int count)
 			count = print_char('-', count);
 			n = -n;
 		}
-		if (n >= 10)
+		if (9 < n)
 		{
 			count = putnbr(n / 10, count);
 		}
@@ -54,7 +61,7 @@ int	putnbr(int n, int count)
 
 int	putnbr_pos(unsigned int n, int count)
 {
-	if (n >= 10)
+	if (9 < n)
 	{
 		count = putnbr_pos(n / 10, count);
 	}
