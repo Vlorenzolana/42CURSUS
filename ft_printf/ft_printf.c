@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 14:32:23 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/06/16 17:52:36 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/06/16 18:48:41 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	ft_printf(const char *str, ...)
 	return (count);
 }
 
-/* int	main(void)
+int	main(void)
 {
 	int	count;
 	char *str;
@@ -102,4 +102,4 @@ int	ft_printf(const char *str, ...)
 	printf("\n");
 	
 	return (0);
-} */
+}
