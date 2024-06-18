@@ -160,3 +160,5 @@ CRON STOP
 "sudo reboot" >> SCRIPT SHOULD START POPING UP AGAIN
 
 "sudo crontab -u root -e"
+
+DONE! CONGRATS!
