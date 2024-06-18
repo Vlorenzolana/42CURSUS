@@ -1,0 +1,162 @@
+GUIDE TO EVALUATION
+It consists of configuring a server, you must install the minimum number of services. For this reason, a graphical interface is pointless.
+It is forbidden to install X.org or any equivalent graphical server. Install the latest stable version of Debian/OS.
+
+GENERATE SIGNATURE
+sha1sum Born2beroot.vdi
+
+COMPARE SIGNATURE: yours WITH theirs
+diff 'EVALUATOR SIGNATURE PATH' 'STUDENT SIGNATURE PATH' >> if nothing returned, then is OK.
+Or just check visually both signature.txt
+
+WHAT IS VIRTUAL MACHINE
+It is a program that simulates a machine to which an OS is installed, with the advantage that it can be exported, duplicated, deleted...
+Debian is focused to a more basic environment and Rocky to a professional one.
+
+WHY DEBIAN/ROCKY?
+Debian is an independent distribution with more flexibility, freedom of choice and a large and active community.
+Rocky is a commercial and stable distribution, compatible with RHEL (Red Hat Enterprise Linux) and with enterprise support.
+Run for testing or for production different machines and OS and so for example run Linux on a machine that has Windows.
+
+WHAT IS APT/APTITUDE/APPARMOR?
+Aptitude is an enhanced version of apt. Aptitude is a high-level package manager.
+Apt is a lower-level package manager. 
+APPArmor is a Linux kernel security module that allows the system administrator to restrict the capabilities of a program.
+LVM is a logical volume manager. It provides a method for allocating space on mass storage devices that is more flexible
+than conventional partitioning schemes for storing volumes.
+
+GRAPHIC INTERFACE?
+ls /usr/bin/*session
+
+CONNECT TO USER WITH THE HELP OF THE TESTED STUDENT. USER MUST NOT BE ROOT
+"getent group root id "STUDENT""
+"sudo ufw status"
+
+TEST FIREWALL SERVICE UFW
+"sudo ufw status"
+To                 Action      From
+4242               ALLOW     Anywhere
+4242 (v6)          ALLOW     Anywhere (v6)"
+
+
+TEST SSH SERVICE
+"sudo service ssh status" >> active (running)
+Server listening on 0.0.0.0 port 4242
+Server listening on :: port 4242"
+
+TEST DEBIAN OR ROCKY
+"uname -v" >> #1 SMP PREEMPT_DYNAMIC Debian 6.1.90-1 (2024-05-03)"
+
+VERIFY STUDENT USER EXISTS IN GROUPS SUDO/USER42
+"getent group sudo"
+"getent group user42"
+OR
+"id "your ID""
+
+CREATE USER, NOROOT
+"sudo adduser noroot"
+
+MANAGE PASSWORD
+Assign a password of your choice, respecting the subject's rules
+"nano /etc/pam.d/common-password"
+minlen=10 ➤ The minimum number of characters the password must contain.
+RULES
+ucredit=-1 ➤ It must contain at least one capital letter. We put the - as it must contain at least one character, if we put + we mean at most those characters.
+dcredit=-1 ➤ It must contain at least one digit.
+lcredit=-1 ➤ It must contain at least one lowercase letter.
+maxrepeat=3 ➤ It cannot have more than 3 times in a row the same character.
+reject_username ➤ It cannot contain the user's name.
+difok=7 ➤ It must have at least 7 characters that are not part of the old password.
+enforce_for_root ➤ We will implement this policy for the root user
+
+CREATE GROUP "EVALUATING" AND ADD NOROOT TO THE GROUP
+The evaluated student creates a group called "evaluating" in front of you and assigns it to this user.
+"sudo addgroup evaluating"
+"sudo adduser name_user evaluating"
+
+CHECK HOSTNAME
+Check that the host name of the machine is formatted correctly as follows: login42 (login of the tested student)
+"hostname"
+
+MODIFY
+Modify this hostname by replacing the login with your own and reboot the machine.
+"sudo nano /etc/hostname"
+"sudo reboot"
+
+LVM
+Logical volume manager, allocates and manages memory of the different partitions of your virtual machine.
+
+CHECK LVM: PARTITIONS
+View the partitions of this virtual machine.
+"lsblk"
+Compare the output with the example provided in the subject.
+Note: Newest version of VM is made with 12GB and not with 8GB, partitions respect the equivalences, not exact numbers.
+
+CHECK SUDO
+Check that the "sudo" program is installed.
+"dpkg -s sudo"
+"sudo adduser noroot sudo"
+
+WHAT IS SUDO
+Sudo (Super-User Do): program that allows users to execute commands with the privileges of another user, usually the root user.
+This means that normal users can perform administrative tasks without having to know the root password.
+
+CHECK SUDO configuring
+Check that the folder "/var/log/sudo/" exists and has at least one file. Here the sudo commands are registered.
+
+WITH SU (super User Permission)
+"su"
+"nano /etc/sudoers.d/sudo_config"
+"cd  /var/log/sudo"
+"nano sudo_config"
+Check the contents of the files in this folder. You should see a history of the commands used with sudo
+
+LIST SUDO CMDS
+View list of sudo commands
+
+RULES
+show you the implementation of the rules imposed by the subject
+"sudo nano sudo_config"
+
+CHECK FOLDER
+Check that the folder "/var/log/sudo/" exists and has at least one file. Here the sudo commands are registered
+
+FIREWALL
+"dpkg -s ufw"
+"sudo service ufw status"
+"sudo ufw status numbered"
+"sudo ufw allow 8080"
+"sudo ufw status numbered"
+"sudo ufw delete num_rule" >> DO IT ONE BY ONE!
+
+SSH
+SSH (Secure Shell) is a network protocol that allows secure communication between two computers over an unsecured network.
+It is commonly used for remote server administration, secure file transfers and encrypted data tunnels.
+"sudo service ssh status"
+
+VERIFY SSH
+Verify that the SSH service only uses port 4242.
+"sudo service ssh status"
+"ssh studentID@192.168.56.1 -p 8080" >> YOU SHOULD NOT BE ABLE TO ENTER HERE/NO PASSWORD
+"ssh studentID@192.168.56.1 -p 4242" >> OK!
+"ssh studentID@192.168.56.1 -p 4243" >> YOU SHOULD NOT BE ABLE TO ENTER HERE/NO PASSWORD
+"ssh noroot@192.168.56.1 -p 4242" >> OK!
+"ssh root@192.168.56.1 -p 4242 >> YOU SHOULD NOT BE ABLE TO ENTER HERE/NO PASSWORD
+
+SCRIPT
+How your script works by showing you the code.
+From ROOT "su"
+"ls"
+"nano monitoring.sh"
+
+CRON
+Cron in Linux is a daemon (background process) that runs automatically on a Linux operating system and allows you to schedule
+the execution of tasks or scripts at specific time intervals. These tasks can be simple operating system commands, more complex
+scripts or even complete applications.
+"sudo crontab -u root -e" >> CHANGE THIS */1 * * * * sh /home/STUDENT-ID/monitoring.sh
+
+CRON STOP
+"sudo /etc/init.d/cron stop"
+"sudo reboot" >> SCRIPT SHOULD START POPING UP AGAIN
+
+"sudo crontab -u root -e"
