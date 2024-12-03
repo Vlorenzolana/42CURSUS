@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 11:06:41 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/17 11:53:46 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/07/29 15:45:29 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*str;
+	size_t	s;
+	void	*dst;
 
-	str = (void *)malloc(count * size);
-	if (!str)
+	s = count * size;
+	dst = malloc(s);
+	if (dst == NULL)
 		return (NULL);
-	ft_bzero(str, count * size);
-	return (str);
+	else
+		ft_memset(dst, 0, s);
+	return (dst);
 }
 
 /*  The calloc() function allocates memory for an array of  nmemb  elements

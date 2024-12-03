@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 08:31:20 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/20 14:16:04 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/08/20 12:42:34 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ Si la asignación de memoria falla, devuelve NULL. */
 	t_list	*ejem_str = ft_lstnew(test_str);
 
 	printf("%s\n", (char *)ejem_str->content);
+
 	return 0;
 } */

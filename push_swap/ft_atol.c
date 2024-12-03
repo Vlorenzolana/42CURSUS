@@ -1,42 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 10:50:27 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/07/29 15:43:19 by vlorenzo         ###   ########.fr       */
+/*   Created: 2024/11/27 17:14:18 by vlorenzo          #+#    #+#             */
+/*   Updated: 2024/12/03 19:05:06 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-char	*ft_strchr(const char *s, int c)
+long	ft_atol(const char *str)
 {
-	char	ch;
-	char	*mark;
+	long	x;
+	int		sign;
 
-	ch = (char)c;
-	mark = NULL;
-	while (*s)
+	x = 0;
+	sign = 1;
+	while (*str == 32 || (*str >= 9 && *str <= 13))
 	{
-		if (*s == ch)
+		str++;
+	}
+	if (*str == '+' || *str == '-')
+	{
+		if (*str == '-')
 		{
-			mark = (char *)s;
-			return (mark);
+			sign *= -1;
 		}
-		else
-			s++;
+		str++;
 	}
-	if (ch == '\0')
+	while (*str >= 48 && *str <= 57)
 	{
-		mark = (char *)s;
-		return (mark);
+		x = x * 10 + (*str - '0');
+		str++;
 	}
-	return (mark);
+	return (x * sign);
 }
-
-/* ft_strchr busca un carácter c en la cadena s y devuelve un puntero
-a su primera ocurrencia si se encuentra.
-Si c no está en s, la función devuelve NULL. */

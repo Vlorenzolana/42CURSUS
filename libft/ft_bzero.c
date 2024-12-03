@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 10:08:13 by Vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/20 17:04:48 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/07/29 15:38:11 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,19 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-/* The bzero() function writes n zeroed bytes to the string s. If n is zero,
-bzero() does nothing. */
-/* #include <stdio.h>
-int	main(void)
+/* int	main(void)
 {
-	char str[6] = "Hello!";
+	char	*test_str;
 
-	printf("Before ft_bzero: %s\n", str);
-	ft_bzero(str, sizeof(str));
-	printf("After ft_bzero: %s\n", str);
-
+	test_str = (char *)malloc(26 * sizeof(char));
+	ft_strlcpy(test_str, "Abracadabra pata de cabra!", 27);
+	printf ("test_str inicial: %s\n", test_str);
+	ft_bzero(test_str, 10);
+	printf ("test_str final: %s\n", test_str);
+	free(test_str);
 	return (0);
 } */
+
+/* ft_bzero toma un bloque de memoria especificado por s y n, y lo
+inicializa estableciendo cada uno de sus bytes a cero. 
+(Para pruebas compilar con ft_strcpy.c y ft_strlen.c) */
