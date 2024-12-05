@@ -6,11 +6,12 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:30:49 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/03 16:15:11 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:37:27 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 void	ft_reverse_rotate(t_node **stack)
 {
 	t_node  *temp;

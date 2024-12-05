@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 20:27:42 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/03 21:02:59 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:05:48 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,11 @@ void	free_stack(t_node *stack)
 
 	while (stack)
 	{
-		tmp = stack;
-		stack = stack->next;
-		free(tmp);
+		tmp = stack->next;;
+		free(stack);
+		stack = tmp;
 	}
 }
-
-/* void	load_list(t_node **stack, int content)
-{
-	t_node	*new_node;
-	new_node = stack[0];
-	new_node[0] = ft_addfront(&new_node, &content);
-	stack[0][0] = ft_addfront(stack, &content);
-} */
 
 // check repeat arg
 bool	check_repeat(int *num)
@@ -102,8 +94,9 @@ int	check_arg(const char *str)
 }
 
 // pasa los datos de char a integer
-int	*ft_patoi(char *argv, char **list_str, int *patoi, int *z)
+int	*ft_patoi(char *argv, int *patoi, int *z)
 {
+	char	**list_str;
 	int	j;
 	int	k;
 	
@@ -140,12 +133,11 @@ int	main(int argc, char **argv)
 	t_node	*stack_a;
 	t_node	*stack_b;
 	int		*patoi;
-	char	**list_str;
+	
 	int		i;
 	int		j;
 	int		z;
 
-//	stack_a = (t_node *)malloc(sizeof(t_node));
 	stack_b = NULL;
 	patoi = NULL;
 	
@@ -156,17 +148,15 @@ int	main(int argc, char **argv)
 	z = 0;
 	while (++i < argc) // Processing each argument with `ft_split`
 	{
-		patoi = ft_patoi(argv[i], list_str, patoi, &z);
+		patoi = ft_patoi(argv[i], patoi, &z);
 		printf("num of nums: %i\n", z);
 		if (!patoi)
 			return (1);
-		/* for (int z= 0; patoi[z]; z++)
-			printf("patoi: %i\n\n", patoi[z]); */
 		if (check_repeat(patoi)!= false) // C y las booleanas no se llevan bien
 			return (write(1, "Error\n", 6), free(patoi), (1));
 				j = -1;
-		stack_a = ft_addfront(stack_a, patoi); // Load each value into stack_a
+		stack_a = ft_addfront(stack_a, patoi[0]); // Load each value into stack_a
 	}
+	//ordeno mi stack_a pequenito
 	return (print_stack(stack_a, z), free_stack(stack_a), free(patoi), (0));
-		// Print the stack, Free the memory, exit program.
 }

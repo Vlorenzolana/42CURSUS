@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 08:59:58 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/03 21:00:38 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:46:02 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ bool check_repeat(int *num);
 int check_arg(const char *str);
 
 //Pasa el array lst_str de string char a un array de string integer
-int * ft_patoi(char *argv, char ** list_str, int *patoi, int *z);
+int * ft_patoi(char *argv, int *patoi, int *z);
 
 // Printea los stack
 void	print_stack(t_node *stack, int z);
