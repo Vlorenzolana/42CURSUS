@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 08:59:58 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/05 14:46:02 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:52:18 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	ft_free(char **string);
 int		ft_isdigit(int i);
 
 //Comprueba si repetido
-bool check_repeat(int *num);
+//bool check_repeat(int *num);
+bool check_repeat(int *num, int size);
 
 //Chequea los argumentos
 int check_arg(const char *str);
