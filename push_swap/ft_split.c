@@ -5,76 +5,97 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 09:25:51 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/02 19:14:08 by vlorenzo         ###   ########.fr       */
+/*   Created: 2024/12/05 21:43:28 by vlorenzo          #+#    #+#             */
+/*   Updated: 2024/12/05 21:43:31 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	word_count(const char *s, char c)
+char	**ft_freeall(char **frags, unsigned int k)
 {
-	int	count;
-	int	i;
+	unsigned int	i;
+
+	i = 0;
+	while (i < k && frags[i])
+	{
+		free (frags[i]);
+		i++;
+	}
+	free (frags);
+	return (NULL);
+}
+
+size_t	ft_wordlen(const char *word, char c)
+{
+	size_t	len;
+
+	len = 0;
+	while (word[len] && word[len] != c)
+		len++;
+	return (len);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*substr;
+
+	if (!len || ft_strlen(s) < start)
+		return (ft_strdup(""));
+	if (ft_strlen(s) < start + len)
+		len = ft_strlen(s) - start;
+	substr = (char *)malloc(sizeof(char) * (len + 1));
+	if (!substr)
+		return (NULL);
+	ft_strlcpy(substr, s + start, len +1);
+	return (substr);
+}
+
+unsigned int	ft_count_frags(const char *s, char c)
+{
+	unsigned int	count;
 
 	count = 0;
-	i = 0;
-	while (s[i] != '\0')
+	while (*s)
 	{
-		if (s[i] != c)
+		if (*s != c)
 		{
 			count++;
-			while (s[i] != '\0' && s[i] != c)
-				i++;
+			s++;
 		}
-		else
-			i++;
+		while (*s && *s != c)
+			s++;
+		while (*s && *s == c)
+			s++;
 	}
 	return (count);
 }
 
-static char	*fill_word(const char *string, int len)
+char	**ft_split(char const *s, char c)
 {
-	char	*temp;
-	int		i;
+	char			**frags;
+	unsigned int	index;
+	unsigned int	k;
 
-	temp = malloc((len + 1) * sizeof(char));
-	if (!temp)
+	if (!s)
 		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		temp[i] = string[i];
-		i++;
-	}
-	temp[i] = '\0';
-	return (temp);
-}
-
-char	**ft_split(const char *s, char c)
-{
-	int		len;
-	int		j;
-	char	**rest;
-
-	rest = (char **)malloc((word_count(s, c) + 1) * sizeof(char *));
-	if (!rest || !s)
+	frags = malloc((ft_count_frags(s, c) + 1) * sizeof(char *));
+	if (!frags)
 		return (NULL);
-	j = 0;
-	while (*s && *s == c)
-		s ++;
-	while (*s)
+	index = 0;
+	k = 0;
+	while (s[index] && s[index] == c)
+		index++;
+	while (s[index])
 	{
-		len = 0;
-		while (s[len] && s[len] != c)
-			len ++;
-		rest[j] = fill_word(s, len);
-		if (rest[j++] == NULL)
-			return (ft_free(rest), NULL);
-		s += len;
-		while (*s && *s == c)
-			s ++;
+		frags[k] = ft_substr(s, index, ft_wordlen(s + index, c));
+		if (!frags[k])
+			return (ft_freeall(frags, k));
+		k++;
+		index = index + ft_wordlen(s + index, c);
+		while (s[index] && s[index] == c)
+			index++;
 	}
-	rest[j] = NULL;
-	return (rest);
+	frags[k] = NULL;
+	return (frags);
 }

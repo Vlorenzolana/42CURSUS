@@ -5,74 +5,121 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 08:59:58 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/05 15:52:18 by vlorenzo         ###   ########.fr       */
+/*   Created: 2024/12/05 21:34:53 by vlorenzo          #+#    #+#             */
+/*   Updated: 2024/12/05 21:34:56 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-//Definir variables tipo struct (listas) y todas las funciones y librerias.
-#include <unistd.h> // de momento no lo usamos, pero general
-#include <stdio.h> // para print
-#include <string.h> // para string
-#include <limits.h> // para limites
-#include <stdlib.h> // para malloc y free
-#include <stdbool.h> // para booleanas
+# include <unistd.h>
+# include <stdbool.h>
+# include <limits.h>
+# include <stdlib.h>
 
-// Definición de la estructura t_node para una lista circular.
-typedef struct s_node
+/*	T_STACK_NODE STRUCTURE 
+
+This is the data structure that will form the stack to be sorted.
+Contains all necessary metadata to evaluate the optimal move and sort
+the initial stack following the "game rules".
+
+*previous		Link to previous node in stack.
+number 			Number to be sorted.
+curr_index		Current position in the stack.
+cost_to_push	Cost to push this particular node from stack b to stack a.
+is_cheapest		Flags cheapest node to push.
+above_median 	Flags whether this node is nearer to top or bottom of stack.
+*target_node	The node on top of which this node must be pushed.
+*next			Link to next node in stack.									*/
+
+typedef struct s_list
 {
-	int content;
-	struct s_node *next;
-}	t_node;
+	struct s_list	*previous;
+	int				number;
+	int				index;
+	int				cost_to_push;
+	bool			is_cheapest;
+	bool			above_middle;
+	struct s_list	*target_node;
+	struct s_list	*next;
+}	t_stack_node;
 
-//Crea un nuevo nodo (new) con un valor dado y lo inicializa como circular.
-t_node *create_node(t_node *lst, int content);
+//	MAIN.C
+int				main(int argc, char **argv);
+void			error_free(t_stack_node **a, char **argv, bool argc_is_2);
+void			free_stack(t_stack_node **stack);
+void			free_argv(char **argv);
 
-//Crea un nuevo nodo (new) en a cabeza.
-t_node *ft_addfront(t_node *head, int content);
+//	FT_SPLIT.C
+char			**ft_split(char const *s, char c);
+unsigned int	ft_count_frags(const char *s, char c);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
+size_t			ft_wordlen(const char *word, char c);
+char			**ft_freeall(char **frags, unsigned int k);
 
-//Agrega un nuevo nodo (new) al final de una lista enlazada.
-void	ft_lstadd_back(t_node **lst, t_node *new);
+//	FT_SPLIT_UTILS.C
+size_t			ft_strlen(const char *s);
+char			*ft_strdup(const char *s1);
+size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char			*ft_strjoin(char const *s1, char const *s2);
 
-//Crea un nuevo nodo (new) para una lista enlazada.
-t_node	*ft_lstnew(int content);
+//	INITIAL_STACK_CREATION.C
+void			create_stack(t_stack_node **a, char **argv, bool argc_is_2);
+long			ft_atol(const char *str);
+void			add_node(t_stack_node **stack, int number);
+t_stack_node	*find_last_node(t_stack_node *node);
+char			**prepare_argv(char *argv);
 
-//swap 1ª por 2ª
-void	ft_swap(t_node *stack);
+//	ARGV_CHECKS.C
+bool			check_syntax_error(char *str);
+bool			check_interval_error(long number);
+bool			check_repetition_error(t_stack_node *a, int nbr);
 
-//push desde StackA/B(get) a StackB/A(give)
-void	ft_push(t_node **stack_get, t_node **stack_give);
+//	STACK_UTILS.C
+int				stack_size(t_stack_node *node);
+bool			is_sorted(t_stack_node *node);
+void			solve_for_three(t_stack_node **a);
+t_stack_node	*find_highest(t_stack_node *node);
+t_stack_node	*find_lowest(t_stack_node *node);
 
-//Parte el string de caracteres de argumentos por los espacios
-char	**ft_split(const char *s, char c);
+//	SWAP_COMMAND.C
+void			swap(t_stack_node **stack);
+void			sa(t_stack_node	**a);
+void			sb(t_stack_node	**b);
+void			ss(t_stack_node	**a, t_stack_node	**b);
 
-//Convierte caracteres a integers
-int		ft_atoi(const char *str);
+//	PUSH_COMMAND.C
+void			push(t_stack_node **dest, t_stack_node **src);
+void			pa(t_stack_node **a, t_stack_node **b);
+void			pb(t_stack_node **b, t_stack_node **a);
 
-//Convierte Integers a Long (para que el checkeo de limites no desborde)
-long	ft_atol(const char *str);
+//	ROTATE_COMMAND.C
+void			rotate(t_stack_node **stack);
+void			ra(t_stack_node **a);
+void			rb(t_stack_node **b);
+void			rr(t_stack_node **a, t_stack_node **b);
 
-//libera strings
-void	ft_free(char **string);
+//	REVERSE_ROTATE_COMMAND.C
+void			reverse_rotate(t_stack_node **stack);
+void			rra(t_stack_node **a);
+void			rrb(t_stack_node **b);
+void			rrr(t_stack_node **a, t_stack_node **b);
 
-//Comprueba si es digito
-int		ft_isdigit(int i);
+//	NODE_EVALUATIONS.C
+void			calculate_price(t_stack_node *a, t_stack_node *b);
+void			find_target_node(t_stack_node *a, t_stack_node *b);
+void			assign_index(t_stack_node *node);
+void			evaluate_nodes(t_stack_node *a, t_stack_node *b);
+void			flag_cheapest(t_stack_node *b);
 
-//Comprueba si repetido
-//bool check_repeat(int *num);
-bool check_repeat(int *num, int size);
+//	PUSH_SWAP_ALGORYTHM.C
+void			push_swap(t_stack_node **a, t_stack_node **b);
 
-//Chequea los argumentos
-int check_arg(const char *str);
+//	PUSH_SWAP_UTILS.C
+bool			both_in_same_half(t_stack_node *b);
+t_stack_node	*find_cheapest(t_stack_node *node);
+int				find_higher(int n, int m);
 
-//Pasa el array lst_str de string char a un array de string integer
-int * ft_patoi(char *argv, int *patoi, int *z);
-
-// Printea los stack
-void	print_stack(t_node *stack, int z);
-
-//
 #endif

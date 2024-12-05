@@ -1,50 +1,68 @@
+# The name of the executable
 NAME = push_swap
-CHECKER_NAME = checker
 
-CC = cc -g3
+# The name of the static library
+PS_LIB_NAME = push_swap.a
 
-CFLAGS = #-Wall -Wextra -Werror
+# Source files for the static library
+PS_LIB_SOURCES = argv_checks.c ft_split.c ft_split_utils.c initial_stack_creation.c \
+swap_command.c push_command.c rotate_command.c reverse_rotate_command.c \
+push_swap_algorythm.c node_evaluations.c stack_utils.c push_swap_utils.c
 
-SRCS =	main.c \
-		utils.c \
-		utils2.c \
-		create_node.c \
-		ft_split.c \
-		ft_atoi.c \
-		ft_atol.c \
-		ft_isdigit.c \
-		ft_free.c
+# Main source file
+MAIN = main.c
 
+# Object files derived from the source files
+PS_LIB_OBJECTS = $(PS_LIB_SOURCES:.c=.o)
 
+# Compiler settings
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+RM = rm -f
 
-OBJS	= ${SRCS:.c=.o}
-CHECKER_OBJS = ${CHECKER_SRCS:.c=.o}
+# ANSI escape codes for colors
+GREEN = \033[1;32m
+RED = \033[1;31m
+YELLOW = \033[1;33m
+RESET = \033[0m
 
-all: $(NAME)
+# Helper variable to check if compilation was done
+COMPILE_FLAG = .compiled
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+# The main build target, checks if compilation is needed
+all: $(PS_LIB_NAME) $(NAME)
+	@if [ -f $(COMPILE_FLAG) ]; then \
+		echo "$(GREEN)PUSH_SWAP COMPILATION SUCCESSFUL$(RESET)"; \
+		rm -f $(COMPILE_FLAG); \
+	else \
+		echo "$(YELLOW)NOTHING TO BE DONE$(RESET)"; \
+	fi
 
-${CHECKER_NAME}: ${CHECKER_OBJS}
-		${CC} ${CFLAGS} ${CHECKER_OBJS} -o ${CHECKER_NAME}
+# Create the static library from object files
+$(PS_LIB_NAME): $(PS_LIB_OBJECTS)
+	ar rcs $(PS_LIB_NAME) $(PS_LIB_OBJECTS)
 
+# Link the main executable with the library
+$(NAME): $(PS_LIB_NAME) $(MAIN)
+	$(CC) $(CFLAGS) -o $(NAME) $(MAIN) $(PS_LIB_NAME)
+
+# Compile object files from source files
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+	@touch $(COMPILE_FLAG)
+
+# Clean up object files
 clean:
-	rm -f ${OBJS}
+	$(RM) $(PS_LIB_OBJECTS)
+	@echo "$(RED)OBJECT FILES DELETED$(RESET)"
 
-clean_checker:
-	rm -f $(CHECKER_OBJS)
-
+# Full cleanup: removes object files, library, and executable
 fclean: clean
-	rm -f ${NAME}
+	$(RM) $(PS_LIB_NAME) $(NAME)
+	@echo "$(RED)EXECUTABLE AND LIBRARY FILES DELETED$(RESET)"
 
-fclean_checker: clean_checker
-		@rm -f ${CHECKER_NAME}
-
-fclean_all: clean fclean_checker
-	@rm -f ${CHECKER_NAME}
-
+# Rebuild the entire project
 re: fclean all
 
-re_checker: fclean_checker checker
-
+# Declare phony targets (targets that are not files)
 .PHONY: all clean fclean re
