@@ -11,3 +11,5 @@
 # Note: when norminette * -->  OK! but... -->>>>>>>>>>>
 # Notice: GLOBAL_VAR_DETECTED  (line:  15, col:   1):	Global variable present in file. Make # sure it is a reasonable choice. 
 # You just have to justify why you used a global variable.
+
+# Thanks to Cvarela, Pasqualerossi, Dbonilla.
