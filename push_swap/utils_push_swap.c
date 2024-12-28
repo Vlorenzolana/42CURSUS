@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:48:37 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/28 09:56:37 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/28 12:58:36 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	find_higher(int n, int m)
 	return (m);
 }
 
-bool	same_part(t_node *b)
+bool	same_half(t_node *b)
 {
-	if (b->above_middle == b->target_node->above_middle)
+	if (b->top_half == b->target->top_half)
 		return (true);
 	else
 		return (false);
@@ -33,7 +33,7 @@ t_node	*find_cheapest(t_node *node)
 		return (NULL);
 	while (node)
 	{
-		if (node->is_cheapest)
+		if (node->cheapest)
 			return (node);
 		node = node->next;
 	}

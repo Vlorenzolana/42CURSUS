@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:34:53 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/28 10:40:16 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/28 12:58:36 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ typedef struct s_node
 	struct s_node	*prev;
 	int				num;
 	int				index;
-	int				cost_to_push;
-	bool			is_cheapest;
-	bool			above_middle;
-	struct s_node	*target_node;
+	int				cost;
+	bool			cheapest;
+	bool			top_half;
+	struct s_node	*target;
 	struct s_node	*next;
 }					t_node;
 
@@ -82,14 +82,14 @@ void				rrb(t_node **b);
 void				rrr(t_node **a, t_node **b);
 
 void				calculate_price(t_node *a, t_node *b);
-void				find_target_node(t_node *a, t_node *b);
+void				find_target(t_node *a, t_node *b);
 void				assign_index(t_node *node);
 void				evaluate_nodes(t_node *a, t_node *b);
 void				flag_cheapest(t_node *b);
 
 void				push_swap(t_node **a, t_node **b);
 
-bool				same_part(t_node *b);
+bool				same_half(t_node *b);
 t_node				*find_cheapest(t_node *node);
 int					find_higher(int n, int m);
 

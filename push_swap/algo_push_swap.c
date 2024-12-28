@@ -16,7 +16,7 @@ void	twin_rotate(t_node **a, t_node **b, t_node *cheapest_node)
 {
 	if (!a || !*a || !b || !*b || !cheapest_node)
 		return ;
-	while (*a != cheapest_node->target_node && *b != cheapest_node)
+	while (*a != cheapest_node->target && *b != cheapest_node)
 		rr(a, b);
 	assign_index(*a);
 	assign_index(*b);
@@ -26,7 +26,7 @@ void	twin_reverse_rotate(t_node **a, t_node **b, t_node *cheapest_node)
 {
 	if (!a || !*a || !b || !*b || !cheapest_node)
 		return ;
-	while (*a != cheapest_node->target_node && *b != cheapest_node)
+	while (*a != cheapest_node->target && *b != cheapest_node)
 		rrr(a, b);
 	assign_index(*a);
 	assign_index(*b);
@@ -40,14 +40,14 @@ void	single_rotate(t_node **stack, t_node *top_node, char name)
 	{
 		if (name == 'a')
 		{
-			if (top_node->above_middle)
+			if (top_node->top_half)
 				ra(stack);
 			else
 				rra(stack);
 		}
 		else
 		{
-			if (top_node->above_middle)
+			if (top_node->top_half)
 				rb(stack);
 			else
 				rrb(stack);
@@ -62,13 +62,13 @@ void	push_optimal(t_node **a, t_node **b)
 	if (!a || !*a || !b || !*b)
 		return ;
 	cheapest_node = find_cheapest(*b);
-	if (cheapest_node->above_middle && cheapest_node->target_node->above_middle)
+	if (cheapest_node->top_half && cheapest_node->target->top_half)
 		twin_rotate(a, b, cheapest_node);
-	else if (!(cheapest_node->above_middle)
-		&& !(cheapest_node->target_node->above_middle))
+	else if (!(cheapest_node->top_half)
+		&& !(cheapest_node->target->top_half))
 		twin_reverse_rotate(a, b, cheapest_node);
 	single_rotate(b, cheapest_node, 'b');
-	single_rotate(a, cheapest_node->target_node, 'a');
+	single_rotate(a, cheapest_node->target, 'a');
 	pa(a, b);
 }
 
@@ -93,7 +93,7 @@ void	push_swap(t_node **a, t_node **b)
 	}
 	assign_index(*a);
 	lowest_node = find_lowest(*a);
-	if (lowest_node->above_middle == true)
+	if (lowest_node->top_half == true)
 		while (*a != lowest_node)
 			ra(a);
 	else
