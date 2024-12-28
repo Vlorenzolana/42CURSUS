@@ -33,7 +33,7 @@ void	flag_cheapest(t_node *b)
 	cheapest_node->cheapest = true;
 }
 
-void	calculate_price(t_node *a, t_node *b)
+void	price_calculator(t_node *a, t_node *b)
 {
 	int	size_a;
 	int	size_b;
@@ -114,6 +114,6 @@ void	evaluate_nodes(t_node *a, t_node *b)
 	assign_index(a);
 	assign_index(b);
 	find_target(a, b);
-	calculate_price(a, b);
+	price_calculator(a, b);
 	flag_cheapest(b);
 }

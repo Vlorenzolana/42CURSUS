@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:34:53 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/28 12:58:36 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/28 13:05:13 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void				rra(t_node **a);
 void				rrb(t_node **b);
 void				rrr(t_node **a, t_node **b);
 
-void				calculate_price(t_node *a, t_node *b);
+void				price_calculator(t_node *a, t_node *b);
 void				find_target(t_node *a, t_node *b);
 void				assign_index(t_node *node);
 void				evaluate_nodes(t_node *a, t_node *b);
