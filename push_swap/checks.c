@@ -27,9 +27,7 @@ char	**prepare_argv(char *argv)
 bool	check_interval_error(long num)
 {
 	if (num < INT_MIN || INT_MAX < num)
-	{
 		return (true);
-	}
 	else
 		return (false);
 }
@@ -37,19 +35,13 @@ bool	check_interval_error(long num)
 bool	check_syntax_error(char *str)
 {
 	if (*str == '-' || *str == '+')
-	{
 		str++;
-	}
 	if (!*str)
-	{
 		return (true);
-	}
 	while (*str)
 	{
 		if (*str < '0' || '9' < *str)
-		{
 			return (true);
-		}
 		str++;
 	}
 	return (false);

@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:50:38 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/28 08:53:47 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/28 09:50:39 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	solve_for_three(t_node **a)
 
 t_node	*find_highest(t_node *node)
 {
-	int				highest;
+	int		highest;
 	t_node	*highest_node;
 
 	if (!node)
@@ -78,7 +78,7 @@ t_node	*find_highest(t_node *node)
 
 t_node	*find_lowest(t_node *node)
 {
-	int				lowest;
+	int		lowest;
 	t_node	*lowest_node;
 
 	if (!node)

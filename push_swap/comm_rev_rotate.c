@@ -12,38 +12,34 @@
 
 #include "push_swap.h"
 
-/* Reverse rotates the stack so that the bottom node is sent to the top. */
 void	reverse_rotate(t_node **stack)
 {
-	t_node	*last_node;
-	int				size;
+	t_node	*last;
+	int		size;
 
 	size = stack_size(*stack);
 	if (!stack || !*stack || size == 1)
 		return ;
-	last_node = find_last_node(*stack);
-	last_node->prev->next = NULL;
-	last_node->next = *stack;
-	(*stack)->prev = last_node;
-	last_node->prev = NULL;
-	*stack = last_node;
+	last = find_last(*stack);
+	last->prev->next = NULL;
+	last->next = *stack;
+	(*stack)->prev = last;
+	last->prev = NULL;
+	*stack = last;
 }
 
-/* Executes the RRA command and writes "rra". */
 void	rra(t_node **a)
 {
 	reverse_rotate(a);
 	write(1, "rra\n", 4);
 }
 
-/* Executes the RRB command and writes "rrb". */
 void	rrb(t_node **b)
 {
 	reverse_rotate(b);
 	write(1, "rrb\n", 4);
 }
 
-/* Executes the RRR command and writes "rrr". */
 void	rrr(t_node **a, t_node **b)
 {
 	reverse_rotate(a);

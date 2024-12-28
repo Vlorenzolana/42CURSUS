@@ -12,40 +12,36 @@
 
 #include "push_swap.h"
 
-/* Pushes the first node from stack src into stack dest.
-No return, just some pointer juggling. */
 void	push(t_node **dest, t_node **src)
 {
-	t_node	*node_to_push;
+	t_node	*push_node;
 
 	if (!*src)
 		return ;
-	node_to_push = *src;
+	push_node = *src;
 	*src = (*src)->next;
 	if (*src)
 		(*src)->prev = NULL;
-	node_to_push->prev = NULL;
+	push_node->prev = NULL;
 	if (!*dest)
 	{
-		*dest = node_to_push;
-		node_to_push->next = NULL;
+		*dest = push_node;
+		push_node->next = NULL;
 	}
 	else
 	{
-		node_to_push->next = *dest;
-		node_to_push->next->prev = node_to_push;
-		*dest = node_to_push;
+		push_node->next = *dest;
+		push_node->next->prev = push_node;
+		*dest = push_node;
 	}
 }
 
-/* Executes the PA command and writes "pa". */
 void	pa(t_node **a, t_node **b)
 {
 	push(a, b);
 	write(1, "pa\n", 3);
 }
 
-/* Executes the PB command and writes "pb". */
 void	pb(t_node **b, t_node **a)
 {
 	push(b, a);

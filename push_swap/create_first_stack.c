@@ -18,10 +18,10 @@ void	ft_error(t_node **a, char **argv, bool arg2)
 	if (arg2)
 		free_str(argv);
 	write(2, "Error\n", 6);
-	exit (1);
+	exit(1);
 }
 
-t_node	*find_last_node(t_node *node)
+t_node	*find_last(t_node *node)
 {
 	if (!node)
 		return (NULL);
@@ -33,7 +33,7 @@ t_node	*find_last_node(t_node *node)
 void	add_node(t_node **stack, int num)
 {
 	t_node	*new_node;
-	t_node	*last_node;
+	t_node	*last;
 
 	if (!stack)
 		return ;
@@ -49,9 +49,9 @@ void	add_node(t_node **stack, int num)
 	}
 	else
 	{
-		last_node = find_last_node(*stack);
-		last_node->next = new_node;
-		new_node->prev = last_node;
+		last = find_last(*stack);
+		last->next = new_node;
+		new_node->prev = last;
 	}
 }
 

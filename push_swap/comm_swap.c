@@ -12,41 +12,37 @@
 
 #include "push_swap.h"
 
-/* Swaps the two first nodes of a stack. Just pointer games with no return. */
 void	swap(t_node **stack)
 {
-	t_node	*first_node;
+	t_node	*head;
 	t_node	*second_node;
 
 	if (!*stack || !stack || stack_size(*stack) == 1)
 		return ;
-	first_node = *stack;
+	head = *stack;
 	second_node = (*stack)->next;
-	first_node->prev = second_node;
-	first_node->next = second_node->next;
+	head->prev = second_node;
+	head->next = second_node->next;
 	second_node->prev = NULL;
-	second_node->next = first_node;
-	if (first_node->next)
-		first_node->next->prev = first_node;
+	second_node->next = head;
+	if (head->next)
+		head->next->prev = head;
 	*stack = second_node;
 }
 
-/* Executes the SA command and writes "sa". */
-void	sa(t_node	**a)
+void	sa(t_node **a)
 {
 	swap(a);
 	write(1, "sa\n", 3);
 }
 
-/* Executes the SB command and writes "sb". */
-void	sb(t_node	**b)
+void	sb(t_node **b)
 {
 	swap(b);
 	write(1, "sb\n", 3);
 }
 
-/* Executes the SA and SB commands and writes "sa". */
-void	ss(t_node	**a, t_node	**b)
+void	ss(t_node **a, t_node **b)
 {
 	swap(a);
 	swap(b);

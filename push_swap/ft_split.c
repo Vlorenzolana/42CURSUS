@@ -6,12 +6,11 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:43:28 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/27 18:26:51 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/28 09:49:12 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -24,7 +23,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	substr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!substr)
 		return (NULL);
-	ft_strlcpy(substr, s + start, len +1);
+	ft_strlcpy(substr, s + start, len + 1);
 	return (substr);
 }
 
@@ -35,10 +34,10 @@ char	**ft_freeall(char **frags, unsigned int k)
 	i = 0;
 	while (i < k && frags[i])
 	{
-		free (frags[i]);
+		free(frags[i]);
 		i++;
 	}
-	free (frags);
+	free(frags);
 	return (NULL);
 }
 

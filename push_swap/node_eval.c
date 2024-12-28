@@ -14,7 +14,7 @@
 
 void	flag_cheapest(t_node *b)
 {
-	long			cheapest_price;
+	long	cheapest_price;
 	t_node	*cheapest_node;
 
 	if (!b)
@@ -45,8 +45,8 @@ void	calculate_price(t_node *a, t_node *b)
 		if (both_in_same_half(b) && b->above_middle == true)
 			b->cost_to_push = find_higher(b->index, b->target_node->index);
 		else if (both_in_same_half(b) && b->above_middle == false)
-			b->cost_to_push = find_higher(size_b - b->index,
-					size_a - b->target_node->index);
+			b->cost_to_push = find_higher(size_b - b->index, size_a
+					- b->target_node->index);
 		else
 		{
 			b->cost_to_push = b->index;
@@ -65,7 +65,7 @@ void	find_target_node(t_node *a, t_node *b)
 {
 	t_node	*aux;
 	t_node	*target_node;
-	long			closest_match;
+	long	closest_match;
 
 	while (b)
 	{
