@@ -16,18 +16,19 @@ CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
 GREEN = \033[1;32m
-RED = \033[1;31m
+ORANGE = \033[38;5;208m
 PINK = \033[1;35m
+RED = \033[0;31m
 RESET = \033[0m
 
 COMPILE_FLAG = .compiled
 
 all: $(PS_LIB_NAME) $(NAME)
 	@if [ -f $(COMPILE_FLAG) ]; then \
-		echo "$(GREEN) MAKE SUCCESSFUL$(RESET)"; \
+		echo "$(GREEN)MAKE SUCCESSFUL$(RESET)"; \
 		rm -f $(COMPILE_FLAG); \
 	else \
-		echo "$(PINK)NOTHING TO BE DONE$(RESET)"; \
+		echo "$(ORANGE)NOTHING TO BE DONE$(RESET)"; \
 	fi
 
 $(PS_LIB_NAME): $(PS_LIB_OBJECTS)
@@ -42,7 +43,7 @@ $(NAME): $(PS_LIB_NAME) $(MAIN)
 
 clean:
 	$(RM) $(PS_LIB_OBJECTS)
-	@echo "$(RED)OBJECT FILES CLEAN-UP $(RESET)"
+	@echo "$(PINK)OBJECT FILES CLEAN-UP $(RESET)"
 
 fclean: clean
 	$(RM) $(PS_LIB_NAME) $(NAME)
