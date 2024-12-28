@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:45:40 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/27 15:28:26 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/28 08:53:47 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	free_str(char **argv)
 	argv = NULL;
 }
 
-void	free_stack(t_stack_node **stack)
+void	free_stack(t_node **stack)
 {
-	t_stack_node	*temp;
-	t_stack_node	*current;
+	t_node	*temp;
+	t_node	*current;
 
 	if (!stack || !*stack)
 		return ;
@@ -47,8 +47,8 @@ void	free_stack(t_stack_node **stack)
 
 int	main(int argc, char **argv)
 {
-	t_stack_node	*a;
-	t_stack_node	*b;
+	t_node	*a;
+	t_node	*b;
 
 	a = NULL;
 	b = NULL;

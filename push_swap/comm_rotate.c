@@ -14,9 +14,9 @@
 
 /* Rotates a stack so that the firs node is sent to the bottom of the stack.
 Returns nothing; this is just pointer juggling. */
-void	rotate(t_stack_node **stack)
+void	rotate(t_node **stack)
 {
-	t_stack_node	*last_node;
+	t_node	*last_node;
 	int				size;
 
 	size = stack_size(*stack);
@@ -31,21 +31,21 @@ void	rotate(t_stack_node **stack)
 }
 
 /* Executes the RA command and writes "ra". */
-void	ra(t_stack_node **a)
+void	ra(t_node **a)
 {
 	rotate(a);
 	write(1, "ra\n", 3);
 }
 
 /* Executes the RB command and writes "rb". */
-void	rb(t_stack_node **b)
+void	rb(t_node **b)
 {
 	rotate(b);
 	write(1, "rb\n", 3);
 }
 
 /* Executes the RR command and writes "rr". */
-void	rr(t_stack_node **a, t_stack_node **b)
+void	rr(t_node **a, t_node **b)
 {
 	rotate(a);
 	rotate(b);

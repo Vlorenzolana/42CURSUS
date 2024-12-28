@@ -55,7 +55,7 @@ bool	check_syntax_error(char *str)
 	return (false);
 }
 
-bool	check_repetition_error(t_stack_node *a, int nbr)
+bool	check_repetition_error(t_node *a, int nbr)
 {
 	if (!a)
 		return (false);

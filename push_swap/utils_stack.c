@@ -6,13 +6,13 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:50:38 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/27 18:13:54 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/28 08:53:47 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	stack_size(t_stack_node *node)
+int	stack_size(t_node *node)
 {
 	int	size;
 
@@ -27,7 +27,7 @@ int	stack_size(t_stack_node *node)
 	return (size);
 }
 
-bool	is_sorted(t_stack_node *node)
+bool	is_sorted(t_node *node)
 {
 	if (!node)
 		return (true);
@@ -40,9 +40,9 @@ bool	is_sorted(t_stack_node *node)
 	return (true);
 }
 
-void	solve_for_three(t_stack_node **a)
+void	solve_for_three(t_node **a)
 {
-	t_stack_node	*highest_node;
+	t_node	*highest_node;
 
 	if (!a || !*a || stack_size(*a) != 3)
 		return ;
@@ -55,10 +55,10 @@ void	solve_for_three(t_stack_node **a)
 		sa(a);
 }
 
-t_stack_node	*find_highest(t_stack_node *node)
+t_node	*find_highest(t_node *node)
 {
 	int				highest;
-	t_stack_node	*highest_node;
+	t_node	*highest_node;
 
 	if (!node)
 		return (NULL);
@@ -76,10 +76,10 @@ t_stack_node	*find_highest(t_stack_node *node)
 	return (highest_node);
 }
 
-t_stack_node	*find_lowest(t_stack_node *node)
+t_node	*find_lowest(t_node *node)
 {
 	int				lowest;
-	t_stack_node	*lowest_node;
+	t_node	*lowest_node;
 
 	if (!node)
 		return (NULL);

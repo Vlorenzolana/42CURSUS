@@ -12,10 +12,10 @@
 
 #include "push_swap.h"
 
-void	flag_cheapest(t_stack_node *b)
+void	flag_cheapest(t_node *b)
 {
 	long			cheapest_price;
-	t_stack_node	*cheapest_node;
+	t_node	*cheapest_node;
 
 	if (!b)
 		return ;
@@ -33,7 +33,7 @@ void	flag_cheapest(t_stack_node *b)
 	cheapest_node->is_cheapest = true;
 }
 
-void	calculate_price(t_stack_node *a, t_stack_node *b)
+void	calculate_price(t_node *a, t_node *b)
 {
 	int	size_a;
 	int	size_b;
@@ -61,10 +61,10 @@ void	calculate_price(t_stack_node *a, t_stack_node *b)
 	}
 }
 
-void	find_target_node(t_stack_node *a, t_stack_node *b)
+void	find_target_node(t_node *a, t_node *b)
 {
-	t_stack_node	*aux;
-	t_stack_node	*target_node;
+	t_node	*aux;
+	t_node	*target_node;
 	long			closest_match;
 
 	while (b)
@@ -88,7 +88,7 @@ void	find_target_node(t_stack_node *a, t_stack_node *b)
 	}
 }
 
-void	assign_index(t_stack_node *node)
+void	assign_index(t_node *node)
 {
 	int	i;
 	int	middle_index;
@@ -109,7 +109,7 @@ void	assign_index(t_stack_node *node)
 	}
 }
 
-void	evaluate_nodes(t_stack_node *a, t_stack_node *b)
+void	evaluate_nodes(t_node *a, t_node *b)
 {
 	assign_index(a);
 	assign_index(b);

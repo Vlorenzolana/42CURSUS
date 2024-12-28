@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	ft_error(t_stack_node **a, char **argv, bool arg2)
+void	ft_error(t_node **a, char **argv, bool arg2)
 {
 	free_stack(a);
 	if (arg2)
@@ -21,7 +21,7 @@ void	ft_error(t_stack_node **a, char **argv, bool arg2)
 	exit (1);
 }
 
-t_stack_node	*find_last_node(t_stack_node *node)
+t_node	*find_last_node(t_node *node)
 {
 	if (!node)
 		return (NULL);
@@ -30,14 +30,14 @@ t_stack_node	*find_last_node(t_stack_node *node)
 	return (node);
 }
 
-void	add_node(t_stack_node **stack, int num)
+void	add_node(t_node **stack, int num)
 {
-	t_stack_node	*new_node;
-	t_stack_node	*last_node;
+	t_node	*new_node;
+	t_node	*last_node;
 
 	if (!stack)
 		return ;
-	new_node = (t_stack_node *)malloc(sizeof(t_stack_node));
+	new_node = (t_node *)malloc(sizeof(t_node));
 	if (!new_node)
 		return ;
 	new_node->num = num;
@@ -82,7 +82,7 @@ long	ft_atol(const char *str)
 	return (sign * result);
 }
 
-void	create_stack(t_stack_node **a, char **argv, bool arg2)
+void	create_stack(t_node **a, char **argv, bool arg2)
 {
 	int		i;
 	long	num;

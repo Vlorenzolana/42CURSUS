@@ -14,9 +14,9 @@
 
 /* Pushes the first node from stack src into stack dest.
 No return, just some pointer juggling. */
-void	push(t_stack_node **dest, t_stack_node **src)
+void	push(t_node **dest, t_node **src)
 {
-	t_stack_node	*node_to_push;
+	t_node	*node_to_push;
 
 	if (!*src)
 		return ;
@@ -39,14 +39,14 @@ void	push(t_stack_node **dest, t_stack_node **src)
 }
 
 /* Executes the PA command and writes "pa". */
-void	pa(t_stack_node **a, t_stack_node **b)
+void	pa(t_node **a, t_node **b)
 {
 	push(a, b);
 	write(1, "pa\n", 3);
 }
 
 /* Executes the PB command and writes "pb". */
-void	pb(t_stack_node **b, t_stack_node **a)
+void	pb(t_node **b, t_node **a)
 {
 	push(b, a);
 	write(1, "pb\n", 3);
