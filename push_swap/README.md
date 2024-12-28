@@ -1,2 +1,2 @@
 Project ***push_swap*** 
-***Thanks and Credits*** Cesar Varela, David Felipe Bonilla, Ignacio Churruca, Anita Wizard, Daniel González.
+***Thanks and Credits*** Cesar Varela, Itxine Lopez, Ignacio Churruca, David Felipe Bonilla, Anita Wizard, Daniel González.
