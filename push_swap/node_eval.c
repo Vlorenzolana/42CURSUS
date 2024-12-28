@@ -42,9 +42,9 @@ void	calculate_price(t_node *a, t_node *b)
 	size_b = stack_size(b);
 	while (b)
 	{
-		if (both_in_same_half(b) && b->above_middle == true)
+		if (same_part(b) && b->above_middle == true)
 			b->cost_to_push = find_higher(b->index, b->target_node->index);
-		else if (both_in_same_half(b) && b->above_middle == false)
+		else if (same_part(b) && b->above_middle == false)
 			b->cost_to_push = find_higher(size_b - b->index, size_a
 					- b->target_node->index);
 		else

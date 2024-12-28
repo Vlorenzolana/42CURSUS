@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:34:53 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/28 09:50:09 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/28 09:57:23 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ bool				check_interval_error(long num);
 bool				check_repetition_error(t_node *a, int nbr);
 
 int					stack_size(t_node *node);
-bool				is_sorted(t_node *node);
-void				solve_for_three(t_node **a);
+bool				sorted(t_node *node);
+void				sort_three(t_node **a);
 t_node				*find_highest(t_node *node);
 t_node				*find_lowest(t_node *node);
 
@@ -89,7 +89,7 @@ void				flag_cheapest(t_node *b);
 
 void				push_swap(t_node **a, t_node **b);
 
-bool				both_in_same_half(t_node *b);
+bool				same_part(t_node *b);
 t_node				*find_cheapest(t_node *node);
 int					find_higher(int n, int m);
 

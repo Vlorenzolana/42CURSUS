@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:45:40 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/28 09:46:58 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/28 09:57:23 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ int	main(int argc, char **argv)
 	create_stack(&a, argv, argc == 2);
 	if (argc == 2)
 		free_str(argv);
-	if (!is_sorted(a))
+	if (!sorted(a))
 	{
 		if (stack_size(a) == 2)
 			sa(&a);
 		else if (stack_size(a) == 3)
-			solve_for_three(&a);
+			sort_three(&a);
 		else
 			push_swap(&a, &b);
 	}

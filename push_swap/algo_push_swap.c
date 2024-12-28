@@ -85,7 +85,7 @@ void	push_swap(t_node **a, t_node **b)
 		pb(b, a);
 		size--;
 	}
-	solve_for_three(a);
+	sort_three(a);
 	while (*b)
 	{
 		evaluate_nodes(*a, *b);

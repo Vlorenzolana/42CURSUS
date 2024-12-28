@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:50:38 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/28 09:50:39 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/28 09:57:23 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	stack_size(t_node *node)
 	return (size);
 }
 
-bool	is_sorted(t_node *node)
+bool	sorted(t_node *node)
 {
 	if (!node)
 		return (true);
@@ -40,7 +40,7 @@ bool	is_sorted(t_node *node)
 	return (true);
 }
 
-void	solve_for_three(t_node **a)
+void	sort_three(t_node **a)
 {
 	t_node	*highest_node;
 
