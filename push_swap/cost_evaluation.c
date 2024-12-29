@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   node_eval.c                                        :+:      :+:    :+:   */
+/*   cost_evaluation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 21:46:07 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/29 10:17:17 by vlorenzo         ###   ########.fr       */
+/*   Created: 2024/12/29 11:02:21 by vlorenzo          #+#    #+#             */
+/*   Updated: 2024/12/29 11:06:00 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	calculate_individual_cost(t_node *b, int size_a, int size_b)
+static int	individual_cost(t_node *b, int size_a, int size_b)
 {
 	int	cost;
 
@@ -28,7 +28,7 @@ static int	calculate_individual_cost(t_node *b, int size_a, int size_b)
 	return (cost);
 }
 
-static int	calculate_same_half_cost(t_node *b, int size_a, int size_b)
+static int	same_half_cost(t_node *b, int size_a, int size_b)
 {
 	if (b->top_half)
 		return (find_higher(b->index, b->target->index));
@@ -36,7 +36,7 @@ static int	calculate_same_half_cost(t_node *b, int size_a, int size_b)
 		return (find_higher(size_b - b->index, size_a - b->target->index));
 }
 
-void	calculate_cost(t_node *a, t_node *b)
+void	cost_calculation(t_node *a, t_node *b)
 {
 	int	size_a;
 	int	size_b;
@@ -46,14 +46,14 @@ void	calculate_cost(t_node *a, t_node *b)
 	while (b)
 	{
 		if (same_half(b))
-			b->cost = calculate_same_half_cost(b, size_a, size_b);
+			b->cost = same_half_cost(b, size_a, size_b);
 		else
-			b->cost = calculate_individual_cost(b, size_a, size_b);
+			b->cost = individual_cost(b, size_a, size_b);
 		b = b->next;
 	}
 }
 
-void	assign_index(t_node *node)
+void	assign_half(t_node *node)
 {
 	int	i;
 	int	middle_index;
@@ -74,11 +74,11 @@ void	assign_index(t_node *node)
 	}
 }
 
-void	evaluate_nodes(t_node *a, t_node *b)
+void	eval_cost(t_node *a, t_node *b)
 {
-	assign_index(a);
-	assign_index(b);
+	assign_half(a);
+	assign_half(b);
 	find_target(a, b);
-	calculate_cost(a, b);
+	cost_calculation(a, b);
 	flag_cheapest(b);
 }

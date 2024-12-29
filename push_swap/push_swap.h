@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:34:53 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/29 10:03:54 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/29 11:05:40 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char				*ft_strjoin(char const *s1, char const *s2);
 
 long				ft_atol(const char *str);
-void				add_node(t_node **stack, int num);
+void				fill_node(t_node **stack, int num);
 t_node				*find_last(t_node *node);
 void				ft_error(t_node **a, char **argv, bool arg2);
 void				create_stack(t_node **a, char **argv, bool arg2);
@@ -59,8 +59,8 @@ bool				check_repetition_error(t_node *a, int nbr);
 int					stack_size(t_node *node);
 bool				sorted(t_node *node);
 void				sort_three(t_node **a);
-t_node				*find_highest(t_node *node);
-t_node				*find_lowest(t_node *node);
+t_node				*is_highest(t_node *node);
+t_node				*is_lowest(t_node *node);
 
 void				swap(t_node **stack);
 void				sa(t_node **a);
@@ -81,10 +81,10 @@ void				rra(t_node **a);
 void				rrb(t_node **b);
 void				rrr(t_node **a, t_node **b);
 
-void				calculate_cost(t_node *a, t_node *b);
+void				cost_calculation(t_node *a, t_node *b);
 void				find_target(t_node *a, t_node *b);
-void				assign_index(t_node *node);
-void				evaluate_nodes(t_node *a, t_node *b);
+void				assign_half(t_node *node);
+void				eval_cost(t_node *a, t_node *b);
 void				flag_cheapest(t_node *b);
 
 void				push_swap(t_node **a, t_node **b);

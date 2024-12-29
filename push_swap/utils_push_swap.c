@@ -6,11 +6,38 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:48:37 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/29 10:17:33 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/29 11:00:04 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	find_target(t_node *a, t_node *b)
+{
+	t_node	*aux;
+	t_node	*target;
+	long	closest_match;
+
+	while (b)
+	{
+		closest_match = LONG_MAX;
+		aux = a;
+		while (aux)
+		{
+			if (aux->num > b->num && aux->num < closest_match)
+			{
+				target = aux;
+				closest_match = aux->num;
+			}
+			aux = aux->next;
+		}
+		if (closest_match == LONG_MAX)
+			b->target = is_lowest(a);
+		else
+			b->target = target;
+		b = b->next;
+	}
+}
 
 int	find_higher(int n, int m)
 {
@@ -59,31 +86,4 @@ void	flag_cheapest(t_node *b)
 		b = b->next;
 	}
 	cheapest_node->cheapest = true;
-}
-
-void	find_target(t_node *a, t_node *b)
-{
-	t_node	*aux;
-	t_node	*target;
-	long	closest_match;
-
-	while (b)
-	{
-		closest_match = LONG_MAX;
-		aux = a;
-		while (aux)
-		{
-			if (aux->num > b->num && aux->num < closest_match)
-			{
-				target = aux;
-				closest_match = aux->num;
-			}
-			aux = aux->next;
-		}
-		if (closest_match == LONG_MAX)
-			b->target = find_lowest(a);
-		else
-			b->target = target;
-		b = b->next;
-	}
 }
