@@ -4,7 +4,7 @@ PS_LIB_NAME = push_swap.a
 
 PS_LIB_SOURCES = algo_push_swap.c checks.c comm_push.c \
 comm_rev_rotate.c comm_rotate.c comm_swap.c \
-create_first_stack.c ft_split.c node_eval.c \
+create_first_stack.c ft_split.c cost_evaluation.c \
 utils_ft_split.c utils_push_swap.c utils_stack.c
 
 MAIN = main.c
