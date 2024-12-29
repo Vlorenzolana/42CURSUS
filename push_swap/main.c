@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:45:40 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/28 13:23:32 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/29 10:28:16 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,18 @@ int	main(int argc, char **argv)
 }
 
 /*
-Verify Permissions:
-You can verify that the permissions are correct by running:
+For CHECKER_LINUX in your terminal you can run the command:
+% ARG="[ARGUMENTS]"; ./push_swap $ARG | tee >(wc -l) | ./checker_linux $ARG
 
-ls -l checker_linux
+VERIFY PERMISSIONS:
+You can verify the -x permissions by running the following command:
+% ls -l checker_linux
+% If not -x permissions you can run:
 chmod 777 checker_linux
 
-Re-run your original command:
 
-./push_swap $ARG | tee >(wc -l) | ./checker_linux $ARG
+Re-run your original command:
+% ./push_swap $ARG | tee >(wc -l) | ./checker_linux $ARG
 */
 
 /* TEST EVALUATION:
