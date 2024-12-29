@@ -38,7 +38,6 @@ To                 Action      From
 4242               ALLOW     Anywhere
 4242 (v6)          ALLOW     Anywhere (v6)"
 
-
 ### TEST SSH SERVICE
 "sudo service ssh status" >> active (running)
 Server listening on 0.0.0.0 port 4242
