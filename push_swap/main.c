@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:45:40 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/29 10:28:16 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/29 15:53:46 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,42 +115,66 @@ Re-run your original command:
 
 /*
 //Random num 500 MAX
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
 #define MAX_NUMBERS 500
 
-int	main(void) {
-	int numbers[MAX_NUMBERS];
+int	random_int(void)
+{
+	int	high;
+	int	low;
+
+	high = rand();
+	low = rand();
+	return ((high << 16) | (low & 0xFFFF));
+		// Combina para obtener un entero completo
+}
+
+int	main(void)
+{
+	int	numbers[MAX_NUMBERS];
+	int	j;
+
 	int i, temp;
 	srand(time(NULL));
-
-	for (i = 0; i < MAX_NUMBERS; i++) {
-		numbers[i] = -1;
-	}
-
 	i = 0;
-	while (i < MAX_NUMBERS) {
-		temp = rand() % MAX_NUMBERS + 1;
-
-		int j;
-		for (j = 0; j < i; j++) {
-			if (numbers[j] == temp) {
+	while (i < MAX_NUMBERS)
+	{ // Marcamos posiciones vacías con INT_MAX
+		i++;
+	}
+	i = 0;
+	while (i < MAX_NUMBERS)
+	{
+		// Generamos un número aleatorio entre INT_MIN y INT_MAX
+		temp = random_int();
+		// Comprobamos si el número ya está en el array
+		j = 0;
+		while (j < i)
+		{
+			if (numbers[j] == temp)
+			{
 				break ;
 			}
+			j++;
 		}
-		if (j == i) {
+		// Si el número no está repetido, lo añadimos al array
+		if (j == i)
+		{
 			numbers[i] = temp;
-			i++;s
+			i++;
 		}
 	}
-
+	// Imprimimos el array de números generados
+	i = 0;
 	printf("\"");
-	for (i = 0; i < MAX_NUMBERS; i++) {
+	while (i < MAX_NUMBERS) {
 		printf("%d ", numbers[i]);
+		i++;
 	}
 	printf("\"\n");
-
 	return (0);
 }
 */

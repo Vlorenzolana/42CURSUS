@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:48:37 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/29 11:00:04 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/29 17:10:38 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,18 @@ t_node	*find_cheapest(t_node *node)
 
 void	flag_cheapest(t_node *b)
 {
-	long	cheapest_price;
+	long	lowest_price;
 	t_node	*cheapest_node;
 
 	if (!b)
 		return ;
-	cheapest_price = LONG_MAX;
+	lowest_price = LONG_MAX;
 	while (b)
 	{
 		b->cheapest = false;
-		if (b->cost < cheapest_price)
+		if (b->cost < lowest_price)
 		{
-			cheapest_price = b->cost;
+			lowest_price = b->cost;
 			cheapest_node = b;
 		}
 		b = b->next;
