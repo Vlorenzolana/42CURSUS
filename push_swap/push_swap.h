@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:34:53 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/30 08:22:31 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/30 09:43:11 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ typedef struct s_node
 	int				num;
 	int				index;
 	int				cost;
-	bool			cheapest;
-	bool			top_half;
-	struct s_node	*target;
 	struct s_node	*next;
 	struct s_node	*prev;
+	struct s_node	*target;
+	bool			cheapest;
+	bool			top_half;
 }					t_node;
 
 int					main(int argc, char **argv);

@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:45:40 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/30 07:47:56 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/30 10:38:35 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	main(int argc, char **argv)
 			push_swap(&a, &b);
 	}
 	free_stack(&a);
+	return (0);
 }
 
 /*
@@ -178,3 +179,169 @@ int	main(void)
 	return (0);
 }
 */
+
+/*
+valgrind ./push_swap ""
+Error
+Invalid single argument, non-digit found
+valgrind ./push_swap "42"
+Debug: All arguments processed successfully.
+valgrind ./push_swap "+42"
+Debug: All arguments processed successfully.
+valgrind ./push_swap "-42"
+Debug: All arguments processed successfully.
+valgrind ./push_swap "34 45 6"
+Debug: All arguments processed successfully.
+valgrind ./push_swap " 34 45 6 "
+Debug: All arguments processed successfully.
+valgrind ./push_swap "0045"     
+Debug: All arguments processed successfully.
+valgrind ./push_swap "000000000000000000000045"
+Debug: All arguments processed successfully.
+valgrind ./push_swap "-000000000000000000000045"
+Debug: All arguments processed successfully.
+valgrind ./push_swap "+000000000000000000000045"
+Debug: All arguments processed successfully.
+valgrind ./push_swap "-42 +56 78"               
+Debug: All arguments processed successfully.
+valgrind ./push_swap "1234567890"
+Debug: All arguments processed successfully.
+valgrind ./push_swap  "123456789012"
+Error
+Invalid single argument, non-digit found
+valgrind ./push_swap "42a56"        
+Error
+Invalid single argument, non-digit found
+valgrind ./push_swap "--42" 
+Error
+Invalid single argument, non-digit found
+valgrind ./push_swap "++42"
+Error
+Invalid single argument, non-digit found
+valgrind ./push_swap "+-42"
+Error
+Invalid single argument, non-digit found
+valgrind ./push_swap " "   
+Error
+Invalid single argument, non-digit found
+valgrind ./push_swap "           "
+Error
+Invalid single argument, non-digit found
+valgrind ./push_swap  "012 12"    
+Error
+Duplicate number found
+valgrind ./push_swap  "12 12" 
+Error
+Duplicate number found
+valgrind ./push_swap 42 56 78
+Debug: All arguments processed successfully.
+valgrind ./push_swap -42 -56 -78
+Debug: All arguments processed successfully.
+valgrind ./push_swap  42 -56 78
+Debug: All arguments processed successfully.
+valgrind./push_swap 00042 0056 00078
+Debug: All arguments processed successfully.
+valgrind ./push_swap 42 abc -56
+Error
+Invalid multiple arguments, non-digit found
+valgrind ./push_swap 42 56 42
+Error
+Duplicate number found
+valgrind ./push_swap 2147483648 -2147483649
+Error
+Under- and over- flow int found
+valgrind ./push_swap 2147483647 -2147483648
+Debug: All arguments processed successfully.
+valgrind ./push_swap 42 56
+Debug: All arguments processed successfully.
+valgrind ./push_swap 4 2 5 6 7 8
+Debug: All arguments processed successfully.
+valgrind ./push_swap 42 - 56 + 78
+Error
+Invalid multiple arguments, non-digit found
+valgrind ./push_swap 012 12
+Error
+Duplicate number found
+valgrind./push_swap 12 12 
+Error
+Duplicate number found
+valgrind ./push_swap -0   
+Debug: All arguments processed successfully.
+valgrind./push_swap 000000000000 00000000000000
+Error
+Duplicate number found
+valgrind ./push_swap "000000000000 00000000000000"
+Error
+Duplicate number found
+valgrind ./push_swap "+9999999999999999"          
+Error
+Invalid single argument, non-digit found
+ valgrind./push_swap +9999999999999999 
+Error
+Invalid single argument, non-digit found
+valgrind ./push_swap -9999999999999999 
+Error
+Invalid single argument, non-digit found
+valgrind ./push_swap "-9999999999999999"
+Error
+Invalid single argument, non-digit found
+valgrind ./push_swap  "0 0 0"
+Error
+Duplicate number found
+valgrind ./push_swap 0 0 0   
+Error
+Duplicate number found
+valgrind ./push_swap "2147483647 2147483646 -2147483647"
+Debug: All arguments processed successfully.
+valgrind ./push_swap "9223372036854775807"
+Error
+Invalid single argument, non-digit found
+valgrind ./push_swap 9223372036854775807 
+Error
+Invalid single argument, non-digit found
+valgrind ./push_swap -9223372036854775807
+Error
+Invalid single argument, non-digit found
+valgrind ./push_swap +9223372036854775807
+Error
+Invalid single argument, non-digit found
+valgrind./push_swap "-9223372036854775807"
+Error
+Invalid single argument, non-digit found
+valgrind ./push_swap "+9223372036854775807"
+Error
+Invalid single argument, non-digit found
+valgrind ./push_swap '42 56 78'
+Debug: All arguments processed successfully.
+valgrind  ./push_swap '012 12'  
+Error
+Duplicate number found
+valgrind ./push_swap 42 56 abc 78
+Error
+Invalid multiple arguments, non-digit found
+valgrind ./push_swap """"        
+Error
+Invalid single argument, non-digit found
+valgrind ./push_swap "" ""
+Error
+Invalid multiple arguments, non-digit found
+valgrind ./push_swap NULL 
+Error
+Invalid single argument, non-digit found
+valgrind./push_swap "a-42"
+Error
+Invalid single argument, non-digit found
+valgrind ./push_swap "2147483647 0 -2147483648"
+Debug: All arguments processed successfully.
+valgrind ./push_swap "2147483647 -2147483648"
+Debug: All arguments processed successfully.
+valgrind ./push_swap "2147483647 -21474836490"
+Error
+Under- and over- flow int found
+valgrind ./push_swap "2147483647 -2147483649" 
+Error
+Under- and over- flow int found
+valgrind ./push_swap "2147483647 -214748364" 
+Debug: All arguments processed successfully.
+valgrind ./push_swap "2147483647 -2147483648"
+Debug: All arguments processed successfully.*/
