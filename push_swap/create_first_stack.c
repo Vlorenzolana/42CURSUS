@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:44:43 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/29 13:31:41 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/30 07:36:11 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,8 @@ long	ft_atol(const char *str)
 	if (*str == '-' || *str == '+')
 	{
 		if (*str == '-')
-		{
-			sign = (sign * -1);
-			str++;
-		}
-		else
-			str++;
+			sign = -1;
+		str++;
 	}
 	while ('0' <= *str && *str <= '9')
 	{

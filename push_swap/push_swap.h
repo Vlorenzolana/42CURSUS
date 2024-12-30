@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:34:53 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/29 13:45:12 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/30 07:47:56 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_node				*find_last(t_node *node);
 void				ft_error(t_node **a, char **argv, bool arg2);
 void				create_stack(t_node **a, char **argv, bool arg2);
 
-char				**prepare_argv(char *argv);
+char				**tidy_arg(char *argv);
 bool				check_syntax_error(char *str);
 bool				check_interval_error(long num);
 bool				check_repetition_error(t_node *a, int nbr);
@@ -82,7 +82,7 @@ void				rrb(t_node **b);
 void				rrr(t_node **a, t_node **b);
 
 void				cost_calculation(t_node *a, t_node *b);
-void				find_target(t_node *a, t_node *b);
+void				get_target(t_node *a, t_node *b);
 void				assign_half(t_node *node);
 void				eval_cost(t_node *a, t_node *b);
 void				flag_cheapest(t_node *b);
@@ -90,7 +90,7 @@ void				flag_cheapest(t_node *b);
 void				push_swap(t_node **a, t_node **b);
 
 bool				same_half(t_node *b);
-t_node				*find_cheapest(t_node *node);
-int					find_higher(int n, int m);
+t_node				*get_cheapest(t_node *node);
+int					get_higher(int n, int m);
 
 #endif

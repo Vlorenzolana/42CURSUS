@@ -6,13 +6,13 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:43:00 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/29 09:44:11 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/30 07:47:56 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	**prepare_argv(char *argv)
+char	**tidy_arg(char *argv)
 {
 	char	*aux;
 	char	**prepared;

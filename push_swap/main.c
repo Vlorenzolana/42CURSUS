@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:45:40 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/29 15:53:46 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/30 07:47:56 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int argc, char **argv)
 	if ((argc < 2) || (argc == 2 && !argv[1][0]))
 		return (1);
 	else if (argc == 2)
-		argv = prepare_argv(argv[1]);
+		argv = tidy_arg(argv[1]);
 	create_stack(&a, argv, argc == 2);
 	if (argc == 2)
 		free_str(argv);

@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 11:02:21 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/29 11:06:00 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/30 07:42:03 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static int	individual_cost(t_node *b, int size_a, int size_b)
 static int	same_half_cost(t_node *b, int size_a, int size_b)
 {
 	if (b->top_half)
-		return (find_higher(b->index, b->target->index));
+		return (get_higher(b->index, b->target->index));
 	else
-		return (find_higher(size_b - b->index, size_a - b->target->index));
+		return (get_higher(size_b - b->index, size_a - b->target->index));
 }
 
 void	cost_calculation(t_node *a, t_node *b)
@@ -78,7 +78,7 @@ void	eval_cost(t_node *a, t_node *b)
 {
 	assign_half(a);
 	assign_half(b);
-	find_target(a, b);
+	get_target(a, b);
 	cost_calculation(a, b);
 	flag_cheapest(b);
 }

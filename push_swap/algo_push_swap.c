@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:47:57 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/29 11:05:40 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/30 07:43:02 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	push_optimal(t_node **a, t_node **b)
 
 	if (!a || !*a || !b || !*b)
 		return ;
-	cheapest_node = find_cheapest(*b);
+	cheapest_node = get_cheapest(*b);
 	if (cheapest_node->top_half && cheapest_node->target->top_half)
 		twin_rotate(a, b, cheapest_node);
 	else if (!(cheapest_node->top_half) && !(cheapest_node->target->top_half))

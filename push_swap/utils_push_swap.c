@@ -6,13 +6,21 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:48:37 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/29 17:10:38 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/30 07:44:23 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	find_target(t_node *a, t_node *b)
+bool	same_half(t_node *b)
+{
+	if (b->top_half == b->target->top_half)
+		return (true);
+	else
+		return (false);
+}
+
+void	get_target(t_node *a, t_node *b)
 {
 	t_node	*aux;
 	t_node	*target;
@@ -39,22 +47,14 @@ void	find_target(t_node *a, t_node *b)
 	}
 }
 
-int	find_higher(int n, int m)
+int	get_higher(int x, int y)
 {
-	if (n > m)
-		return (n);
-	return (m);
+	if (x > y)
+		return (x);
+	return (y);
 }
 
-bool	same_half(t_node *b)
-{
-	if (b->top_half == b->target->top_half)
-		return (true);
-	else
-		return (false);
-}
-
-t_node	*find_cheapest(t_node *node)
+t_node	*get_cheapest(t_node *node)
 {
 	if (!node)
 		return (NULL);
