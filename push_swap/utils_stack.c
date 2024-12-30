@@ -6,11 +6,26 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:50:38 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/29 10:58:40 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/30 08:19:35 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	stack_size(t_node *node)
+{
+	int	size;
+
+	if (!node)
+		return (0);
+	size = 0;
+	while (node)
+	{
+		size++;
+		node = node->next;
+	}
+	return (size);
+}
 
 t_node	*is_highest(t_node *node)
 {
@@ -52,21 +67,6 @@ t_node	*is_lowest(t_node *node)
 		node = node->next;
 	}
 	return (lowest_node);
-}
-
-int	stack_size(t_node *node)
-{
-	int	size;
-
-	if (!node)
-		return (0);
-	size = 0;
-	while (node)
-	{
-		size++;
-		node = node->next;
-	}
-	return (size);
 }
 
 bool	sorted(t_node *node)

@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 11:02:21 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/30 07:42:03 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/30 08:08:14 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	cost_calculation(t_node *a, t_node *b)
 	}
 }
 
-void	assign_half(t_node *node)
+void	this_half(t_node *node)
 {
 	int	i;
 	int	middle_index;
@@ -76,8 +76,8 @@ void	assign_half(t_node *node)
 
 void	eval_cost(t_node *a, t_node *b)
 {
-	assign_half(a);
-	assign_half(b);
+	this_half(a);
+	this_half(b);
 	get_target(a, b);
 	cost_calculation(a, b);
 	flag_cheapest(b);

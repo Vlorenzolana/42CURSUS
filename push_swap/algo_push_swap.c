@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:47:57 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/30 07:43:02 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/30 08:23:47 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	twin_rotate(t_node **a, t_node **b, t_node *cheapest_node)
 		return ;
 	while (*a != cheapest_node->target && *b != cheapest_node)
 		rr(a, b);
-	assign_half(*a);
-	assign_half(*b);
+	this_half(*a);
+	this_half(*b);
 }
 
 void	twin_reverse_rotate(t_node **a, t_node **b, t_node *cheapest_node)
@@ -51,8 +51,8 @@ void	twin_reverse_rotate(t_node **a, t_node **b, t_node *cheapest_node)
 		return ;
 	while (*a != cheapest_node->target && *b != cheapest_node)
 		rrr(a, b);
-	assign_half(*a);
-	assign_half(*b);
+	this_half(*a);
+	this_half(*b);
 }
 
 void	push_optimal(t_node **a, t_node **b)
@@ -90,7 +90,7 @@ void	push_swap(t_node **a, t_node **b)
 		eval_cost(*a, *b);
 		push_optimal(a, b);
 	}
-	assign_half(*a);
+	this_half(*a);
 	lowest_node = is_lowest(*a);
 	if (lowest_node->top_half == true)
 		while (*a != lowest_node)

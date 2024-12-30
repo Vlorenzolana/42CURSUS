@@ -6,23 +6,11 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:43:00 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/30 07:47:56 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/30 07:50:26 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-char	**tidy_arg(char *argv)
-{
-	char	*aux;
-	char	**prepared;
-
-	aux = ft_strjoin("./push_swap ", argv);
-	prepared = ft_split(aux, ' ');
-	free(aux);
-	aux = NULL;
-	return (prepared);
-}
 
 bool	check_interval_error(long num)
 {

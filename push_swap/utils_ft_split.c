@@ -6,11 +6,23 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:44:18 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/27 18:25:00 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2024/12/30 07:57:10 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+char	**tidy_arg(char *argv)
+{
+	char	*tmp;
+	char	**tidy;
+
+	tmp = ft_strjoin("./push_swap ", argv);
+	tidy = ft_split(tmp, ' ');
+	free(tmp);
+	tmp = NULL;
+	return (tidy);
+}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
