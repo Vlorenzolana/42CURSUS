@@ -1,10 +1,15 @@
-RESSOURCES TO LEARN
+**RESSOURCES TO LEARN**
 
+***From CODAM***
+**Download and build MLX42 in Terminal>>**
+>>git clone https://github.com/codam-coding-college/MLX42.git
+>>cd MLX42
+>>cmake -B build # build here refers to the outputfolder.
+>>cmake --build build -j4 # or do make -C build -j4
+**Compile: gcc + yourprogram.c ./yourpathto:libmlx42.a -I/yourpathto:includefolder -ldl -lglfw**
+>>gcc main.c ./MLX42/build/libmlx42.a -I/home/vlorenzo/_42CURSUS/fdf/MLX42/include -ldl -lglfw -pthread -lm
+
+***Some links to get started***
 https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
-
 https://m4nnb3ll.medium.com/fil-de-fer-fdf-the-first-graphical-project-at-42-the-network-5cce69203448
-
 https://medium.com/@amehri_tarik/fdf-42-a-detailed-walkthrough-7184cca317fc
-
-https://github.com/codam-coding-college/MLX42?tab=readme-ov-file#for-linux
-
