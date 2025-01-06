@@ -8,7 +8,10 @@
 >>cmake --build build -j4 # or do make -C build -j4<br>
 <br>
 **Compile yourprogram.c in Terminal**<br>
-Copy the code of the CODAM example and save yourcode.c: https://github.com/codam-coding-college/MLX42?tab=readme-ov-file#example<br>
+Copy the code of the CODAM example and save yourprogram.c:<br>
+>>Please check the path of your .h, will be something like this:<br>
+>>#include "MLX42/include/MLX42/MLX42.h"
+>>https://github.com/codam-coding-college/MLX42?tab=readme-ov-file#example<br>
 >>gcc yourprogram.c ./yourpathto:libmlx42.a -I/yourpathto:includefolder -ldl -lglfw -pthread -lm<br>
 >>gcc main.c ./MLX42/build/libmlx42.a -I/home/vlorenzo/_42CURSUS/fdf/MLX42/include -ldl -lglfw -pthread -lm<br>
 
