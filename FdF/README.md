@@ -6,6 +6,7 @@
 >>cd MLX42<br>
 >>cmake -B build # build here refers to the outputfolder.<br>
 >>cmake --build build -j4 # or do make -C build -j4<br>
+<br>
 **Compile: gcc yourprogram.c ./yourpathto:libmlx42.a -I/yourpathto:includefolder -ldl -lglfw**<br>
 >>gcc main.c ./MLX42/build/libmlx42.a -I/home/vlorenzo/_42CURSUS/fdf/MLX42/include -ldl -lglfw -pthread -lm<br>
 
