@@ -8,6 +8,9 @@
 >>cmake --build build -j4 <br>
 <br>
 
+***NOTICE NO LEAKS BUT FREE ISSUES***
+>>https://github.com/codam-coding-college/MLX42/discussions/140<br>
+
 **Compile yourprogram in Terminal>>** <br>
 >>**Copy the code of the CODAM example and save yourprogram.c:>>** <br>
 >>https://github.com/codam-coding-college/MLX42?tab=readme-ov-file#example<br>
