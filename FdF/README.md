@@ -5,13 +5,15 @@
 >>git clone https://github.com/codam-coding-college/MLX42.git<br>
 >>cd MLX42<br>
 >>cmake -B build # build here refers to the outputfolder.<br>
->>cmake --build build -j4 # or do make -C build -j4<br>
+>>cmake --build build -j4 <br>
 <br>
-**Compile yourprogram.c in Terminal**<br>
-Copy the code of the CODAM example and save yourprogram.c:<br>
->>Please check the path of your .h, will be something like this:<br>
->>#include "MLX42/include/MLX42/MLX42.h"
+
+**Compile yourprogram in Terminal>>** <br>
+>>**Copy the code of the CODAM example and save yourprogram.c:>>** <br>
 >>https://github.com/codam-coding-college/MLX42?tab=readme-ov-file#example<br>
+>>**Please check the path of your .h, will be something like this>>** <br>
+>>#include "MLX42/include/MLX42/MLX42.h"<br>
+>>**Compile in Terminal>>** <br>
 >>gcc yourprogram.c ./yourpathto:libmlx42.a -I/yourpathto:includefolder -ldl -lglfw -pthread -lm<br>
 >>gcc main.c ./MLX42/build/libmlx42.a -I/home/vlorenzo/_42CURSUS/fdf/MLX42/include -ldl -lglfw -pthread -lm<br>
 
