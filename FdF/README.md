@@ -8,7 +8,7 @@
 >>cmake --build build -j4 <br>
 <br>
 
-***NOTICE NO LEAKS BUT FREE ISSUES***
+***NOTE: LEAK AND FREE ISSUES***(as long as they are no related to your functions when Valgrind, it should be OK))
 >>https://github.com/codam-coding-college/MLX42/discussions/140<br>
 
 **Compile yourprogram in Terminal>>** <br>
