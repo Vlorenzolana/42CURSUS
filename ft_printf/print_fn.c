@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 20:09:50 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/06/16 17:48:23 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:15:32 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,18 @@ int	putnbr_pos(unsigned int n, int count)
 
 int	puthexnbr(size_t arg, int count, char x_type)
 {
+	char	movidashx[] = "0123456789abcdef";
+	int		index;
+
 	if (arg >= 16)
 	{
 		count = puthexnbr(arg / 16, count, x_type);
 	}
 	if ((x_type == 'x') || (x_type == 'p'))
-		count = print_char("0123456789abcdef"[arg % 16], count);
+	{
+		index = arg % 16;
+		count = print_char(movidashx[index], count);
+	}
 	if (x_type == 'X')
 		count = print_char("0123456789ABCDEF"[arg % 16], count);
 	return (count);

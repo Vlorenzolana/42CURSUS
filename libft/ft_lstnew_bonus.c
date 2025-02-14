@@ -6,17 +6,17 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 08:31:20 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/08/20 12:42:34 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/01/05 12:46:36 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content) //cualquier tipo de varable
+t_list	*ft_lstnew(void *content)
 {
-	t_list	*node; //nuestro nodo
+	t_list	*node;
 
-	node = malloc (sizeof(t_list));
+	node = malloc(sizeof(t_list));
 	if (node == NULL)
 	{
 		return (NULL);
@@ -39,12 +39,12 @@ Si la asignación de memoria falla, devuelve NULL. */
 
 	printf("%d\n",*((int *)ejem_int->content));
 
-	
+
 	char	test_str[] = "Hola Mundo";
 
 	t_list	*ejem_str = ft_lstnew(test_str);
 
 	printf("%s\n", (char *)ejem_str->content);
 
-	return 0;
+	return (0);
 } */

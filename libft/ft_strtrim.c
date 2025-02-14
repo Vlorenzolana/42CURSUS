@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:59:59 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/20 08:45:49 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/01/27 08:31:05 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,13 @@ char	*ft_strtrim(char const *s1, char const *set)
 	}
 	return (str);
 }
-
-/*
+/* 
 int	main(void)
 {
 	char	*test_str;
 
 	test_str = ft_strtrim("ABC1QWERTYUIOP31AB41CBA", "ABC14");
-	printf ("String trimada: %s\n", test_str);
+	printf("String trimada: %s\n", test_str);
 	return (0);
 } */
 

@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 08:32:54 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/08/20 16:06:42 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/01/05 12:47:59 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 		return ;
 	}
 	new->next = *lst;
-	*lst = new; 
+	*lst = new;
 }
 /* 
 ft_lstadd_front agrega un nuevo nodo (new) al principio de una
@@ -31,7 +31,7 @@ Si lst es NULL, la función convierte new en la cabeza de la lista.
 En general, la función establece el campo next del nuevo nodo para que
 apunte a la cabeza actual de la lista, y luego actualiza *lst para que
 apunte al nuevo nodo, convirtiéndolo en la nueva cabeza de la lista.
- */
+ *//* 
 int main()
 {
 	t_list *lista = ft_lstnew("W ");
@@ -52,4 +52,4 @@ int main()
 		lista = lista -> next;
 	}
 	return 0;
-}
+} */

@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 14:32:23 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/12/29 11:31:23 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:29:23 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,15 @@ int	ft_printf(const char *str, ...)
 	return (count);
 }
 
-int	main(void)
+/* int	main(void)
 {
-	int	count;
+	int count;
 	char *str;
 	str = NULL;
 	int n = -42;
 	unsigned int un = -42;
 	char c = 'a';
+	unsigned int hexn = 55451935;
 
 	printf("***1*** FT_PRINTF\n");
 	count = ft_printf(" %s %c %% ", str, '1');
@@ -100,6 +101,14 @@ int	main(void)
 	count = printf(" %u %d %c ", un, n, c);
 	printf("\ncount = %d\n", count);
 	printf("\n");
-	
+
+	printf("***3*** FT_PRINTF\n");
+	count = ft_printf(" %x %X", hexn, hexn);
+	printf("\ncount = %d\n", count);
+	printf("***2*** PRINTF\n");
+	count = printf(" %u %d %c ", un, n, c);
+	printf("\ncount = %d\n", count);
+	printf("\n");
+
 	return (0);
-}
+} */

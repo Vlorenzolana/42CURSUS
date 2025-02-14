@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 09:12:08 by vlorenzo          #+#    #+#             */
-/*   Updated: 2024/05/20 09:45:25 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/01/05 12:45:15 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		element = ft_lstnew(e);
 		if (element == NULL)
 		{
-			free (e);
+			free(e);
 			ft_lstclear(&new_list, del);
 			return (NULL);
 		}
