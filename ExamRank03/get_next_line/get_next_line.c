@@ -1,14 +1,13 @@
 #include "get_next_line.h"
+#include <stdlib.h>
+#include <string.h>
 
-char	*ft_strdup(char *s)
+static char	*ft_strdup(const char *s)
 {
 	int		i;
 	char	*dup;
 
-	i = 0;
-	while (s[i])
-		i++;
-	dup = malloc((i + 1) * sizeof(char));
+	dup = malloc(sizeof(char) * (strlen(s) + 1));
 	if (!dup)
 		return (NULL);
 	i = 0;
@@ -21,31 +20,89 @@ char	*ft_strdup(char *s)
 	return (dup);
 }
 
+static void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	unsigned char		*d;
+	const unsigned char	*s;
+	size_t				i;
+
+	d = (unsigned char *)dst;
+	s = (const unsigned char *)src;
+	if (d == s || len == 0)
+		return (dst);
+	if (d < s)
+	{
+		i = 0;
+		while (i < len)
+		{
+			d[i] = s[i];
+			i++;
+		}
+	}
+	else
+	{
+		while (len > 0)
+		{
+			len--;
+			d[len] = s[len];
+		}
+	}
+	return (dst);
+}
+
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE];
-	static int	buffer_i = 0;
+	int			bytes_read;
+	int			i_buff;
 	int			i;
-	char		line[70000];
+	int			j;
+	static char	line[800000];
+	static char	storage[800000];
 
-	static int buffer_readed = 0; // es un int no un char
+	char buffer[BUFFER_SIZE + 1]; // malloqueado
+	bytes_read = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	i = 0;
+	i_buff = 0;
+	j = 0;
+	if (storage[0] != '\0')
+	{
+		while (storage[j] != '\n' && storage[j] != '\0')
+		{
+			line[i] = storage[j];
+			i++;
+			j++;
+		}
+		if (storage[j] == '\n')
+		{
+			line[i++] = storage[j++];
+			line[i] = '\0';
+			ft_memmove(storage, storage + j, 800000 - j);
+			return (ft_strdup(line));
+		}
+		storage[0] = '\0';
+	}
 	while (1)
 	{
-		if (buffer_i >= buffer_readed)
-		{
-			buffer_readed = read(fd, buffer, BUFFER_SIZE);
-			buffer_i = 0;
-			if (buffer_readed <= 0) // Acordarse de esto
-				break ;
-		}
-		line[i++] = buffer[buffer_i++];
-		if (line[i - 1] == '\n' || line[i - 1] == EOF)
+		i_buff = 0;
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read <= 0)
 			break ;
+		buffer[bytes_read] = '\0';
+		while (i_buff < bytes_read && buffer[i_buff] != '\n')
+			line[i++] = buffer[i_buff++];
+		if (i_buff < bytes_read && buffer[i_buff] == '\n')
+		{
+			line[i++] = buffer[i_buff++];
+			line[i] = '\0';
+			while (i_buff < bytes_read)
+				storage[j++] = buffer[i_buff++];
+			storage[j] = '\0';
+			return (ft_strdup(line));
+		}
 	}
-	if (i == 0) // acordarse que es i
+	if (i == 0)
 		return (NULL);
 	line[i] = '\0';
 	return (ft_strdup(line));
@@ -53,18 +110,18 @@ char	*get_next_line(int fd)
 
 int	main(void)
 {
-	int fd;
-	char *line;
+	int		fd;
+	char	*line;
 
-	fd = open("text.txt", O_RDONLY);
-	if (fd < 0)
-		return (printf("Fd cant be openned\n"), 1);
-
-	while ((line = get_next_line(fd))) // acordarme que son 3 parentesis
-	{
-		printf("%s", line);
-		free(line);
-	}
+	line = NULL;
+	fd = open("test", O_RDONLY);
+	line = get_next_line(fd);
+		while (line)
+		{
+			printf("%s", line);
+			free(line);
+			line = get_next_line(fd);
+		}
 	close(fd);
 	return (0);
 }
