@@ -1,3 +1,13 @@
+//
+//
+//
+// THIS IS A VERY INITAL TEST
+//
+//
+//
+//
+//
+
 #include "assets.h"
 
 void	*escribir(void *arg)
