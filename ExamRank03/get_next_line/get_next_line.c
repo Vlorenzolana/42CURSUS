@@ -1,38 +1,43 @@
-#include <unistd.h>
 #include <stdlib.h>
+#include <unistd.h>
 #define BUFFER_SIZE 1000
 
 typedef struct s_buff
 {
-	char buff[BUFFER_SIZE + 1];
-	char *current;
-}	t_buff;
+	char	buffer[BUFFER_SIZE + 1];
+	char	*cur;
+}			t_buff;
 
-char *strNlChr(char *s)
+char	*ft_strchr(char *s)
 {
 	while (*s && *s != '\n')
 		++s;
 	return (s);
 }
 
-int strNlLen(char *s)
+int	ft_nlen(char *s)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	if (!s)
 		return (0);
-	while(s[i] && s[i] != '\n')
+	while (s[i] && s[i] != '\n')
 		++i;
 	if (s[i] == '\n')
 		++i;
 	return (i);
 }
 
-char *strNlJoin(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char *ret = malloc((strNlLen(s1) + strNlLen(s2) + 1) * sizeof(char));
+	char	*ret;
+	int		i;
+
+	ret = malloc((ft_nlen(s1) + ft_nlen(s2) + 1) * sizeof(char));
 	if (!ret)
 		return (NULL);
-	int i = 0;
+	i = 0;
 	if (s1)
 		while (*s1)
 			ret[i++] = *(s1++);
@@ -45,68 +50,73 @@ char *strNlJoin(char *s1, char *s2)
 	return (ret);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
+	static t_buff	buff;
+	char			*index;
+	char			*tmp;
+	char			*line;
+
 	if (BUFFER_SIZE < 1)
 		return (NULL);
-	static t_buff buffer;
-	char *nlIndex;
-	char *tmp;
-	char *ret = NULL;
-	int rd;
+	line = NULL;
 	while (1)
 	{
-		if (!buffer.current || !*buffer.current)
+		if (!buff.cur || !*buff.cur)
 		{
-			rd = read(fd, buffer.buff, BUFFER_SIZE);
-			if (rd >= 0)
-				buffer.buff[rd] = 0;
-			buffer.current = buffer.buff;
-			if (rd < 1)
-				return (ret);
+			fd = read(fd, buff.buffer, BUFFER_SIZE);
+			if (fd >= 0)
+				buff.buffer[fd] = 0;
+			buff.cur = buff.buffer;
+			if (fd < 1)
+				return (line);
 		}
-		nlIndex = strNlChr(buffer.current);
-		if (*nlIndex)
+		index = ft_strchr(buff.cur);
+		if (*index)
 		{
-			tmp = ret;
-			ret = strNlJoin(tmp, buffer.current);
+			tmp = line;
+			line = ft_strjoin(tmp, buff.cur);
 			if (tmp)
 				free(tmp);
-			buffer.current = nlIndex + 1;
-			return (ret);
-		} else {
-			tmp = ret;
-			ret = strNlJoin(tmp, buffer.current);
+			buff.cur = index + 1;
+			return (line);
+		}
+		else
+		{
+			tmp = line;
+			line = ft_strjoin(tmp, buff.cur);
 			if (tmp)
 				free(tmp);
-			buffer.current = nlIndex;
+			buff.cur = index;
 		}
 	}
-	return (ret);
+	return (line);
 }
 
 /*--------------------------TEST--------------------------*/
-
 #include <fcntl.h>
 #include <stdio.h>
-int main(void)
+
+int	main(void)
 {
-	int fd = open("test", O_RDONLY);
-	char *retStr = NULL;
+	int		fd;
+	char	*new_line;
+
+	fd = open("test", O_RDONLY);
+	new_line = NULL;
 	if (fd < 1)
-		write(1, "\033[31m!!! Le fichier ne c'est pas ouvert !!!", 39);
-	//
-	//
-	write(1, "!!! GNL GO !!!\n", 15);
-        while (1)
-        {
-                retStr = get_next_line(fd);
-                printf("%s", retStr);
-                if (retStr)
-                        free(retStr);
-                else    
-                        break;
-        }    
+		write(1, "\033[0;35m!!! FILE NOT OPENED !!!\n", 47);
+
+	write(1, "\033[0;32m!!! GNL GO !!!\n", 23);
+	while (1)
+	{
+		new_line = get_next_line(fd);
+		printf("%s", new_line);
+		if (new_line)
+			free(new_line);
+		else
+			break ;
+	}
 	close(fd);
 	return (0);
 }
