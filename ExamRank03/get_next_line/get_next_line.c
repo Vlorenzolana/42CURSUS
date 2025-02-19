@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <unistd.h>
-#define BUFFER_SIZE 1000
+#define BUFFER_SIZE 200
 
 typedef struct s_buff
 {
@@ -53,13 +53,14 @@ char	*ft_strjoin(char *s1, char *s2)
 char	*get_next_line(int fd)
 {
 	static t_buff	buff;
-	char			*index;
+	char			*pos;
 	char			*tmp;
 	char			*line;
 
 	if (BUFFER_SIZE < 1)
 		return (NULL);
 	line = NULL;
+	tmp = NULL;
 	while (1)
 	{
 		if (!buff.cur || !*buff.cur)
@@ -71,14 +72,14 @@ char	*get_next_line(int fd)
 			if (fd < 1)
 				return (line);
 		}
-		index = ft_strchr(buff.cur);
-		if (*index)
+		pos = ft_strchr(buff.cur);
+		if (*pos)
 		{
 			tmp = line;
 			line = ft_strjoin(tmp, buff.cur);
 			if (tmp)
 				free(tmp);
-			buff.cur = index + 1;
+			buff.cur = pos + 1;
 			return (line);
 		}
 		else
@@ -87,7 +88,7 @@ char	*get_next_line(int fd)
 			line = ft_strjoin(tmp, buff.cur);
 			if (tmp)
 				free(tmp);
-			buff.cur = index;
+			buff.cur = pos;
 		}
 	}
 	return (line);
@@ -103,10 +104,8 @@ int	main(void)
 	char	*new_line;
 
 	fd = open("test", O_RDONLY);
+	//fd = 0;
 	new_line = NULL;
-	if (fd < 1)
-		write(1, "\033[0;35m!!! FILE NOT OPENED !!!\n", 47);
-
 	write(1, "\033[0;32m!!! GNL GO !!!\n", 23);
 	while (1)
 	{
