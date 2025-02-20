@@ -1,120 +1,68 @@
-#include <stdlib.h>
-#include <unistd.h>
-#define BUFFER_SIZE 200
+#include "get_next_line.h"
 
-typedef struct s_buff
+char	*ft_strdup(char *str)
 {
-	char	buffer[BUFFER_SIZE + 1];
-	char	*cur;
-}			t_buff;
-
-char	*ft_strchr(char *s)
-{
-	while (*s && *s != '\n')
-		++s;
-	return (s);
-}
-
-int	ft_nlen(char *s)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] && s[i] != '\n')
-		++i;
-	if (s[i] == '\n')
-		++i;
-	return (i);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	char	*ret;
 	int		i;
+	char	*dup;
 
-	ret = malloc((ft_nlen(s1) + ft_nlen(s2) + 1) * sizeof(char));
-	if (!ret)
-		return (NULL);
 	i = 0;
-	if (s1)
-		while (*s1)
-			ret[i++] = *(s1++);
-	if (s2)
-		while (*s2 && *s2 != '\n')
-			ret[i++] = *(s2++);
-	if ((s2 && *s2 == '\n') || (s1 && *s1 == '\n'))
-		ret[i++] = '\n';
-	ret[i] = 0;
-	return (ret);
+	while (str[i])
+		i++;
+	dup = malloc((i + 1) * sizeof(char));
+	i = 0;
+	while (str[i])
+	{
+		dup[i] = str[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
 }
 
 char	*get_next_line(int fd)
 {
-	static t_buff	buff;
-	char			*pos;
-	char			*tmp;
-	char			*line;
+	static char	buffer[BUFFER_SIZE];
+	static int	buffer_index;
+	static int	buffer_readed;
+	char		line[70000];
+	int			i;
 
-	if (BUFFER_SIZE < 1)
+	i = 0;
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	line = NULL;
-	tmp = NULL;
 	while (1)
 	{
-		if (!buff.cur || !*buff.cur)
+		if (buffer_index >= buffer_readed)
 		{
-			fd = read(fd, buff.buffer, BUFFER_SIZE);
-			if (fd >= 0)
-				buff.buffer[fd] = 0;
-			buff.cur = buff.buffer;
-			if (fd < 1)
-				return (line);
+			buffer_readed = read(fd, buffer, BUFFER_SIZE);
+			buffer_index = 0;
+			if (buffer_readed <= 0)
+				break ;
 		}
-		pos = ft_strchr(buff.cur);
-		if (*pos)
-		{
-			tmp = line;
-			line = ft_strjoin(tmp, buff.cur);
-			if (tmp)
-				free(tmp);
-			buff.cur = pos + 1;
-			return (line);
-		}
-		else
-		{
-			tmp = line;
-			line = ft_strjoin(tmp, buff.cur);
-			if (tmp)
-				free(tmp);
-			buff.cur = pos;
-		}
+		line[i++] = buffer[buffer_index++];
+		if (line[i - 1] == '\n') // añadir EOF?
+			break ;
 	}
-	return (line);
+	line[i] = '\0';
+	if (i == 0)
+		return (NULL);
+	return (ft_strdup(line));
 }
-
-/*--------------------------TEST--------------------------*/
-#include <fcntl.h>
-#include <stdio.h>
 
 int	main(void)
 {
-	int		fd;
-	char	*new_line;
-
-	fd = open("test", O_RDONLY);
-	//fd = 0;
-	new_line = NULL;
-	write(1, "\033[0;32m!!! GNL GO !!!\n", 23);
-	while (1)
+	int fd;
+	char *line;
+	fd = open("text.txt", O_RDONLY);
+	/*
+	if (fd < 0)
+			return (printf("cant open\n"), 1);
+	//	This we shouldn't test here as we hand only the gnl function
+	*/
+	while ((line = get_next_line(fd)))
 	{
-		new_line = get_next_line(fd);
-		printf("%s", new_line);
-		if (new_line)
-			free(new_line);
-		else
-			break ;
+		printf("%s", line);
+		free(line);
 	}
 	close(fd);
 	return (0);
