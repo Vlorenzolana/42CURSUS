@@ -1,5 +1,4 @@
 
-![2300369_orig](https://github.com/user-attachments/assets/556aae51-e9f3-41f2-b3e2-5886deb72bb0) <br>
 ![Visitor Count](https://profile-counter.glitch.me/{YOUR USER}/count.svg)<br>
 
 ***Hi there*** <br> 
