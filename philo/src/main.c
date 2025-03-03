@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 18:35:08 by vlorenzo          #+#    #+#             */
-/*   Updated: 2025/03/03 19:55:00 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:10:41 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static bool	start_sim(t_table *table)
 	i = 0;
 	while (i < table->num_philo)
 	{
-		if (pthread_create(&table->philos[i]->thread, NULL, &philosopher,
+		if (pthread_create(&table->philos[i]->thread, NULL, &philo_routine,
 				table->philos[i]) != 0)
 			return (error_failure("%s error: Could not create thread.\n", NULL,
 					table));
