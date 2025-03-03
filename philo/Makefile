@@ -13,7 +13,7 @@ ifeq ($(MODE), debug)
 endif
 
 SRC_PATH = sources/
-OBJ_PATH = objects/
+OBJ_PATH = obj/
 
 SRC		=	main.c \
 			parsing.c \
