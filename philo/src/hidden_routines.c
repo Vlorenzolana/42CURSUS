@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 18:34:20 by vlorenzo          #+#    #+#             */
-/*   Updated: 2025/03/03 19:43:53 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:09:05 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ bool	sim_stopped(t_table *table)
 static bool	end_condition_reached(t_table *table)
 {
 	unsigned int	i;
-	bool			all_ate_enough;
+	bool			satisfied;
 
-	all_ate_enough = true;
+	satisfied = true;
 	i = 0;
 	while (i < table->num_philo)
 	{
@@ -45,11 +45,11 @@ static bool	end_condition_reached(t_table *table)
 			return (true);
 		if (table->must_eat_count != -1)
 			if (table->philos[i]->times_ate < (unsigned int)table->must_eat_count)
-				all_ate_enough = false;
+				satisfied = false;
 		pthread_mutex_unlock(&table->philos[i]->lock_meal_time);
 		i++;
 	}
-	if (table->must_eat_count != -1 && all_ate_enough == true)
+	if (table->must_eat_count != -1 && satisfied == true)
 	{
 		sim_flag(table, true);
 		return (true);

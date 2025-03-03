@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 12:36:06 by vlorenzo          #+#    #+#             */
-/*   Updated: 2025/03/03 19:54:37 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:07:57 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ not a valid unsigned integer between 0 and 2147483647.\n",
 						false));
 		nb = digit_str_atoi(av[i]);
 		if (i == 1 && (nb <= 0 || nb > MAX_PHILOS))
-			return (msg("%s invalid input: \ there must be between 1 and
-					%s philosophers.\n", STR_MAX_PHILOS, false));
+			return (msg("%s invalid input: \ there must be between 1 and %s philosophers.\n", STR_MAX_PHILOS, false));
 		if (i != 1 && nb == -1)
 			return (msg("%s invalid input: %s: \
 not a valid unsigned integer between 0 and 2147483647.\n",

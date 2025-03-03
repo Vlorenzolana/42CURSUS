@@ -1,11 +1,9 @@
-Recursos:
-Threads playlist: 
-![CodeVault](https://www.youtube.com/watch?v=d9s_d28yJq0&list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2)
+• RECURSOS:
+◦ Threads playlist: 
+◦ ![CodeVault](https://www.youtube.com/watch?v=d9s_d28yJq0&list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2)
 
-Phiosophers-visualizer:
-![Visual Threads](https://nafuka11.github.io/philosophers-visualizer/)
-
-Instrucciones generales:
+◦ Philosophers-visualizer:
+◦ ![Visual Threads](https://nafuka11.github.io/philosophers-visualizer/)
 
 • PARAMETROS:
 ◦ [number_of_philosophers]: n filósofos + n tenedores.
@@ -27,7 +25,7 @@ con la muerte de un filósofo.
 ◦ El filósofo número 1 se sentará al lado del filósofo número number_of_philosophers.
 ◦ Cualquier otro filósofo número N se sentará entre el número N - 1 y el número N + 1.
 
-• Logs de tu programa:
+• LOGS:
 ◦ Cualquier cambio de estado de un filósofo debe tener el siguiente formato:
 ◦ timestamp_in_ms X:  `has taken a l_fork`
 ◦ timestamp_in_ms X:  `is eating`
