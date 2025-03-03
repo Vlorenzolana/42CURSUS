@@ -16,13 +16,13 @@ SRC_PATH = sources/
 OBJ_PATH = objects/
 
 SRC		=	main.c \
-			parsing.c.c \
+			parsing.c \
 			hidden_routines.c \
 			time.c \
 			philo_routine.c \
 			init.c \
 			output.c \
-			exit.c.c
+			exit.c
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 OBJ		= $(SRC:.c=.o)
 OBJS	= $(addprefix $(OBJ_PATH), $(OBJ))
@@ -45,16 +45,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-run_test: all
-	@chmod +x test/test_makefile.sh
-	@./test/test_makefile.sh 
-	@chmod +x test/test_arguments.sh
-	@./test/test_arguments.sh 
-	@chmod +x test/test_concurrency.sh
-	@./test/test_concurrency.sh
-	@chmod +x test/test_resources.sh
-	@./test/test_resources.sh
-
 
 .PHONY: all re clean fclean
