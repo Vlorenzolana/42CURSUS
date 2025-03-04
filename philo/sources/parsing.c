@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 12:36:06 by vlorenzo          #+#    #+#             */
-/*   Updated: 2025/03/04 15:15:57 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/03/04 19:32:25 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ bool	valid_args(int ac, char **av)
 	int	i;
 	int	nb;
 
-	nb = 0;
+	nb = digit_str_atoi(av[1]);
 	i = 1;
 	while (i < ac)
 	{
