@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 18:35:08 by vlorenzo          #+#    #+#             */
-/*   Updated: 2025/03/04 18:21:28 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/03/04 19:03:19 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ static bool	start_sim(t_table *table)
 	unsigned int	delay;
 
 	delay = table->num_philo * 20;
-	/*table->start_time = time_ms() + delay;
-	Adds (table->num_philos * 20) milliseconds to the current time
-	This delay ensures that all threads (philos) start at different times,
+	/*This delay ensures that all threads (philos) start at different times,
 	which avoid race conditions and potential deadlocks at the beginning.*/
 	table->start_time = time_ms() + delay;
 	i = 0;
@@ -70,10 +68,10 @@ int	main(int ac, char **av)
 <time_to_die> <time_to_eat> <time_to_sleep> \
 [number_of_times_each_philosopher_must_eat]\n",
 					NULL,
-					EXIT_FAILURE));
+					EXIT_FAILURE)); // macro stdlib.h,unsuccessful termination
 	if (!valid_args(ac, av))
 		return (EXIT_FAILURE);
-	table = table_init(ac, av, 1);
+	table = init_table(ac, av, 1);
 	if (!table)
 		return (EXIT_FAILURE);
 	if (!start_sim(table))
