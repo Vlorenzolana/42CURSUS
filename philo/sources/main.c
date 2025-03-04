@@ -6,17 +6,23 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 18:35:08 by vlorenzo          #+#    #+#             */
-/*   Updated: 2025/03/03 20:10:41 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/03/04 13:29:46 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../includes/philo.h"
 
 static bool	start_sim(t_table *table)
 {
 	unsigned int	i;
+	unsigned int	delay;
 
-	table->start_time = time_ms() + (table->num_philo * 2 * 10);
+	delay = table->num_philo * 20;
+	/*table->start_time = time_ms() + delay;
+	Adds (table->nb_philos * 20) milliseconds to the current time
+	This delay ensures that all threads (philos) start at different times,
+	which avoid race conditions and potential deadlocks at the beginning.*/
+	table->start_time = time_ms() + delay;
 	i = 0;
 	while (i < table->num_philo)
 	{
@@ -28,7 +34,7 @@ static bool	start_sim(t_table *table)
 	}
 	if (table->num_philo > 1)
 	{
-		if (pthread_create(&table->hidden_routines, NULL, &hidden_routines,
+		if (pthread_create(&table->routine_control, NULL, &routine_control,
 				table) != 0)
 			return (error_failure("%s error: Could not create thread.\n", NULL,
 					table));
@@ -47,7 +53,7 @@ static void	stop_simulation(t_table *table)
 		i++;
 	}
 	if (table->num_philo > 1)
-		pthread_join(table->hidden_routines, NULL);
+		pthread_join(table->routine_control, NULL);
 	if (DEBUG_FORMATTING == true && table->must_eat_count != -1)
 		sim_outcome(table);
 	mutex_destroy(table);

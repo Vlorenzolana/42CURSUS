@@ -22,11 +22,13 @@
 # define PURPLE "\e[35m"
 # define CYAN "\e[36m"
 
+typedef struct s_philo	t_philo;
+
 typedef struct s_table
 {
 	time_t				start_time;
 	unsigned int		num_philo;
-	pthread_t			hidden_routines;
+	pthread_t			routine_control;
 	time_t				time_to_die;
 	time_t				time_to_eat;
 	time_t				time_to_sleep;
@@ -60,34 +62,34 @@ typedef enum e_status
 }						t_status;
 
 //	init.c
-t_table					*table_init(int ac, char **av, int i);
+t_table				*table_init(int ac, char **av, int i);
 
 // parsing.c
-bool					valid_args(int ac, char **av);
-int						digit_str_atoi(char *str);
+bool				valid_args(int ac, char **av);
+int					digit_str_atoi(char *str);
 
 //	routines.c
-void					*philo_routine(void *data);
+void				*philo_routine(void *data);
 
 //	time.c
-time_t					time_ms(void);
-void					philo_sleep(t_table *table, time_t sleep_time);
-void					sim_start_delay(time_t start_time);
+time_t				time_ms(void);
+void				philo_sleep(t_table *table, time_t sleep_time);
+void				sim_start_delay(time_t start_time);
 
 //	output.c
-void					status_write(t_philo *philo, bool reaper,
-							t_status status);
-void					sim_outcome(t_table *table);
-void					*free_error(char *str, char *details, t_table *table);
-int						msg(char *str, char *detail, int exit_num);
+void 				parse_debug(t_philo *philo, t_status status);
+void 				display_status(t_philo *philo, bool reaper_report, t_status status);
+void				sim_outcome(t_table *table);
 
-//	hidden_routines.c
-void					*hidden_routines(void *data);
-bool					sim_stopped(t_table *table);
+//	routine_control.c
+void				*routine_control(void *data);
+bool				sim_stopped(t_table *table);
 
 //	exit.c
-int						error_failure(char *str, char *details, t_table *table);
-void					*free_table(t_table *table);
-void					mutex_destroy(t_table *table);
+int					error_failure(char *str, char *details, t_table *table);
+void				*free_table(t_table *table);
+void				mutex_destroy(t_table *table);
+void				*free_error(char *str, char *details, t_table *table);
+int					msg(char *str, char *detail, int exit_num);
 
 #endif

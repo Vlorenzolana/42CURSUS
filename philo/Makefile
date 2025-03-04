@@ -2,22 +2,12 @@ NAME	= philo
 CC		= gcc
 CFLAGS	= -Werror -Wall -Wextra -pthread
 
-# Run 'make re MODE=pretty' for color formatting.
-# Run 'make re MODE=debug' for debug formatting.
-MODE	= none
-ifeq ($(MODE), pretty)
-	CFLAGS	+= -D DEBUG_FORMATTING=1
-endif
-ifeq ($(MODE), debug)
-	CFLAGS	+= -D DEBUG_FORMATTING=1 -fsanitize=thread -g
-endif
-
 SRC_PATH = sources/
-OBJ_PATH = obj/
+OBJ_PATH = objects/
 
 SRC		=	main.c \
 			parsing.c \
-			hidden_routines.c \
+			routine_control.c \
 			time.c \
 			philo_routine.c \
 			init.c \

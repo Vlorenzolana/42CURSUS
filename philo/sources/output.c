@@ -6,14 +6,13 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 18:08:46 by vlorenzo          #+#    #+#             */
-/*   Updated: 2025/03/03 19:48:45 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:53:25 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../includes/philo.h"
 
-static void	status_debug(t_philo *philo, char *color, char *str,
-		t_status status)
+static void	print_debug(t_philo *philo, char *color, char *str, t_status status)
 {
 	if (status == GOT_FORK_1)
 		printf("[%10ld]\t%s%03d\t%s\e[0m: fork [%d]\n", time_ms()
@@ -28,20 +27,20 @@ static void	status_debug(t_philo *philo, char *color, char *str,
 			- philo->table->start_time, color, philo->id + 1, str);
 }
 
-static void	status_write(t_philo *philo, t_status status)
+void	parse_debug(t_philo *philo, t_status status)
 {
 	if (status == DIED)
-		status_debug(philo, RED, "died", status);
+		print_debug(philo, RED, "died", status);
 	else if (status == EATING)
-		status_debug(philo, GREEN, "is eating", status);
+		print_debug(philo, GREEN, "is eating", status);
 	else if (status == SLEEPING)
-		status_debug(philo, CYAN, "is sleeping", status);
+		print_debug(philo, CYAN, "is sleeping", status);
 	else if (status == THINKING)
-		status_debug(philo, CYAN, "is thinking", status);
+		print_debug(philo, CYAN, "is thinking", status);
 	else if (status == GOT_FORK_1)
-		status_debug(philo, PURPLE, "has taken a fork", status);
+		print_debug(philo, PURPLE, "has taken a fork", status);
 	else if (status == GOT_FORK_2)
-		status_debug(philo, PURPLE, "has taken a fork", status);
+		print_debug(philo, PURPLE, "has taken a fork", status);
 }
 
 static void	status_print(t_philo *philo, char *str)
@@ -50,7 +49,7 @@ static void	status_print(t_philo *philo, char *str)
 		str);
 }
 
-void	status_write(t_philo *philo, bool reaper_report, t_status status)
+void	display_status(t_philo *philo, bool reaper_report, t_status status)
 {
 	pthread_mutex_lock(&philo->table->lock_write);
 	if (sim_stopped(philo->table) == true && reaper_report == false)
@@ -60,7 +59,7 @@ void	status_write(t_philo *philo, bool reaper_report, t_status status)
 	}
 	if (DEBUG_FORMATTING == true)
 	{
-		status_write(philo, status);
+		parse_debug(philo, status);
 		pthread_mutex_unlock(&philo->table->lock_write);
 		return ;
 	}
@@ -97,13 +96,13 @@ void	sim_outcome(t_table *table)
 	return ;
 }
 
-/* status_debug:
+/* print_debug:
  *	Prints the philosopher's status in an easier to read,
  *	colorful format to help with debugging. For fork-taking
  *	statuses, extra information is displayed to show which fork
  *	the philosopher has taken.
  *
- *	status_write:
+ *	parse_debug:
  *	Redirects the status writing for debug mode. For this option,
  *	the DEBUG_FORMATTING option must be set to 1 in philo.h.
  *
@@ -112,7 +111,7 @@ void	sim_outcome(t_table *table)
  *	subject:
  *		timestamp_in_ms X status
  *
- *	status_write:
+ *	parse_debug:
  *	Prints the status of a philosopher as long as the simulation is
  *	still active. Locks the write mutex to avoid intertwined messages
  *	from different threads.

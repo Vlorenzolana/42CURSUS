@@ -6,11 +6,11 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:36:42 by vlorenzo          #+#    #+#             */
-/*   Updated: 2025/03/03 19:46:06 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:34:41 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../includes/philo.h"
 
 time_t	time_ms(void)
 {
@@ -28,7 +28,7 @@ void	philo_sleep(t_table *table, time_t sleep_time)
 	wake_up = time_ms() + sleep_time;
 	while (time_ms() < wake_up)
 	{
-		if (has_simulation_stopped(table))
+		if (sim_stopped(table))
 			break ;
 		usleep(100);
 	}

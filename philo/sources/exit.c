@@ -6,11 +6,11 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 18:31:45 by vlorenzo          #+#    #+#             */
-/*   Updated: 2025/03/03 19:53:17 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/03/04 13:29:20 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../includes/philo.h"
 
 void	*free_table(t_table *table)
 {

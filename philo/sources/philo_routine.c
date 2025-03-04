@@ -10,15 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../includes/philo.h"
 
 static void	eat_sleep(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->table->fork_locks[philo->fork[0]]);
-	status_write(philo, false, GOT_FORK_1);
+	display_status(philo, false, GOT_FORK_1);
 	pthread_mutex_lock(&philo->table->fork_locks[philo->fork[1]]);
-	status_write(philo, false, GOT_FORK_2);
-	status_write(philo, false, EATING);
+	display_status(philo, false, GOT_FORK_2);
+	display_status(philo, false, EATING);
 	pthread_mutex_lock(&philo->lock_meal_time);
 	philo->last_meal = time_ms();
 	pthread_mutex_unlock(&philo->lock_meal_time);
@@ -29,7 +29,7 @@ static void	eat_sleep(t_philo *philo)
 		philo->times_ate += 1;
 		pthread_mutex_unlock(&philo->lock_meal_time);
 	}
-	status_write(philo, false, SLEEPING);
+	display_status(philo, false, SLEEPING);
 	pthread_mutex_unlock(&philo->table->fork_locks[philo->fork[1]]);
 	pthread_mutex_unlock(&philo->table->fork_locks[philo->fork[0]]);
 	philo_sleep(philo->table, philo->table->time_to_sleep);
@@ -50,16 +50,16 @@ static void	think(t_philo *philo, bool silent)
 	if (time_to_think > 600)
 		time_to_think = 200;
 	if (silent == false)
-		status_write(philo, false, THINKING);
+		display_status(philo, false, THINKING);
 	philo_sleep(philo->table, time_to_think);
 }
 
 static void	*loner_philo(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->table->fork_locks[philo->fork[0]]);
-	status_write(philo, false, GOT_FORK_1);
+	display_status(philo, false, GOT_FORK_1);
 	philo_sleep(philo->table, philo->table->time_to_die);
-	status_write(philo, false, DIED);
+	display_status(philo, false, DIED);
 	pthread_mutex_unlock(&philo->table->fork_locks[philo->fork[0]]);
 	return (NULL);
 }

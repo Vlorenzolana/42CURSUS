@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   routine_control.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/20 12:34:55 by vlorenzo          #+#    #+#             */
-/*   Updated: 2025/03/03 20:09:05 by vlorenzo         ###   ########.fr       */
+/*   Created: 2025/02/14 18:34:20 by vlorenzo          #+#    #+#             */
+/*   Updated: 2025/03/04 15:55:31 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../includes/philo.h"
 
 static void	sim_flag(t_table *table, bool state)
 {
@@ -30,7 +30,6 @@ bool	sim_stopped(t_table *table)
 	pthread_mutex_unlock(&table->lock_sim_stop);
 	return (r);
 }
-
 static bool	phil_kill(t_philo *philo)
 {
 	time_t	time;
@@ -39,14 +38,14 @@ static bool	phil_kill(t_philo *philo)
 	if ((time - philo->last_meal) >= philo->table->time_to_die)
 	{
 		sim_flag(philo->table, true);
-		status_write(philo, true, DIED);
+		display_status(philo, true, DIED);
 		pthread_mutex_unlock(&philo->lock_meal_time);
 		return (true);
 	}
 	return (false);
 }
 
-static bool	end_condition_reached(t_table *table)
+static bool	condition_met(t_table *table)
 {
 	unsigned int	i;
 	bool			satisfied;
@@ -72,7 +71,7 @@ static bool	end_condition_reached(t_table *table)
 	return (false);
 }
 
-void	*hidden_routines(void *data)
+void	*routine_control(void *data)
 {
 	t_table	*table;
 
@@ -83,7 +82,7 @@ void	*hidden_routines(void *data)
 	sim_start_delay(table->start_time);
 	while (true)
 	{
-		if (end_condition_reached(table) == true)
+		if (condition_met(table) == true)
 			return (NULL);
 		usleep(1000);
 	}
@@ -109,7 +108,7 @@ void	*hidden_routines(void *data)
  *	flag and displays the death status.
  *	Returns true if the philosopher has been killed, false if not.
  *
- *	end_condition_reached:
+ *	condition_met:
  *	Checks each philosopher to see if one of two end conditions
  *	has been reached. Stops the simulation if a philosopher needs
  *	to be killed, or if every philosopher has eaten enough.
