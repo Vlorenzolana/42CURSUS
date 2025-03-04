@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 18:35:08 by vlorenzo          #+#    #+#             */
-/*   Updated: 2025/03/04 13:29:46 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/03/04 18:21:28 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool	start_sim(t_table *table)
 
 	delay = table->num_philo * 20;
 	/*table->start_time = time_ms() + delay;
-	Adds (table->nb_philos * 20) milliseconds to the current time
+	Adds (table->num_philos * 20) milliseconds to the current time
 	This delay ensures that all threads (philos) start at different times,
 	which avoid race conditions and potential deadlocks at the beginning.*/
 	table->start_time = time_ms() + delay;

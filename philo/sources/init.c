@@ -6,117 +6,89 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:34:55 by vlorenzo          #+#    #+#             */
-/*   Updated: 2025/03/04 17:36:13 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/03/04 18:28:21 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static void	sim_flag(t_table *table, bool state)
+static pthread_mutex_t	*init_forks(t_table *table)
 {
-	pthread_mutex_lock(&table->lock_sim_stop);
-	table->sim_stop = state;
-	pthread_mutex_unlock(&table->lock_sim_stop);
-}
-
-bool	sim_stopped(t_table *table)
-{
-	bool	r;
-
-	r = false;
-	pthread_mutex_lock(&table->lock_sim_stop);
-	if (table->sim_stop == true)
-		r = true;
-	pthread_mutex_unlock(&table->lock_sim_stop);
-	return (r);
-}
-
-static bool	phil_kill(t_philo *philo)
-{
-	time_t	time;
-
-	time = time_ms();
-	if ((time - philo->last_meal) >= philo->table->time_to_die)
-	{
-		sim_flag(philo->table, true);
-		display_status(philo, true, DIED);
-		pthread_mutex_unlock(&philo->lock_meal_time);
-		return (true);
-	}
-	return (false);
-}
-
-static bool	condition_met(t_table *table)
-{
+	pthread_mutex_t	*forks;
 	unsigned int	i;
-	bool			satisfied;
 
-	satisfied = true;
+	forks = malloc(sizeof(pthread_mutex_t) * table->num_philo);
+	if (!forks)
+		return (error_null("%s error: Could not allocate memory.\n", NULL, 0));
 	i = 0;
 	while (i < table->num_philo)
 	{
-		pthread_mutex_lock(&table->philos[i]->lock_meal_time);
-		if (phil_kill(table->philos[i]))
-			return (true);
-		if (table->must_eat_count != -1)
-			if (table->philos[i]->times_ate < (unsigned int)table->must_eat_count)
-				satisfied = false;
-		pthread_mutex_unlock(&table->philos[i]->lock_meal_time);
+		if (pthread_mutex_init(&forks[i], 0) != 0)
+			return (error_null("%s error: Could not create mutex.\n", NULL, 0));
 		i++;
 	}
-	if (table->must_eat_count != -1 && satisfied == true)
-	{
-		sim_flag(table, true);
-		return (true);
-	}
-	return (false);
+	return (forks);
 }
 
-void	*routine_control(void *data)
+static t_philo	**init_philosophers(t_table *table)
+{
+	t_philo			**philos;
+	unsigned int	i;
+
+	philos = malloc(sizeof(t_philo) * table->num_philo);
+	if (!philos)
+		return (error_null("%s error: Could not allocate memory.\n", NULL, 0));
+	i = 0;
+	while (i < table->num_philo)
+	{
+		philos[i] = malloc(sizeof(t_philo) * 1);
+		if (!philos[i])
+			return (error_null("%s error: Could not allocate memory.\n", NULL,
+					0));
+		if (pthread_mutex_init(&philos[i]->lock_meal_time, 0) != 0)
+			return (error_null("%s error: Could not create mutex.\n", NULL, 0));
+		philos[i]->table = table;
+		philos[i]->id = i;
+		philos[i]->times_ate = 0;
+		assign_forks(philos[i]);
+		i++;
+	}
+	return (philos);
+}
+
+static bool	init_global_mutexes(t_table *table)
+{
+	table->fork_locks = init_forks(table);
+	if (!table->fork_locks)
+		return (false);
+	if (pthread_mutex_init(&table->lock_sim_stop, 0) != 0)
+		return (error_failure("%s error: Could not create mutex.\n", NULL,
+				table));
+	if (pthread_mutex_init(&table->lock_write, 0) != 0)
+		return (error_failure("%s error: Could not create mutex.\n", NULL,
+				table));
+	return (true);
+}
+
+t_table	*init_table(int ac, char **av, int i)
 {
 	t_table	*table;
 
-	table = (t_table *)data;
-	if (table->must_eat_count == 0)
+	table = malloc(sizeof(t_table) * 1);
+	if (!table)
+		return (error_null("%s error: Could not allocate memory.\n", NULL, 0));
+	table->num_philo = integer_atoi(av[i++]);
+	table->time_to_die = integer_atoi(av[i++]);
+	table->time_to_eat = integer_atoi(av[i++]);
+	table->time_to_sleep = integer_atoi(av[i++]);
+	table->must_eat_count = -1;
+	if (ac - 1 == 5)
+		table->must_eat_count = integer_atoi(av[i]);
+	table->philos = init_philosophers(table);
+	if (!table->philos)
 		return (NULL);
-	sim_flag(table, false);
-	sim_start_delay(table->start_time);
-	while (true)
-	{
-		if (condition_met(table) == true)
-			return (NULL);
-		usleep(1000);
-	}
-	return (NULL);
+	if (!init_global_mutexes(table))
+		return (NULL);
+	table->sim_stop = false;
+	return (table);
 }
-
-/* sim_flag:
- *	Sets the simulation stop flag to true or false. Only the grim
- *	reaper thread can set this flag. If the simulation stop flag is
- *	set to true, that means the simulation has met an end condition.
- *
- *	sim_stopped:
- *	Checks whether the simulation is at an end. The stop flag
- *	is protected by a mutex lock to allow any thread to check
- *	the simulation status without conflict.
- *	Returns true if the simulation stop flag is set to true,
- *	false if the flag is set to false.
- *
- *	phil_kill:
- *	Checks if the philosopher must be killed by comparing the
- *	time since the philosopher's last meal and the time_to_die parameter.
- *	If it is time for the philosopher to die, sets the simulation stop
- *	flag and displays the death status.
- *	Returns true if the philosopher has been killed, false if not.
- *
- *	condition_met:
- *	Checks each philosopher to see if one of two end conditions
- *	has been reached. Stops the simulation if a philosopher needs
- *	to be killed, or if every philosopher has eaten enough.
- *	Returns true if an end condition has been reached, false if not.
- *
- *	routine:
- *	The hidden routines thread's routine. Checks if a philosopher must
- *	be killed and if all philosophers ate enough. If one of those two
- *	end conditions are reached, it stops the simulation.
- */
