@@ -5,10 +5,10 @@
 
 void	ft_putnbr(long n, int base, int *count) // We call count by ref. &count
 {
-	char digit[17] = "0123456789abcdef";
+	char digit[16] = "0123456789abcdef";
 	if (n < 0)
 	{
-		count += write(1, "-", 1);
+		*count += write(1, "-", 1);
 		n *= -1;
 	}
 	if (n >= (base))
@@ -20,6 +20,7 @@ int	ft_printf(char *fmt, ...)
 {
 	va_list	ap;
 	int		count;
+	int		d;
 	char	*s;
 	long	x;
 
@@ -41,11 +42,13 @@ int	ft_printf(char *fmt, ...)
 						count += write(1, s++, 1);
 			}
 			else if (*fmt == 'd')
-				ft_putnbr((va_arg(ap, int)), 10, &count);
+			{
+				d = va_arg(ap, int);
+				ft_putnbr(d, 10, &count);
+			}
 			else if (*fmt == 'x')
 			{
-				x = va_arg(ap, unsigned long int);
-				printf("%ld   ", x);
+				x = va_arg(ap, unsigned int);
 				ft_putnbr(x, 16, &count);
 			}
 			else
@@ -80,52 +83,56 @@ int	main(void)
 	ft_printf("\n");
 	ft_printf("\n");
 	ft_printf("FT  Hexadecimal for %d is %x\n", 2147483647, 2147483647);
-	ft_printf("FT  Hexadecimal for %d is %x\n", -2147483648, -2147483648);
+	ft_printf("FT  Hexadecimal for %d is %x\n", -2147483647, -2147483647);
+	printf("STD Hexadecimal for %d is %x\n", 2147483647, 2147483647);
+/* 	printf("STD Hexadecimal for %d is %x\n", -2147483648, -2147483648);
+	//PRINTF FAILS, INT MIN HEX & DECIMAL IMPOSSIBLE TO PRINT, ALAS NOT TESTED */
 	ft_printf("\n");
 	ft_printf("\n");
-	printf("STD  Hexadecimal for %d is %x\n", 2147483647, 2147483647);
-	printf("STD  Hexadecimal for %ld is %lx\n", -2147483647, -2147483647);
-	/* 	ft_printf("MIARD %d\n", ft_printf("%s ", c));
-		printf("STDRD %d\n", printf("%s ", c));
-		ft_printf("\n");
-		ft_printf("%d\n", ft_printf("%s ", ptr));
-		printf("%d\n", printf("%s ", ptr));
-		ft_printf("\n");
-		ft_printf("MIARD %d\n", ft_printf("%d ", 5265476));
-		printf("STDRD %d\n", printf("%d ", 5265476));
-		ft_printf("\n");
-		sleep(1 / 2);
-		ft_printf("MIARD %d\n", ft_printf("%x ", 33));
-		printf("STDRD %d\n", printf("%x ", 33));
-		sleep(1 / 2);
-		ft_printf("\n");
-		ft_printf("%x\n", 9);
-		printf("%x\n", 9);
-		ft_printf("\n");
-		ft_printf("%s\n", "");
-		printf("%s\n", "");
-		ft_printf("\n");
-		ft_printf("Magic %s is %d\n", NULL, 42);
-		printf("Magic %s is %d\n", "", 42);
-		ft_printf("\n");
-		ft_printf("Hexadecimal for %d is %x\n", '0', 42);
-		ft_printf("%d\n", ft_printf("%s\n", "I love watermelons"));
-		printf("%d\n", printf("%s\n", "I love watermelons"));
-		ft_printf("\n");
-		ft_printf("%p\n", 42);
-		ft_printf("%s\n", NULL);
-		ft_printf("");
-		ft_printf("%%\n");
-		ft_printf("\n");
-		ft_printf("Magic %s is %d\n", "number", 42);
-		printf("Magic %s is %d\n", "number", 42);
-		ft_printf("\n");
-		ft_printf("Hexadecimal for %d is %x\n", 42, 42);
-		printf("Magic %s is %d\n", "number", 42);
-		ft_printf("\n"); */
-	/*  ft_printf("%d\n", ft_printf("ft = *+Ç!=?¿!"));
-		// OJO!!
-		// los caracteres especiales los BUFFERiza de uno en uno y tarda la hostia
-		// se mezclan los bufferes de un printf anterior que no haya terminado
-		printf("%d\n", printf("st = *+Ç!=?¿!")); */
+		printf("STD  Hexadecimal for %d is %x\n", 2147483647, 2147483647);
+		printf("STD  Hexadecimal for %ld is %lx\n", -2147483647,
+			-2147483647);
+	ft_printf("MIARD %d\n", ft_printf("%s ", c));
+	printf("STDRD %d\n", printf("%s ", c));
+	ft_printf("\n");
+	ft_printf("%d\n", ft_printf("%s ", ptr));
+	printf("%d\n", printf("%s ", ptr));
+	ft_printf("\n");
+	ft_printf("MIARD %d\n", ft_printf("%d ", 5265476));
+	printf("STDRD %d\n", printf("%d ", 5265476));
+	ft_printf("\n");
+	sleep(1 / 2);
+	ft_printf("MIARD %d\n", ft_printf("%x ", 33));
+	printf("STDRD %d\n", printf("%x ", 33));
+	sleep(1 / 2);
+	ft_printf("\n");
+	ft_printf("%x\n", 9);
+	printf("%x\n", 9);
+	ft_printf("\n");
+	ft_printf("%s\n", "");
+	printf("%s\n", "");
+	ft_printf("\n");
+	ft_printf("Magic %s is %d\n", NULL, 42);
+	printf("Magic %s is %d\n", "", 42);
+	ft_printf("\n");
+	ft_printf("Hexadecimal for %d is %x\n", '0', 42);
+	ft_printf("%d\n", ft_printf("%s\n", "I love watermelons"));
+	printf("%d\n", printf("%s\n", "I love watermelons"));
+	ft_printf("\n");
+	ft_printf("%p\n", 42);
+	ft_printf("%s\n", NULL);
+	ft_printf("");
+	ft_printf("%%\n");
+	ft_printf("\n");
+	ft_printf("Magic %s is %d\n", "number", 42);
+	printf("Magic %s is %d\n", "number", 42);
+	ft_printf("\n");
+	ft_printf("Hexadecimal for %d is %x\n", 42, 42);
+	printf("Magic %s is %d\n", "number", 42);
+	ft_printf("\n");
+	ft_printf("%d\n", ft_printf("ft = *+Ç!=?¿!"));
+	// OJO!!
+	// los caracteres especiales los BUFFERiza de uno en uno y tarda la hostia
+	// se mezclan los bufferes de un printf anterior que no haya terminado
+	printf("%d\n", printf("st = *+Ç!=?¿!"));
 }

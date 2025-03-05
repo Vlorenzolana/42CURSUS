@@ -1,5 +1,5 @@
 NAME	= philo
-CC		= gcc
+CC		= gcc 
 CFLAGS	= -Werror -Wall -Wextra -pthread
 
 SRC_PATH = sources/
@@ -7,7 +7,7 @@ OBJ_PATH = objects/
 
 SRC		=	main.c \
 			parsing.c \
-			routine_control.c \
+			waiter_routine.c \
 			time.c \
 			philo_routine.c \
 			init.c \

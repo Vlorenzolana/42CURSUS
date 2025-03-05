@@ -40,7 +40,7 @@ char	*get_next_line(int fd)
 				break ;
 		}
 		line[i++] = buffer[buffer_index++];
-		if (line[i - 1] == '\n') // añadir EOF?
+		if (line[i - 1] == '\n')
 			break ;
 	}
 	line[i] = '\0';
@@ -51,19 +51,54 @@ char	*get_next_line(int fd)
 
 int	main(void)
 {
-	int fd;
-	char *line;
+	int		fd;
+	char	*line;
+
 	fd = open("text.txt", O_RDONLY);
+	// Test Empty File
+	// Test Empty File
+	// fd = open("nada.txt", O_RDONLY);
+	// Test Empty File
+	// Test Empty File
 	/*
+	//	This we shouldn't test here as we hand only the gnl function
+	//	This we shouldn't test here as we hand only the gnl function
+	//	This we shouldn't test here as we hand only the gnl function
 	if (fd < 0)
 			return (printf("cant open\n"), 1);
 	//	This we shouldn't test here as we hand only the gnl function
+	//	This we shouldn't test here as we hand only the gnl function
+	//	This we shouldn't test here as we hand only the gnl function
 	*/
-	while ((line = get_next_line(fd)))
+	/* while ((line = get_next_line(fd)))
 	{
 		printf("%s", line);
 		free(line);
-	}
+	} */
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+	//
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+	//
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+	//
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+	//
+	line = get_next_line(-1);
+	printf("%s", line);
+	free(line);
+	//
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+	//
 	close(fd);
 	return (0);
 }

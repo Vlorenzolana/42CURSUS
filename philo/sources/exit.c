@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 18:31:45 by vlorenzo          #+#    #+#             */
-/*   Updated: 2025/03/04 13:29:20 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/03/05 17:20:59 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,27 +73,3 @@ void	*free_error(char *str, char *details, t_table *table)
 	msg(str, details, EXIT_FAILURE);
 	return (NULL);
 }
-
-/* free_table:
- *	Frees all of the memory allocated by the program.
- *	Returns a NULL pointer if there is nothing to free,
- *	or when all memory has been freed.
- *
- *	destroy_mutexts:
- *	Destroys every mutex created by the program: fork locks, meal locks,
- *	the write and simulation stopper lock.
- *
- *	msg:
- *	Writes a message to the console. Returns the provided exit number.
- *	Used for error management.
- *
- *	error_failure:
- *	Frees any allocated memory, prints an error message and
- *	returns 0 to indicate failure.
- *	Used for error management during initialization.
- *
- *	free_error:
- *	Frees any allocated memory, prints an error message and returns a
- *	NULL pointer.
- *	Used for error management during initialization.
- */

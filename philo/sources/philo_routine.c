@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_routine.c                                      :+:      :+:    :+:   */
+/*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/01 12:36:33 by vlorenzo          #+#    #+#             */
-/*   Updated: 2025/03/03 19:18:08 by vlorenzo         ###   ########.fr       */
+/*   Created: 2025/03/05 14:01:13 by vlorenzo          #+#    #+#             */
+/*   Updated: 2025/03/05 17:22:20 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	*philo_routine(void *data)
 	t_philo	*philo;
 
 	philo = (t_philo *)data;
-	if (philo->table->must_eat_count == 0)
+	if (philo->table->eat_count == 0)
 		return (NULL);
 	pthread_mutex_lock(&philo->lock_meal_time);
 	philo->last_meal = philo->table->start_time;
@@ -88,32 +88,3 @@ void	*philo_routine(void *data)
 	}
 	return (NULL);
 }
-/* eat_sleep:
- *	When a philosopher is ready to eat, he will wait for his fork mutexes to
- *	be unlocked before locking them. Then the philosopher will eat for a certain
- *	amount of time. The time of the last meal is recorded at the beginning of
- *	the meal, not at the end, as per the subject's requirements.
- *
- *	loner_philo:
- *	This routine is invoked when there is only a single philosopher.
- *	A single philosopher only has one fork, and so cannot eat. The
- *	philosopher will pick up that fork, wait as long as time_to_die and die.
- *	This is a separate routine to make sure that the thread does not get
- *	stuck waiting for the second fork in the eat routine.
- *
- *	think:
- *	Once a philosopher is done sleeping, he will think for a certain
- *	amount of time before starting to eat again.
- *	The time_to_think is calculated depending on how long it has been
- *	since the philosopher's last meal, the time_to_eat and the time_to_die
- *	to determine when the philosopher will be hungry again.
- *	This helps stagger philosopher's eating routines to avoid forks being
- *	needlessly monopolized by one philosopher to the detriment of others.
- *
- *	philosopher:
- *	The philosopher thread routine. The philosopher must eat, sleep
- *	and think. In order to avoid conflicts between philosopher threads,
- *	philosophers with an even id start by thinking, which delays their
- *	meal time by a small margin. This allows odd-id philosophers to
- *	grab their forks first, avoiding deadlocks.
- */

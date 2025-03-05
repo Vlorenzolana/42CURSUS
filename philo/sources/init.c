@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:34:55 by vlorenzo          #+#    #+#             */
-/*   Updated: 2025/03/04 18:53:18 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/03/05 17:21:31 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ t_table	*init_table(int ac, char **av, int i)
 	table->time_to_die = digit_str_atoi(av[i++]);
 	table->time_to_eat = digit_str_atoi(av[i++]);
 	table->time_to_sleep = digit_str_atoi(av[i++]);
-	table->must_eat_count = -1;
+	table->eat_count = -1;
 	if (ac - 1 == 5)
-		table->must_eat_count = digit_str_atoi(av[i]);
+		table->eat_count = digit_str_atoi(av[i]);
 	table->philos = init_philosophers(table);
 	if (!table->philos)
 		return (NULL);

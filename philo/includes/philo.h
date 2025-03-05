@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/05 14:03:28 by vlorenzo          #+#    #+#             */
+/*   Updated: 2025/03/05 17:20:46 by vlorenzo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -12,27 +24,17 @@
 # define MAX_PHILOS 250
 # define STR_MAX_PHILOS "250"
 
-# ifndef DEBUG_FORMATTING
-#  define DEBUG_FORMATTING 0
-# endif
-
-# define NC "\e[0m"
-# define RED "\e[31m"
-# define GREEN "\e[32m"
-# define PURPLE "\e[35m"
-# define CYAN "\e[36m"
-
 typedef struct s_philo	t_philo;
 
 typedef struct s_table
 {
 	time_t				start_time;
 	unsigned int		num_philo;
-	pthread_t			routine_control;
+	pthread_t			waiter_routine;
 	time_t				time_to_die;
 	time_t				time_to_eat;
 	time_t				time_to_sleep;
-	int					must_eat_count;
+	int					eat_count;
 	bool				sim_stop;
 	pthread_mutex_t		lock_sim_stop;
 	pthread_mutex_t		lock_write;
@@ -77,13 +79,11 @@ void					philo_sleep(t_table *table, time_t sleep_time);
 void					sim_start_delay(time_t start_time);
 
 //	output.c
-void					parse_debug(t_philo *philo, t_status status);
 void					display_status(t_philo *philo, bool reaper_report,
 							t_status status);
-void					sim_outcome(t_table *table);
 
-//	routine_control.c
-void					*routine_control(void *data);
+//	waiter_routine.c
+void					*waiter_routine(void *data);
 bool					sim_stopped(t_table *table);
 
 //	exit.c
