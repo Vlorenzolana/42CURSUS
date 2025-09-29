@@ -1,11 +1,13 @@
 # My Awesome PhoneBook — README (ex01)
 
-> **C++ Module 00 – Exercise 01**  
+> **C++ Module 00 – Exercise 01**
 > Namespaces, classes, member functions, stdio streams, initialization lists, static, const…
 
 Este documento explica **paso a paso** cómo compilar y usar el programa, con especial énfasis en **público/privado** y en **constructor/destructor** (y **cuándo** se usa el destructor).
 
 En este proyecto (y en C++ en general) vemos .hpp y .cpp porque separamos declaraciones y definiciones. (Como .h y .c)
+
+****OJO: no admite ñ, Ñ o acentos.. comportamiento imprevisible (no se pide por subject). Ver UFT-8 o 16 +info.
 
 ---
 
@@ -62,7 +64,7 @@ Lovelace
 Enter your nickname
 AdaL
 Enter your phonenumber
-+3400000000
++8900000000
 Enter your darkest secret
 Inventé bugs
 contact has been added successfully
@@ -82,7 +84,7 @@ Enter the index of the contact to display: 0
 First Name: Ada
 Last  Name: Lovelace
 Nickname: AdaL
-Phone Number: +34000000000
+Phone Number: +89000000000
 Darkest Secret: Inventé bugs
 ```
 
@@ -176,7 +178,7 @@ public:
   - Ancho **10** por columna, alineado a la derecha.
   - Si el texto **>10**, se trunca a **9** y se añade `.` (ej. `Supercal.`).
 - **Campos vacíos**: no se admiten al crear el contacto.
-- **Teléfono**: se guarda como `std::string`; **no se valida el formato** (puedes guardar `+34620371038`, `1234`, etc.).
+- **Teléfono**: se guarda como `std::string`; **no se valida el formato** (puedes guardar `+89620371038`, `1234`, etc.).
 
 ---
 
@@ -193,13 +195,13 @@ EXIT (exit program)
 ---------------------------
 type here > ADD
 Enter your first name
-Vanessa
+VanVan
 Enter your last name
-Lorenzo
+Lana
 Enter your nickname
-Vane
+Van
 Enter your phonenumber
-+34620371038
++890000000
 Enter your darkest secret
 Valgrind
 contact has been added successfully
@@ -207,13 +209,13 @@ contact has been added successfully
 type here > SEARCH
 |   Index  |First Name| Last Name| Nickname |
 ---------------------------------------------
-|         0|   Vanessa|    Lorenzo|      Vane|
+|         0|   VanVan|      Lana|        Van|
 ---------------------------------------------
 Enter the index of the contact to display: 0
-First Name: Vanessa
-Last  Name: Lorenzo
-Nickname: Vane
-Phone Number: +3400000000
+First Name: VanVan
+Last  Name: Lana
+Nickname: Van
+Phone Number: +8900000000
 Darkest Secret: Valgrind
 
 type here > EXIT
@@ -226,7 +228,7 @@ program finished
 
 - **`-Werror -Wunused-parameter`**: si un parámetro no se usa, siléncialo con `(void)param;`.
 - **Makefile**: recetas con **TAB**; en 42 se usa `-std=c++98`.
-- **UTF-8/acentos**: la truncación cuenta **bytes**, no grafemas; para el proyecto, es suficiente.
+- **UTF-8/acentos**: ñ,Ñ y acentos varios. La truncación cuenta **bytes**, no grafemas (dos o más bytes); para el proyecto, es suficiente.
 
 ---
 
