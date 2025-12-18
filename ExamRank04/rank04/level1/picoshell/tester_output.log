@@ -1,0 +1,61 @@
+[31m[1mFAIL(B[0m
+[32mExpected Output:(B[m "=== PICOSHELL AUTOMATED TESTER ===
+
+Running test: Simple echo
+  ✅ PASS
+
+Running test: Echo pipe to cat
+  ✅ PASS
+
+Running test: Echo pipe to cat pipe to cat
+  ✅ PASS
+
+Running test: Echo pipe to sed
+  ✅ PASS
+
+Running test: Echo pipe to grep match
+  ✅ PASS
+
+Running test: Echo pipe to grep no match
+  ✅ PASS
+
+Running test: Invalid command
+  ❌ Expected failure (non-zero) but got 0
+
+Running test: Complex pipeline
+  ✅ PASS
+
+=== TEST SUMMARY ===
+Passed: 7/8 tests
+❌ Some tests failed."
+[31mYour Output:(B[m     "=== PICOSHELL AUTOMATED TESTER ===
+
+Running test: Simple echo
+  ✅ PASS
+
+Running test: Echo pipe to cat
+  ✅ PASS
+
+Running test: Echo pipe to cat pipe to cat
+  ❌ File descriptor leak detected!
+     FDs before: 3, after: 4
+
+Running test: Echo pipe to sed
+  ✅ PASS
+
+Running test: Echo pipe to grep match
+  ✅ PASS
+
+Running test: Echo pipe to grep no match
+  ✅ PASS
+
+Running test: Invalid command
+  ❌ Expected failure (non-zero) but got 0
+
+Running test: Complex pipeline
+  ❌ File descriptor leak detected!
+     FDs before: 4, after: 6
+
+=== TEST SUMMARY ===
+Passed: 5/8 tests
+❌ Some tests failed."
