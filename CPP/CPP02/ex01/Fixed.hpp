@@ -6,10 +6,11 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 17:25:31 by vlorenzo          #+#    #+#             */
-/*   Updated: 2025/12/26 17:25:33 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/12/30 19:23:10 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
 # define FIXED_HPP
 # include <iostream>
 
