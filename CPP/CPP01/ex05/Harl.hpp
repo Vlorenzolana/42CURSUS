@@ -6,39 +6,41 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/28 12:46:10 by vlorenzo          #+#    #+#             */
-/*   Updated: 2025/12/28 12:47:09 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/12/30 16:52:42 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# define HARL_HPP
+# pragma once
 # include <iostream>
+# include <array>
+# include <string>
 
 class	Harl
 {
-	private:
+    private:
 
-		void	debug(void);
-		void	info(void);
-		void	warning(void);
-		void	error(void);
+        void	debug(void) const;
+        void	info(void) const;
+        void	warning(void) const;
+        void	error(void) const;
 
-		enum complaintType
-		{
-			DEBUG,
-			INFO,
-			WARNING,
-			ERROR,
-			UNKNOWN,
-		};
+        enum complaintType
+        {
+            DEBUG,
+            INFO,
+            WARNING,
+            ERROR,
+            UNKNOWN,
+        };
 
-		complaintType getComplaintLevel(std::string level);
+        complaintType getComplaintLevel(std::string level);
 
-		typedef void (Harl::*method_pointer)(void);
+        typedef void (Harl::*method_pointer)(void) const;
 
-	public:
+    public:
 
-		Harl(void);
-		~Harl(void);
+        Harl(void);
+        ~Harl(void);
 
-		void	complain(std::string level);
+        void complain(const std::string& level);
 };

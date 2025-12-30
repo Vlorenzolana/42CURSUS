@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/28 12:46:04 by vlorenzo          #+#    #+#             */
-/*   Updated: 2025/12/28 13:28:12 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2025/12/30 16:52:02 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,65 +14,40 @@
 
 Harl::Harl(void)
 {
-	std::cout << "Harl object constructed" << std::endl;
+    std::cout << "Harl object constructed" << std::endl;
 }
 
 Harl::~Harl(void)
 {
-	std::cout << "Harl object destroyed"	<< std::endl;
+    std::cout << "Harl object destroyed"	<< std::endl;
 }
 
-Harl::complaintType	Harl::getComplaintLevel(std::string level)
+void Harl::complain(const std::string& level)
 {
-	if (level == "DEBUG")
-		return Harl::DEBUG;
-	else if (level == "INFO")
-		return Harl::INFO;
-	else if (level == "WARNING")
-		return Harl::WARNING;
-	else if (level == "ERROR")
-		return Harl::ERROR;
-	else
-		return Harl::UNKNOWN;
+    const std::array<std::string, 4> complains = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    void (Harl::*functions[])(void) const = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+
+    for (size_t i = 0; i < complains.size(); ++i)
+        if (level == complains[i])
+            return (this->*functions[i])();
 }
 
-void	Harl::complain(std::string level)
+void	Harl::debug(void) const
 {
-	Harl::complaintType scale;
-	
-	method_pointer functions[] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-
-	scale = getComplaintLevel(level);
-	switch (scale)
-	{
-		case DEBUG:		
-		case INFO:
-		case WARNING:
-		case ERROR:
-			(this->*functions[scale])();
-			break ;
-		
-		case UNKNOWN:
-			break ;
-	}
+    std::cout << "DEBUG: This is a generic complaint. I just love complaining." << std::endl;
 }
 
-void	Harl::debug(void)
+void	Harl::info(void) const
 {
-	std::cout << "DEBUG: This is a generic complaint. I just love complaining." << std::endl;
+    std::cout << "INFO: Not getting over-the-top quality at half price will make me angry" << std::endl;
 }
 
-void	Harl::info(void)
+void	Harl::warning(void) const
 {
-	std::cout << "INFO: Not getting over-the-top quality at half price will make me angry" << std::endl;
+    std::cout << "WARNING: I am an entitled and bossy Harl and I will treat you like scum" << std::endl;
 }
 
-void	Harl::warning(void)
+void	Harl::error(void) const
 {
-	std::cout << "WARNING: I am an entitled and bossy Harl and I will treat you like scum" << std::endl;
-}
-
-void	Harl::error(void)
-{
-	std::cout << "ERROR: I want to speak to your manager!" << std::endl;
+    std::cout << "ERROR: I want to speak to your manager!" << std::endl;
 }
