@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/03 11:14:58 by igchurru          #+#    #+#             */
-/*   Updated: 2025/12/26 15:47:27 by vlorenzo         ###   ########.fr       */
+/*   Created: 2026/01/10 23:25:49 by vlorenzo          #+#    #+#             */
+/*   Updated: 2026/01/11 00:22:27 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,3 @@ class FragTrap : public ClapTrap
 		void	attack(const std::string& target);
 		void highFivesGuys(void);
 };
-

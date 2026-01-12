@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/03 11:21:43 by igchurru          #+#    #+#             */
-/*   Updated: 2025/12/26 15:47:25 by vlorenzo         ###   ########.fr       */
+/*   Created: 2026/01/10 23:25:42 by vlorenzo          #+#    #+#             */
+/*   Updated: 2026/01/11 00:20:14 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ FragTrap& FragTrap::operator=(const FragTrap& other)
 	this->_name = other._name;
 	this->_hit_points = other._hit_points;
 	this->_energy_points = other._energy_points;
-	this->_hit_points = other._hit_points;
+	this->_attack_dmg = other._attack_dmg;
 	return (*this);
 }
 

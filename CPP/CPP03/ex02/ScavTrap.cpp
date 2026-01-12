@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/02 11:02:01 by igchurru          #+#    #+#             */
-/*   Updated: 2025/12/26 15:47:34 by vlorenzo         ###   ########.fr       */
+/*   Created: 2026/01/10 23:26:09 by vlorenzo          #+#    #+#             */
+/*   Updated: 2026/01/11 00:20:11 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 	this->_name = other._name;
 	this->_hit_points = other._hit_points;
 	this->_energy_points = other._energy_points;
-	this->_hit_points = other._hit_points;
+	this->_attack_dmg = other._attack_dmg;
 	return (*this);
 }
 

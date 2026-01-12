@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/02 09:06:29 by igchurru          #+#    #+#             */
-/*   Updated: 2025/12/26 15:46:10 by vlorenzo         ###   ########.fr       */
+/*   Created: 2026/01/10 23:23:44 by vlorenzo          #+#    #+#             */
+/*   Updated: 2026/01/11 00:23:48 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 	this->_name = other._name;
 	this->_hit_points = other._hit_points;
 	this->_energy_points = other._energy_points;
-	this->_hit_points = other._hit_points;
+	this->_attack_dmg = other._attack_dmg;
 	return (*this);
 }
 
@@ -67,8 +67,16 @@ void	ClapTrap::attack(const std::string& target)
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
+	if (amount > 1000)
+	{
+		std::cout << "ClapTrap " << _name << " cannot take invalid damage amount!" << std::endl;
+		return ;
+	}
 	std::cout << "ClapTrap " << _name << " takes " << amount << " damage!" << std::endl;
-	_hit_points -= amount;
+	if (amount >= static_cast<unsigned int>(_hit_points))
+		_hit_points = 0;
+	else
+		_hit_points -= amount;
 	if (_hit_points < 1)
 	{
 		std::cout << "ClapTrap " << _name << " is dead!" << std::endl;
@@ -84,8 +92,16 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "ClapTrap " << _name << " has no energy left to repair itself!" << std::endl;
 	else
 	{
+		if (amount > 1000)
+		{
+			std::cout << "ClapTrap " << _name << " cannot repair with invalid amount!" << std::endl;
+			return ;
+		}
 		std::cout << "ClapTrap " << _name << " repairs itself and gains " << amount << " hit points" << std::endl;
 		_energy_points--;
-		_hit_points += amount;
+		if (static_cast<unsigned int>(_hit_points) + amount > 1000)
+			_hit_points = 1000;
+		else
+			_hit_points += amount;
 	}
 }

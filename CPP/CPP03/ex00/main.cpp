@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/02 10:08:27 by igchurru          #+#    #+#             */
-/*   Updated: 2025/12/26 15:45:26 by vlorenzo         ###   ########.fr       */
+/*   Created: 2026/01/10 23:23:55 by vlorenzo          #+#    #+#             */
+/*   Updated: 2026/01/11 00:07:13 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,3 +21,10 @@ int	main()
 	fred.beRepaired(5);
 	return (0);
 }
+
+/* 
+// Tests
+	fred.attack("");
+	fred.takeDamage(-5);
+	fred.beRepaired(-5);
+*/

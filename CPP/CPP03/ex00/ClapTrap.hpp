@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/02 09:05:36 by igchurru          #+#    #+#             */
-/*   Updated: 2025/12/26 15:45:24 by vlorenzo         ###   ########.fr       */
+/*   Created: 2026/01/10 23:23:50 by vlorenzo          #+#    #+#             */
+/*   Updated: 2026/01/11 00:23:40 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define CLAPTRAP_HPP
 
 # include <iostream>
-
 class ClapTrap
 {
 	private:

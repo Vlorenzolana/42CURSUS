@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/02 10:08:27 by igchurru          #+#    #+#             */
-/*   Updated: 2025/12/26 15:47:31 by vlorenzo         ###   ########.fr       */
+/*   Created: 2026/01/10 23:26:01 by vlorenzo          #+#    #+#             */
+/*   Updated: 2026/01/11 00:23:06 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	main()
 	fred.attack("a dummie");
 	fred.takeDamage(5);
 	fred.beRepaired(5);
-	std::cout << std::endl; */
-
+	std::cout << std::endl;
+ */
 /* 	std::cout << "Testing ScavTrap:" << std::endl;
 	ScavTrap bill("Bill");
 	bill.attack("a dummie");
@@ -35,11 +35,17 @@ int	main()
 	std::cout << "Testing FragTrap:" << std::endl;
 	FragTrap charlie("Charlie");
 	charlie.attack("some chump");
-	charlie.takeDamage(20);
-	charlie.beRepaired(5);
+	charlie.takeDamage(100);
+	charlie.beRepaired(0);
 	charlie.highFivesGuys();
 	std::cout << std::endl;
 	
 	std::cout << "Destroying all:" << std::endl;
 	return (0);
 }
+
+/* 
+Charlie	FragTrap	~FragTrap() + ~ClapTrap()
+Bill	ScavTrap	~ScavTrap() + ~ClapTrap()
+Fred	ClapTrap	~ClapTrap() 
+*/
