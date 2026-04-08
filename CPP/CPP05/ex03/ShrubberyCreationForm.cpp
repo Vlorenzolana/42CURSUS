@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   SchrubberyCreationForm.cpp                         :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/18 20:02:04 by vlorenzo          #+#    #+#             */
-/*   Updated: 2026/03/18 20:02:06 by vlorenzo         ###   ########.fr       */
+/*   Created: 2026/03/18 20:12:33 by vlorenzo          #+#    #+#             */
+/*   Updated: 2026/03/31 14:10:57 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	out << "   {~   ~~ ~~  ~}  " << std::endl;
 	out << "    \\_-    -_//   " << std::endl;
 	out << "        \\ //      " << std::endl;
-	out << "         | |       " << std::endl;
-	out << "         | |       " << std::endl;
+	out << "        | |       " << std::endl;
+	out << "        | |       " << std::endl;
 	out << "      //// \\\\    " << std::endl;
 	out << "    ////// \\\\\\  " << std::endl;
 

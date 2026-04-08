@@ -6,7 +6,7 @@
 /*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/18 19:41:22 by vlorenzo          #+#    #+#             */
-/*   Updated: 2026/03/18 19:41:24 by vlorenzo         ###   ########.fr       */
+/*   Updated: 2026/04/02 16:42:34 by vlorenzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main()
 
 	try
 	{
-		Form bad("BadForm", 0, 10);
+		Form bad("BadForm", -1, 10);
 		std::cout << bad << std::endl;
 	}
 	catch (std::exception& e)
