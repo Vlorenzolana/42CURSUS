@@ -14,8 +14,8 @@ webserv/
 │   ├── HttpResponse.hpp              YOU  (file 4)
 │   ├── Client.hpp                    YOU  (file 5)
 │   ├── ConfigParser.hpp              YOU  (stub ready at meeting)
-│   ├── ServerManager.hpp             Member 1 (stub you hand them)
-│   └── RequestHandler.hpp            Member 3 (stub you hand them)
+│   ├── ServerManager.hpp             Member 2 (stub you hand them)
+│   └── RequestHandler.hpp            Member 2 (stub you hand them)
 │
 ├── src/
 │   ├── main.cpp                      YOU
@@ -24,12 +24,12 @@ webserv/
 │   ├── HttpResponse.cpp              YOU  (serialize() lives here)
 │   ├── advanceState.cpp              YOU
 │   │
-│   ├── ServerManager.cpp             Member 1
-│   ├── Socket.cpp                    Member 1
+│   ├── ServerManager.cpp             Member 2
+│   ├── Socket.cpp                    Member 2
 │   │
-│   ├── RequestHandler.cpp            Member 3
-│   ├── CGIHandler.cpp                Member 3
-│   └── ErrorPageBuilder.cpp          Member 3
+│   ├── RequestHandler.cpp            Member 2
+│   ├── CGIHandler.cpp                Member 2
+│   └── ErrorPageBuilder.cpp          Member 2
 │
 └── config/
     └── default.conf                  YOU (write during CP1, needed for testing)

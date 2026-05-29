@@ -1,5 +1,12 @@
-La arquitectura común de un Webserv en 42 es **dirigida por eventos** y **no bloqueante**. Como está prohibido usar hilos para manejar clientes, todo el servidor suele ejecutarse en un único bucle monohilo que monitoriza múltiples “eventos” a la vez.
+La arquitectura común de un Webserv en 42 es **dirigida por eventos** y **no bloqueante**. Como está prohibido usar hilos para manejar clientes, todo el servidor suele ejecutarse en un único bucle monohilo que monitoriza múltiples “eventos” a la vez. En la multiplexación se gestionan varios eventos(llamadas)ero en un solo hilo (select, poll, epoll). No creas ni procesos ni hilos adicionales.
 
+**Multihilo: No creas ni procesos ni hilos adicionales. Un único hilo controla muchos sockets.**
+select()
+select(...);
+poll()
+poll(...);
+epoll() (Linux)
+epoll_wait(...);
 Aquí tienes el desglose arquitectónico y un plan estratégico para dividir el trabajo en un equipo de tres personas.
 
 # **La Arquitectura: “El Event Loop”**
@@ -8,7 +15,7 @@ En lugar de “un hilo por cliente”, usas **multiplexación por proceso**.
 
 ### **El Bucle Maestro:**
 
-Usa `select()`, `poll()` o `epoll()` para preguntarle al kernel: **“¿Cuál de mis 100+ sockets tiene datos listos para leer, o está listo para recibir datos?”**
+Usa `select()`, `poll()` o `epoll()` (son sys-calls) para preguntarle al kernel: **“¿Cuál de mis 100+ sockets tiene datos listos para leer, o está listo para recibir datos?”**
 
 ### **El Gestor de Sockets:**
 
@@ -19,13 +26,13 @@ Gestiona el ciclo de vida de una conexión: **Aceptar → Leer → Procesar → 
 Como `read()` puede recibir solo medio header, cada cliente debe tener un **estado**, por ejemplo:
 
 - READING_HEADER
-    
+
 - READING_BODY
-    
+
 - GENERATING_RESPONSE
-    
+
 - FINISHED
-    
+
 
 # **División del Equipo: El Plan de los 3 Pilares**
 
