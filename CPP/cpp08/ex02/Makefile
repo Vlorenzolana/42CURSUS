@@ -1,0 +1,38 @@
+NAME = mutant
+
+CC = c++
+
+CFLAGS = -Wall -Wextra -Werror -std=c++98
+
+SRC_DIR = sources
+
+INC_DIR = includes
+
+SRCS = $(addprefix $(SRC_DIR)/, $(notdir $(wildcard $(SRC_DIR)/*.cpp)))
+
+BUILD_DIR = objects
+
+OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS:$(SRC_DIR)/%.cpp=%.o))
+
+DEPS = $(addprefix $(BUILD_DIR)/, $(SRCS:$(SRC_DIR)/%.cpp=%.d))
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BUILD_DIR)
+	@$(CC) $(CFLAGS) -I $(INC_DIR) -c $< -o $@
+
+$(BUILD_DIR):
+	@mkdir -p $(BUILD_DIR)
+
+clean:
+	@rm -rf $(BUILD_DIR)
+
+fclean: clean
+	@rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re

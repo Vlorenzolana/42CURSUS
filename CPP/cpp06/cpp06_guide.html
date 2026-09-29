@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>CPP Module 06 — Guía didáctica</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  body { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+         color: #1f2328; line-height: 1.5; font-size: 11pt; }
+  h1 { color: #0a3d62; border-bottom: 3px solid #0a3d62; padding-bottom: 6px;
+       page-break-before: always; }
+  h1:first-of-type { page-break-before: avoid; }
+  h2 { color: #1565c0; border-bottom: 1px solid #b0bec5; padding-bottom: 4px; margin-top: 1.6em; }
+  h3 { color: #2e7d32; margin-top: 1.3em; }
+  h4 { color: #555; margin-top: 1em; }
+  code { background: #f3f4f6; padding: 1px 5px; border-radius: 3px;
+         font-family: "JetBrains Mono", "Fira Code", Consolas, monospace; font-size: 10pt; }
+  pre { background: #1e1e2e; color: #cdd6f4; padding: 12px 14px; border-radius: 6px;
+        overflow-x: auto; font-size: 9.5pt; line-height: 1.4;
+        font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+        page-break-inside: avoid; }
+  pre code { background: transparent; color: inherit; padding: 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0;
+          page-break-inside: avoid; font-size: 10pt; }
+  th, td { border: 1px solid #cfd8dc; padding: 6px 10px; text-align: left; vertical-align: top; }
+  th { background: #eceff1; }
+  blockquote { border-left: 4px solid #0a3d62; background: #f1f8ff;
+               padding: 8px 14px; margin: 10px 0; color: #333; }
+  .callout { border-left: 4px solid #ef6c00; background: #fff8e1;
+             padding: 10px 14px; margin: 12px 0; border-radius: 4px; }
+  .callout.bug { border-left-color: #c62828; background: #ffebee; }
+  .callout.tip { border-left-color: #2e7d32; background: #e8f5e9; }
+  .callout.faq { border-left-color: #6a1b9a; background: #f3e5f5; }
+  .callout strong { display: block; margin-bottom: 4px; }
+  a { color: #1565c0; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .cover { text-align: center; padding: 80px 20px 40px;
+           border-bottom: 4px double #0a3d62; margin-bottom: 30px; }
+  .cover h1 { font-size: 28pt; border: none; color: #0a3d62; page-break-before: avoid; }
+  .cover .subtitle { font-size: 14pt; color: #555; margin-top: 10px; }
+  .cover .author { font-size: 11pt; color: #777; margin-top: 30px; }
+  .toc { background: #fafafa; border: 1px solid #ddd; padding: 16px 22px;
+         border-radius: 6px; margin-bottom: 24px; }
+  .toc ol { padding-left: 20px; }
+  .toc li { margin: 4px 0; }
+  .badge { display: inline-block; background: #0a3d62; color: white; padding: 2px 8px;
+           border-radius: 10px; font-size: 9pt; margin-right: 6px; }
+  ul.videos li { margin: 6px 0; }
+  hr { border: none; border-top: 1px solid #cfd8dc; margin: 24px 0; }
+  .ascii { font-family: "JetBrains Mono", Consolas, monospace; white-space: pre;
+           background: #f7f7f7; padding: 12px; border-radius: 6px; font-size: 9pt;
+           page-break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>CPP Module 06</h1>
+  <div class="subtitle">Guía didáctica completa<br>Conversión de tipos en C++</div>
+  <div class="subtitle" style="font-size:11pt; margin-top:18px;">
+    <span class="badge">ex00</span> ScalarConverter
+    <span class="badge">ex01</span> Serializer
+    <span class="badge">ex02</span> Identify
+  </div>
+  <div class="author">42 Network · Recopilatorio docente</div>
+</div>
+
+<div class="toc">
+<h2 style="margin-top:0; border:none; color:#0a3d62;">Índice</h2>
+<ol>
+  <li>Visión general del módulo y los 4 casts de C++</li>
+  <li>Ex00 — ScalarConverter (<code>static_cast</code>)</li>
+  <li>Ex01 — Serializer (<code>reinterpret_cast</code>)</li>
+  <li>Ex02 — Identify (<code>dynamic_cast</code>)</li>
+  <li>Profundización: <code>const</code> en <code>operator=</code></li>
+  <li>Profundización: RTTI</li>
+  <li>Profundización: vtables y vptr</li>
+  <li>Profundización: alignment y padding</li>
+  <li>Checklist final de defensa</li>
+  <li>Recursos en vídeo</li>
+</ol>
+</div>
+
+<h1>1 · Visión general</h1>
+
+<p>C++ tiene <strong>cuatro tipos de cast</strong> que reemplazan al cast de C (<code>(int)x</code>). El módulo 06 está diseñado para que entiendas <em>cuándo</em> y <em>por qué</em> usar cada uno.</p>
+
+<table>
+<tr><th>Cast</th><th>Cuándo usarlo</th><th>Ejercicio</th></tr>
+<tr><td><code>static_cast&lt;T&gt;</code></td><td>Conversiones lógicas entre tipos relacionados (int↔float, derived→base)</td><td>ex00</td></tr>
+<tr><td><code>reinterpret_cast&lt;T&gt;</code></td><td>Reinterpretación de bits (puntero↔entero)</td><td>ex01</td></tr>
+<tr><td><code>dynamic_cast&lt;T&gt;</code></td><td>Downcasting seguro en runtime (Base*→Derived*)</td><td>ex02</td></tr>
+<tr><td><code>const_cast&lt;T&gt;</code></td><td>Quitar/añadir <code>const</code></td><td>(no aparece)</td></tr>
+</table>
+
+<blockquote><strong>Regla mental:</strong> cuanto más arriba en la tabla, más seguro. <code>reinterpret_cast</code> es "yo sé lo que hago, compilador, cállate".</blockquote>
+
+<h1>2 · Ex00 — ScalarConverter</h1>
+
+<h2>2.1 El problema</h2>
+<p>Recibes un literal como string (<code>"42"</code>, <code>"42.0f"</code>, <code>"a"</code>, <code>"nan"</code>) y debes convertirlo a <code>char</code>, <code>int</code>, <code>float</code> y <code>double</code>.</p>
+
+<h2>2.2 Conceptos clave</h2>
+
+<h3>static_cast vs cast de C</h3>
+<pre><code>double d = 42.5;
+int a = (int)d;              // C-style: funciona pero opaco
+int b = static_cast&lt;int&gt;(d); // C++: explícito, buscable, verificable</code></pre>
+<p><code>static_cast</code> falla en compile-time si la conversión no tiene sentido (<code>static_cast&lt;int*&gt;(d)</code> no compila). El cast de C lo aceptaría como <code>reinterpret_cast</code>. <strong>Por eso 42 obliga a usar los casts C++.</strong></p>
+
+<h3>std::numeric_limits&lt;T&gt;</h3>
+<pre><code>std::numeric_limits&lt;int&gt;::max()      // 2147483647
+std::numeric_limits&lt;float&gt;::quiet_NaN()
+std::numeric_limits&lt;double&gt;::infinity()</code></pre>
+
+<h3>Detección de pseudo-literales</h3>
+<p>Subject exige manejar: <code>nan</code>, <code>nanf</code>, <code>+inf</code>, <code>-inf</code>, <code>+inff</code>, <code>-inff</code>. No son números: son strings que debes detectar antes de parsear.</p>
+
+<h3>Formato de salida exacto</h3>
+<ul>
+  <li><code>float</code> siempre con sufijo <code>f</code></li>
+  <li>Si entero, añadir <code>.0</code> antes del sufijo</li>
+  <li>Char no imprimible → <code>Non displayable</code> (mayúscula, sin guión)</li>
+  <li>Fuera de rango o NaN/inf → <code>impossible</code> (minúscula)</li>
+</ul>
+
+<h2>2.3 FAQ y troubleshooting</h2>
+
+<div class="callout faq">
+<strong>FAQ 1: "¿Por qué <code>42.0f</code> me sale como <code>42.5.0f</code>?"</strong>
+<pre><code>std::cout &lt;&lt; static_cast&lt;float&gt;(value) &lt;&lt; ".0f";   // ❌</code></pre>
+Concatena <code>.0f</code> siempre. Solución:
+<pre><code>if (f == static_cast&lt;long long&gt;(f))
+    std::cout &lt;&lt; std::fixed &lt;&lt; std::setprecision(1) &lt;&lt; f &lt;&lt; "f";
+else
+    std::cout &lt;&lt; f &lt;&lt; "f";</code></pre>
+</div>
+
+<div class="callout faq">
+<strong>FAQ 2: "Mi overflow de int no se detecta para 2147483648"</strong>
+<p><code>INT_MAX</code> al convertirse a <code>double</code> se redondea a <code>2147483648.0</code>. La comparación <code>value &gt; INT_MAX</code> es falsa. Cast explícito a <code>double</code> y filtrar NaN/inf antes.</p>
+</div>
+
+<div class="callout faq">
+<strong>FAQ 3: "Enteros grandes salen en notación científica + .0"</strong>
+<p><code>cout</code> usa notación científica con valores grandes (<code>2.14748e+09</code>) y al añadir <code>.0f</code> queda malformado. Solución: <code>std::fixed &lt;&lt; std::setprecision(1)</code>.</p>
+</div>
+
+<div class="callout bug">
+<strong>🔥 Errores más comunes en 42</strong>
+<ol>
+  <li>No detectar <code>42.0f</code> como input válido (validador rechaza la <code>f</code>).</li>
+  <li>Mensaje literal mal escrito: <code>"non-displayable"</code> en vez de <code>"Non displayable"</code>.</li>
+  <li>Casts directos sobre NaN/inf → UB.</li>
+  <li>Imprimir NaN con <code>cout &lt;&lt; quiet_NaN()</code>: el formato depende de libc.</li>
+  <li><code>operator=</code> declarado <code>const</code> (heredado de OCF mal entendida).</li>
+</ol>
+</div>
+
+<h1>3 · Ex01 — Serializer</h1>
+
+<h2>3.1 El problema</h2>
+<p>Convertir un puntero a struct en entero <code>uintptr_t</code> (serializar) y recuperarlo preservando: <code>deserialize(serialize(p)) == p</code>.</p>
+
+<h2>3.2 Conceptos clave</h2>
+
+<h3>¿Qué es uintptr_t?</h3>
+<p>Alias de <code>&lt;stdint.h&gt;</code> para un entero sin signo <strong>garantizado lo bastante grande para almacenar cualquier puntero</strong>. En sistemas 64-bit es <code>unsigned long</code>.</p>
+
+<h3>¿Por qué reinterpret_cast?</h3>
+<pre><code>uintptr_t n = static_cast&lt;uintptr_t&gt;(ptr);     // ❌ compile error
+uintptr_t n = reinterpret_cast&lt;uintptr_t&gt;(ptr); // ✅ reinterpreta bits</code></pre>
+<p><strong>Mental model:</strong> <code>reinterpret_cast</code> no transforma datos; renombra cómo el compilador ve esos bytes.</p>
+
+<h3>Clase no instanciable</h3>
+<pre><code>class Serializer {
+    private:
+        Serializer();
+        Serializer(const Serializer&amp;);
+        ~Serializer();
+        Serializer&amp; operator=(const Serializer&amp;);
+    public:
+        static uintptr_t serialize(Data* ptr);
+        static Data*     deserialize(uintptr_t raw);
+};</code></pre>
+
+<h2>3.3 FAQ</h2>
+
+<div class="callout faq">
+<strong>FAQ: "¿Puedo usar <code>(uintptr_t)ptr</code>?"</strong>
+<p>Funcionalmente sí, pero el cast C es ambiguo: el compilador prueba <code>const_cast</code>, <code>static_cast</code> y <code>reinterpret_cast</code> en orden. 42 quiere que demuestres que sabes elegir.</p>
+</div>
+
+<div class="callout bug">
+<strong>🔥 Errores más comunes en 42</strong>
+<ol>
+  <li><code>operator=</code> declarado <code>const</code> (mismo bug que ex00).</li>
+  <li>Demostrar la deserialización imprimiendo el struct original en vez de <code>recovered_ptr-&gt;campo</code>.</li>
+  <li>No entender por qué <code>uintptr_t</code> y no <code>int</code>/<code>long</code>.</li>
+</ol>
+</div>
+
+<h1>4 · Ex02 — Identify</h1>
+
+<h2>4.1 El problema</h2>
+<p>Jerarquía <code>Base ← A, B, C</code>. <code>generate()</code> crea aleatoriamente uno y devuelve <code>Base*</code>. Debes recuperar <strong>en runtime</strong> el tipo real.</p>
+
+<h2>4.2 Conceptos clave</h2>
+
+<h3>Comportamiento de dynamic_cast</h3>
+<table>
+<tr><th>Caso</th><th>Éxito</th><th>Fallo</th></tr>
+<tr><td>Puntero: <code>dynamic_cast&lt;D*&gt;(b)</code></td><td>Puntero válido</td><td><code>NULL</code></td></tr>
+<tr><td>Referencia: <code>dynamic_cast&lt;D&amp;&gt;(b)</code></td><td>Referencia válida</td><td><strong><code>std::bad_cast</code></strong></td></tr>
+</table>
+<p>¿Por qué la diferencia? Una referencia <strong>no puede ser NULL</strong> en C++. La única forma de señalar fallo es excepción.</p>
+
+<h3>¿Por qué prohíben &lt;typeinfo&gt;?</h3>
+<p>Porque <code>typeid()</code> haría el ejercicio trivial:</p>
+<pre><code>if (typeid(*p) == typeid(A)) ...   // 1 línea, sin aprender nada</code></pre>
+<p>42 quiere que <strong>entiendas</strong> <code>dynamic_cast</code>.</p>
+
+<h2>4.3 FAQ</h2>
+
+<div class="callout faq">
+<strong>FAQ 1: "Mi dynamic_cast no compila — 'Base' is not polymorphic"</strong>
+<p>Falta <code>virtual</code> en algún método de <code>Base</code>. El destructor virtual es la solución estándar.</p>
+</div>
+
+<div class="callout faq">
+<strong>FAQ 2: "identify(*NULL) me da segfault"</strong>
+<p>Desreferenciar NULL es UB <strong>antes</strong> de entrar en la función. El chequeo de NULL solo sirve en la versión que recibe puntero.</p>
+</div>
+
+<div class="callout faq">
+<strong>FAQ 3: "¿catch std::bad_cast o std::exception?"</strong>
+<p><code>std::bad_cast</code> es más preciso pero requiere <code>&lt;typeinfo&gt;</code> (¡prohibido!). Captura <code>std::exception</code>.</p>
+</div>
+
+<div class="callout bug">
+<strong>🔥 Errores más comunes en 42</strong>
+<ol>
+  <li>Olvidar <code>virtual</code> en destructor de <code>Base</code> → no compila o memory leak.</li>
+  <li>Hacer trampa en <code>identify(Base&amp;)</code> usando <code>&amp;p</code> internamente.</li>
+  <li>Incluir <code>&lt;typeinfo&gt;</code> "porque lo pide el catch" — fail automático.</li>
+  <li>Desreferenciar NULL en el test de "unknown".</li>
+  <li>No sembrar <code>srand()</code> → secuencia siempre igual.</li>
+  <li><code>delete</code> doble o no llamarlo → leaks detectados por <code>valgrind</code>.</li>
+</ol>
+</div>
+
+<h1>5 · Profundización: <code>const</code> en <code>operator=</code></h1>
+
+<h2>5.1 La regla básica</h2>
+<pre><code>class Foo {
+    void bar() const;   // "este método NO modifica *this"
+};</code></pre>
+<p>Dentro del método, <code>this</code> se vuelve <code>const Foo*</code>. Modificar miembros falla en compile-time.</p>
+
+<h2>5.2 ¿Qué hace operator=?</h2>
+<p><strong>Su propósito es modificar <code>*this</code>:</strong></p>
+<pre><code>Foo&amp; operator=(const Foo&amp; other) {
+    this-&gt;x = other.x;   // ¡modifico el objeto!
+    return *this;
+}</code></pre>
+<p>Si lo declaras <code>const</code>, la asignación no compila. <strong>Es contradicción semántica.</strong></p>
+
+<h2>5.3 Los tres lugares donde aparece <code>const</code></h2>
+
+<table>
+<tr><th>Lugar</th><th>Ejemplo</th><th>Significado</th></tr>
+<tr><td>Parámetro</td><td><code>operator=(const Foo&amp; other)</code></td><td>No modifico <code>other</code></td></tr>
+<tr><td>Retorno</td><td><code>const Foo&amp; getFoo()</code></td><td>Lo devuelto es inmutable</td></tr>
+<tr><td>Method qualifier</td><td><code>void print() const</code></td><td>No modifico <code>*this</code></td></tr>
+</table>
+
+<h2>5.4 OCF correcta</h2>
+<table>
+<tr><th>Método</th><th><code>const</code> en parámetro</th><th><code>const</code> al final</th></tr>
+<tr><td>Constructor</td><td>✅ sí</td><td>❌ no aplica</td></tr>
+<tr><td>Copy constructor</td><td>✅ sí</td><td>❌ no aplica</td></tr>
+<tr><td><code>operator=</code></td><td>✅ sí</td><td>❌ <strong>NO</strong></td></tr>
+<tr><td>Getter</td><td>✅ sí</td><td>✅ sí</td></tr>
+<tr><td><code>print()</code></td><td>—</td><td>✅ sí</td></tr>
+</table>
+
+<h2>5.5 ¿Por qué nuestro código compilaba con el bug?</h2>
+<p>Si nunca llamas al <code>operator=</code> (clase no instanciable como <code>ScalarConverter</code>), el compilador genera el método pero nadie lo invoca. En cuanto intentes <code>obj1 = obj2;</code>, no compila.</p>
+
+<h1>6 · Profundización: RTTI</h1>
+
+<h2>6.1 ¿Qué es?</h2>
+<p><strong>RTTI</strong> = Run-Time Type Information. Metadata embebida por el compilador para preguntar en runtime "¿qué tipo real es este objeto?".</p>
+<p>Accesible vía:</p>
+<ul>
+  <li><code>dynamic_cast&lt;T&gt;</code> (usado en ex02)</li>
+  <li><code>typeid()</code> (prohibido en ex02)</li>
+</ul>
+
+<h2>6.2 ¿Cuándo se activa?</h2>
+<p>Solo si la clase tiene al menos un método virtual → clase polimórfica. Sin polimorfismo el tipo se conoce en compile-time.</p>
+
+<h2>6.3 ¿Dónde vive?</h2>
+<p>En la <strong>vtable</strong>. Cada vtable contiene un puntero a un objeto <code>type_info</code> que describe la clase.</p>
+
+<div class="ascii">       ┌─────────────────────┐
+obj ──&gt;│ vptr ───────────────┼──&gt; vtable de A
+       │ campos de la clase  │     ┌──────────────────┐
+       └─────────────────────┘     │ &amp;type_info de A  │
+                                   │ &amp;A::method1      │
+                                   │ &amp;A::method2      │
+                                   └──────────────────┘</div>
+
+<h2>6.4 Coste</h2>
+<ul>
+  <li><strong>Espacio:</strong> +1 puntero por objeto polimórfico (vptr, 8 B en 64-bit).</li>
+  <li><strong>Tiempo:</strong> <code>dynamic_cast</code> recorre la jerarquía → no es O(1) puro.</li>
+</ul>
+
+<h1>7 · Profundización: vtables y vptr</h1>
+
+<h2>7.1 El problema que resuelven</h2>
+<pre><code>class Animal { public: virtual void sound(); };
+class Dog : public Animal { void sound(); };
+class Cat : public Animal { void sound(); };
+
+Animal* a = new Dog();
+a-&gt;sound();   // ¿Cómo sabe llamar Dog::sound y no Animal::sound?</code></pre>
+<p>El compilador no sabe en compile-time qué objeto real apunta <code>a</code>. Necesita despachar en runtime → vtable.</p>
+
+<h2>7.2 Estructura</h2>
+<p>Una vtable por clase polimórfica (estática). Cada objeto tiene un puntero oculto (<code>vptr</code>) a su vtable.</p>
+
+<div class="ascii">vtable de Dog:               vtable de Cat:
+┌──────────────────┐         ┌──────────────────┐
+│ type_info de Dog │         │ type_info de Cat │
+│ &amp;Dog::sound      │         │ &amp;Cat::sound      │
+│ &amp;Animal::breathe │         │ &amp;Animal::breathe │
+└──────────────────┘         └──────────────────┘</div>
+
+<h2>7.3 Despacho de a->sound()</h2>
+<ol>
+  <li>Cargar vptr desde el objeto.</li>
+  <li>Indexar la vtable en la posición de <code>sound</code>.</li>
+  <li>Llamar al puntero almacenado allí.</li>
+</ol>
+
+<h2>7.4 Footgun: virtual en el constructor</h2>
+<p>El <code>vptr</code> se asigna <strong>en el constructor</strong>. Llamar a un método virtual desde el constructor de <code>Base</code> NO llama al override de <code>Derived</code>:</p>
+<pre><code>class Base {
+public:
+    Base() { init(); }     // ⚠ llama Base::init, NO Derived::init
+    virtual void init();
+};</code></pre>
+
+<h2>7.5 ¿Por qué destructor virtual?</h2>
+<pre><code>Base* p = new Derived();
+delete p;   // ¿~Base() o ~Derived()?</code></pre>
+<ul>
+  <li>Sin <code>virtual</code> → solo <code>~Base()</code>. Si <code>Derived</code> tenía recursos → <strong>leak</strong>.</li>
+  <li>Con <code>virtual</code> → busca en vtable → <code>~Derived()</code>, que encadena <code>~Base()</code>.</li>
+</ul>
+
+<h1>8 · Profundización: alignment y padding</h1>
+
+<h2>8.1 ¿Qué es alignment?</h2>
+<p>La CPU exige que ciertos tipos vivan en direcciones múltiplos de su tamaño. Si no, lectura más lenta (x86) o crash (ARM antigua).</p>
+
+<table>
+<tr><th>Tipo</th><th>Alignment x86-64</th></tr>
+<tr><td><code>char</code></td><td>1</td></tr>
+<tr><td><code>short</code></td><td>2</td></tr>
+<tr><td><code>int</code>, <code>float</code></td><td>4</td></tr>
+<tr><td><code>double</code>, puntero, <code>long</code></td><td>8</td></tr>
+</table>
+
+<h2>8.2 Padding silencioso</h2>
+<pre><code>struct Bad {
+    char  a;    // offset 0, +7 padding
+    double b;   // offset 8
+    char  c;    // offset 16, +7 padding (sizeof múltiplo de 8)
+};
+// sizeof(Bad) = 24 (no 10)
+
+struct Good {
+    double b;   // offset 0
+    char a;     // offset 8
+    char c;     // offset 9, +6 padding
+};
+// sizeof(Good) = 16</code></pre>
+<p><strong>Regla pulgar:</strong> ordena campos de mayor a menor tamaño.</p>
+
+<h2>8.3 Relación con ex01</h2>
+<pre><code>typedef struct {
+    std::string first_name;   // 32 B
+    std::string last_name;    // 32 B
+    int   age;                // 4 + 4 padding
+    float money;              // 4
+    bool  has_job;            // 1 + 7 padding
+} Data;</code></pre>
+<p>Cuando <code>reinterpret_cast</code>-eas el puntero a entero y vuelves, <strong>no copias bytes</strong>: solo conservas la dirección. El alignment se preserva automáticamente.</p>
+
+<h2>8.4 Mini-experimento</h2>
+<pre><code>class NoVirtual { int x; };
+class WithVirtual { int x; public: virtual ~WithVirtual(); };
+WithVirtual::~WithVirtual() {}
+
+// 64-bit:
+// sizeof(NoVirtual)   = 4
+// sizeof(WithVirtual) = 16  ← 8 vptr + 4 int + 4 padding</code></pre>
+
+<h1>9 · Checklist final de defensa</h1>
+
+<ul>
+  <li>☐ <code>ScalarConverter</code>/<code>Serializer</code> no instanciables (todo privado).</li>
+  <li>☐ <code>operator=</code> NO declarado <code>const</code>.</li>
+  <li>☐ <code>static</code> en todos los métodos públicos de utilidad.</li>
+  <li>☐ <code>Base</code> con destructor virtual público.</li>
+  <li>☐ No incluyes <code>&lt;typeinfo&gt;</code> en ex02.</li>
+  <li>☐ Compila con <code>-Wall -Wextra -Werror -std=c++98</code> sin warnings.</li>
+  <li>☐ <code>valgrind ./binary</code> → 0 leaks, 0 errors.</li>
+  <li>☐ Sabes explicar <strong>por qué</strong> cada cast es el adecuado.</li>
+  <li>☐ Mensajes exactos: <code>impossible</code>, <code>Non displayable</code>.</li>
+  <li>☐ Pseudo-literales: <code>nan</code>, <code>nanf</code>, <code>±inf</code>, <code>±inff</code>.</li>
+</ul>
+
+<h2>Preguntas frecuentes de defensa</h2>
+<ol>
+  <li><strong>¿Por qué <code>static_cast</code> y no <code>(int)</code>?</strong> Verificación en compile-time; cast de C es ambiguo.</li>
+  <li><strong>¿<code>reinterpret_cast&lt;int*&gt;(0x42)</code>?</strong> Compila, pero acceder es UB.</li>
+  <li><strong>¿<code>dynamic_cast</code> sin virtuales?</strong> No: requiere RTTI → requiere polimorfismo.</li>
+  <li><strong>¿Por qué <code>uintptr_t</code> y no <code>long</code>?</strong> Portabilidad; <code>long</code> no garantiza tamaño de puntero.</li>
+  <li><strong>Diferencia <code>dynamic_cast&lt;T*&gt;</code> vs <code>&lt;T&amp;&gt;</code> al fallar.</strong> Puntero NULL; referencia <code>bad_cast</code>.</li>
+</ol>
+
+<h1>10 · Recursos en vídeo</h1>
+
+<blockquote>Enlaces verificados al momento de la generación. Si alguno cae, busca el título en YouTube.</blockquote>
+
+<h2>10.1 Casts en C++ (español)</h2>
+<ul class="videos">
+  <li><a href="https://www.youtube.com/watch?v=YyGXMUTOb5E">Jesús Conde — static_cast, dynamic_cast o funciones virtuales</a></li>
+  <li><a href="https://www.youtube.com/watch?v=5AJEMC-GzTk">Dibcode — C++ Conversión de Tipos (static_cast)</a></li>
+  <li><a href="https://www.youtube.com/watch?v=yfomh3ERIPc">Jesús Conde — Uso de dynamic_cast</a></li>
+</ul>
+
+<h2>10.2 RTTI y vtables</h2>
+<ul class="videos">
+  <li><a href="https://www.youtube.com/watch?v=oIV2KchSyGQ">The Cherno — Virtual Functions in C++ (vtable mechanics, EN)</a></li>
+  <li><a href="https://www.youtube.com/watch?v=mZne0dLRYI0">The True Boolean — ¿Qué demonios es la VTable en C++? (ES)</a></li>
+</ul>
+
+<h2>10.3 Alignment y padding</h2>
+<ul class="videos">
+  <li><a href="https://www.youtube.com/watch?v=OS8g4bOfVU4">DeepDiveDev — Alineación de memoria en C/C++ (ES)</a></li>
+  <li><a href="https://www.youtube.com/watch?v=E0QhZ6tNoRg">C++ Weekly Ep. 410 — Padding and Alignment (EN, Jason Turner)</a></li>
+</ul>
+
+<h2>10.4 Canales generales recomendados</h2>
+<ul class="videos">
+  <li><a href="https://www.youtube.com/@mouredev">MoureDev — Brais Moure</a> (POO, fundamentos, comunidad ES)</li>
+  <li><a href="https://www.youtube.com/@Mouredev2">MoureDev TV</a> (formato corto)</li>
+  <li><a href="https://www.youtube.com/@TheCherno">The Cherno</a> (serie C++ completa, EN)</li>
+  <li><a href="https://www.youtube.com/@cppweekly">C++ Weekly with Jason Turner</a> (EN, deep dives)</li>
+</ul>
+
+<hr>
+<p style="text-align:center; color:#888; font-size:9pt; margin-top:24px;">
+Generado para uso didáctico — Cursus 42 · CPP Module 06
+</p>
+
+</body>
+</html>

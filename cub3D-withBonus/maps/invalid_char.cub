@@ -1,0 +1,13 @@
+NO ./textures/taquillas.png
+SO ./textures/greca.png
+WE ./textures/famewall.png
+EA ./textures/ordenagailu.png
+F 45,54,70
+C 20,20,20
+
+111111111
+100X00001
+100000001
+100N00001
+100000001
+111111111

@@ -1,0 +1,7 @@
+/home/vlorenzo/Documents/42CURSUS/fdf/MLX42/CMakeFiles/mlx42.dir
+/home/vlorenzo/Documents/42CURSUS/fdf/MLX42/CMakeFiles/edit_cache.dir
+/home/vlorenzo/Documents/42CURSUS/fdf/MLX42/CMakeFiles/rebuild_cache.dir
+/home/vlorenzo/Documents/42CURSUS/fdf/MLX42/CMakeFiles/list_install_components.dir
+/home/vlorenzo/Documents/42CURSUS/fdf/MLX42/CMakeFiles/install.dir
+/home/vlorenzo/Documents/42CURSUS/fdf/MLX42/CMakeFiles/install/local.dir
+/home/vlorenzo/Documents/42CURSUS/fdf/MLX42/CMakeFiles/install/strip.dir

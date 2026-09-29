@@ -1,0 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vlorenzo <vlorenzo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/26 16:26:15 by vlorenzo          #+#    #+#             */
+/*   Updated: 2026/01/14 18:52:00 by vlorenzo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+# include "WrongAnimal.hpp"
+
+WrongAnimal::WrongAnimal()
+{
+	std::cout << "WrongAnimal default constructor called" << std::endl;
+	_type = "wrong amorfous blob";
+	_sound = "wrong bleeeeuuuarggggghhhhh!";
+}
+
+WrongAnimal::WrongAnimal(const WrongAnimal& original)
+{
+	std::cout << "WrongAnimal copy constructor called" << std::endl;
+	_type = original._type;
+	_sound = original._sound;
+}
+
+WrongAnimal::~WrongAnimal()
+{
+	std::cout << "WrongAnimal destructor called" << std::endl;
+}
+
+WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other)
+{
+	if (this == &other)
+		return (*this);
+	_type = other._type;
+	_sound = other._sound;
+	return (*this);
+}
+
+void	WrongAnimal::makeSound()
+{
+	std::cout << "The " << _type << " goes " << _sound << std::endl;
+}
+
+void	WrongAnimal::setSound(const std::string new_sound)
+{
+	_sound = new_sound;
+}
