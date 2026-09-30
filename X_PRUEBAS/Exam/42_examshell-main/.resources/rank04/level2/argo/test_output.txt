@@ -1,0 +1,36 @@
+Running tests...
+Input: 1
+FAIL
+Expected Output: ""
+Your Output:     "1"
+---
+Input: "bonjour"
+FAIL
+Expected Output: ""
+Your Output:     ""bonjour""
+---
+Input: "escape! \\" "
+FAIL
+Expected Output: ""
+Your Output:     ""escape! \\""
+---
+Input: {"tomatoes":42,"potatoes":234}
+FAIL
+Expected Output: ""
+Your Output:     "{"tomatoes":42,"potatoes":234}"
+---
+Input: {"recursion":{"recursion":{"recursion":{"recursion":"recursion"}}}}
+FAIL
+Expected Output: ""
+Your Output:     "{"recursion":{"recursion":{"recursion":{"recursion":"recursion"}}}}"
+---
+/home/jmehmy/Desktop/42/42_exam-with_rank04/.resources/main/../rank04/level2/argo/tester.sh: line 22: 38209 Done                    echo -n "$input"
+     38210 Segmentation fault      (core dumped) | ./argo /dev/stdin > out_my.txt 2> /dev/null
+Input: "unfinished string
+PASS
+---
+Input: "unfinished string 2\\"
+FAIL
+Expected Output: ""
+Your Output:     ""unfinished string 2\\""
+---

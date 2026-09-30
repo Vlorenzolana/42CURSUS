@@ -1,0 +1,39 @@
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+
+
+int ft_popen(const char *file, char *const argv[], char type)
+{
+    if (!file || !argv || (type != 'r' && type != 'w')) {
+               return -1;
+           }
+           int pipefd[2];
+           pid_t cpid;        
+
+           if (pipe(pipefd) == -1) 
+               return -1;
+
+           cpid = fork();
+           if (cpid == -1) {
+               close(pipefd[1]);
+               close(pipefd[0]);
+               return -1;
+           }
+
+           if (cpid == 0) {    /* Child reads from pipe */
+                close(type == 'r' ? pipefd[0] : pipefd[1]);
+                if(dup2(type == 'r' ? pipefd[1] : pipefd[0], type == 'r' ? 1 : 0))
+                    exit (-1);
+                close(type == 'r' ? pipefd[1] : pipefd[0]);
+                execvp(file, argv);
+                exit (-1);
+           } else {            /* Parent writes argv[1] to pipe */
+               close(type == 'r' ? pipefd[1] : pipefd[0]);
+               return(type == 'r' ? pipefd[0] : pipefd[1]);
+           }
+           return 0;
+       }

@@ -1,0 +1,18 @@
+[mysqld]
+# Where the database files are stored
+datadir = /var/lib/mysql
+
+# Where the socket file is (for local connections)
+socket  = /var/run/mysqld/mysqld.sock
+
+# Where the PID file is
+pid-file = /var/run/mysqld/mysqld.pid
+
+# Port to listen on (default is 3306)
+port = 3306
+
+# user to run as
+user = mysql
+
+# Allow connections from ANY IP address
+bind-address = 0.0.0.0

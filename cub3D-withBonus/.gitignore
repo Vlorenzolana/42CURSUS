@@ -1,0 +1,58 @@
+# ----------------------------------------
+#   CUB3D / MLX42 PROJECT .GITIGNORE
+# ----------------------------------------
+
+# Compiled executable
+cub3d
+cub3d_bonus
+
+# Object files
+*.o
+*.obj
+
+# Dependency files
+*.d
+
+# Libs & build dirs
+/build/
+/obj/
+/bin/
+/out/
+
+# Libft compiled files
+libft/*.o
+libft/*.a
+
+# MLX42 build outputs (if local)
+mlx42/
+MLX42/
+/MLX42/build/
+/MLX42/libmlx42.a
+
+# Valgrind suppressions (optional to ignore)
+/*.supp
+
+# Textures cache or DS_Store
+*.DS_Store
+*/.DS_Store
+
+# VSCode / CLion / Editors
+.vscode/
+.idea/
+
+# Logs & temporary stuff
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Python cache (if using scripts)
+/__pycache__/
+*.pyc
+
+# macOS metadata
+._*
+
+# Linux thumbnails
+*.png~
+*.jpg~

@@ -1,0 +1,14 @@
+[33m[1mCompiling reference...(B[m
+[33m[1mCompiling your version...(B[m
+
+[33m[1mRunning tests...(B[m
+[32m[1mPASS(B[m  Input: 1
+[32m[1mPASS(B[m  Input: "bonjour"
+[32m[1mPASS(B[m  Input: "escape! \" "
+[32m[1mPASS(B[m  Input: {"tomatoes":42,"potatoes":234}
+[32m[1mPASS(B[m  Input: {"recursion":{"recursion":{"recursion":{"recursion":"recursion"}}}}
+[32m[1mPASS(B[m  Input: "unfinished string
+[32m[1mPASS(B[m  Input: "unfinished string 2\""
+[32m[1mPASS(B[m  Input: {"no value?":}
+
+[32m[1mALL TESTS PASSED 🎉(B[m

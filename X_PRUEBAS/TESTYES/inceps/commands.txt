@@ -1,0 +1,101 @@
+# ==========================================
+# 🐳 DOCKER MANAGEMENT
+# ==========================================
+
+# List all running containers
+sudo docker ps
+
+# List ALL containers (including stopped/crashed ones)
+sudo docker ps -a
+
+# List all images
+sudo docker images
+
+# List all volumes
+sudo docker volume ls
+
+# List all networks
+sudo docker network ls
+
+# Show logs of a specific container (real-time)
+sudo docker logs -f wordpress
+sudo docker logs -f mariadb
+sudo docker logs -f nginx
+
+# ==========================================
+# 🔍 INSPECTION & PROOF (The "Show Me" Commands)
+# ==========================================
+
+# 1. Prove that the database volume is stored in /home/otmane/data
+sudo docker volume inspect srcs_mariadb_data
+
+# 2. Prove that the WordPress volume is stored in /home/otmane/data
+sudo docker volume inspect srcs_wordpress_data
+
+# 3. Prove that containers are on the same isolated network
+sudo docker network inspect srcs_inception
+
+# 4. Prove that passwords are NOT in environment variables
+# (This should show SQL_USER but NO PASSWORD)
+sudo docker inspect mariadb | grep -A 10 "Env"
+sudo docker inspect wordpress | grep -A 10 "Env"
+
+# ==========================================
+# 🗄️ DATABASE (MariaDB)
+# ==========================================
+
+# 1. Log in to MariaDB as Root
+sudo docker exec -it mariadb mariadb -u root -p
+
+# 2. Log in to MariaDB as the User (otmane)
+sudo docker exec -it mariadb mariadb -u otmane -p
+
+# 3. USEFUL SQL COMMANDS (Once logged in):
+# ----------------------------------------
+# Show all databases
+SHOW DATABASES;
+
+# Switch to the WordPress database
+USE wordpress;
+
+# Show all tables
+SHOW TABLES;
+
+# Show the users registered in WordPress
+SELECT ID, user_login, user_email FROM wp_users;
+
+# Show the URL of the site (to prove it is configured)
+SELECT option_name, option_value FROM wp_options WHERE option_name = 'siteurl' OR option_name = 'home';
+
+# Exit
+EXIT;
+
+# ==========================================
+# 📝 WORDPRESS CLI (WP-CLI)
+# ==========================================
+
+# 1. List all WordPress users via command line
+sudo docker exec -it wordpress wp user list --allow-root
+
+# 2. Create a new user instantly (if asked to "add a user right now")
+sudo docker exec -it wordpress wp user create evaluator eval@student.42.fr --role=editor --user_pass=eval1234 --allow-root
+
+# 3. Delete a user instantly
+sudo docker exec -it wordpress wp user delete evaluator --allow-root
+
+# ==========================================
+# 🛠️ DEBUGGING
+# ==========================================
+
+# Enter the shell of the WordPress container (to check files)
+sudo docker exec -it wordpress bash
+
+# Enter the shell of the NGINX container (to check config)
+sudo docker exec -it nginx bash
+
+# Check if NGINX configuration is valid inside the container
+nginx -t
+
+# Check if the connection between WordPress and MariaDB works
+# (Run this inside the WordPress container)
+mariadb -h mariadb -u otmane -p123456 -e "SHOW DATABASES;"
