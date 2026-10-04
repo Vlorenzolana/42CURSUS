@@ -10,22 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EASYFIND_HPP
-# define EASYFIND_HPP
+#ifndef EASYFIND_HPP // Evita incluir esta cabecera más de una vez en la misma unidad de compilación.
+# define EASYFIND_HPP // Activa la protección definida por EASYFIND_HPP.
 
-#include <algorithm>
-#include <stdexcept>
-#include <iostream>
-#include <vector>
+#include <algorithm> // Proporciona std::find, el algoritmo genérico de búsqueda.
+#include <stdexcept> // Proporciona std::runtime_error para informar de valores ausentes.
+#include <iostream> // Proporciona herramientas de entrada y salida usadas por los tests.
+#include <vector> // Proporciona std::vector, el contenedor usado en main.cpp.
 
-template <typename T>
+template <typename T> // Declara una plantilla: T será el tipo del contenedor recibido.
 
-typename T::iterator easyfind(T& container, int value)
+typename T::iterator easyfind(T& container, int value) // Devuelve un iterador al primer int encontrado.
 {
-    typename T::iterator it = std::find(container.begin(), container.end(), value);
-    if(it == container.end())
-        throw std::runtime_error("Value not found");
-    return it;    
+    typename T::iterator it = std::find(container.begin(), container.end(), value); // Busca desde begin hasta end.
+    if(it == container.end()) // end representa la posición posterior al último elemento, no un elemento válido.
+        throw std::runtime_error("Value not found"); // Informa mediante una excepción de que no hubo coincidencia.
+    return it; // Devuelve el iterador que apunta a la primera coincidencia.
 }
 
-#endif
+#endif // Fin de la protección contra inclusiones repetidas.
